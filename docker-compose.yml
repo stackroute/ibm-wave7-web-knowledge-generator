@@ -29,4 +29,13 @@ services:
     image: zuul-api
     hostname: localhost
     ports:
+      - 8081:8081
+
+  fetch-webpage-service:
+    build: fetch-webpage-service/
+    restart: always
+    network_mode: "host"
+    image: fetch-webpage-service
+    hostname: localhost
+    ports:
       - 8080:8080
