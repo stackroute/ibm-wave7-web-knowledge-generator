@@ -30,7 +30,21 @@ services:
     image: zuul-api
     hostname: localhost
     ports:
-      - 8086:8086
+     - 8086:8086
+
+  web-search-service:
+    build: web-search-service/
+    depends_on:
+      - zuul-api
+      - eureka-server
+      - config-service
+    restart: always
+    network_mode: "host"
+    image: web-search-service
+    hostname: localhost
+    ports:
+      - 8090:8090
+
 
   fetch-webpage-service:
     build: fetch-webpage-service/

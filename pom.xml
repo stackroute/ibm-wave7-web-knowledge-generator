@@ -9,6 +9,7 @@
 	<version>1.0.0</version>
 	<packaging>pom</packaging>
 
+
     <parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -28,9 +29,11 @@
 	<modules>
 		<module>config-server</module>
 		<module>eureka-server</module>
+        <module>web-search-service</module>
 		<module>fetch-webpage-service</module>
 		<module>domain-expert-authentication-service</module>
 		<module>zuul-api</module>
+
 	</modules>
 
 	<dependencies>
@@ -38,6 +41,11 @@
 			<groupId>org.javassist</groupId>
 			<artifactId>javassist</artifactId>
 			<version>3.23.1-GA</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.2.11</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.activation</groupId>
@@ -55,6 +63,23 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.8.1</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>1.10.19</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.hamcrest</groupId>
+					<artifactId>hamcrest-core</artifactId>
+				</exclusion>
+			</exclusions>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-autoconfigure</artifactId>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
         <dependency>
             <groupId>javax.xml.bind</groupId>
@@ -65,8 +90,9 @@
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-impl</artifactId>
-            <version>2.1.2</version>
+            <version>2.3.2</version>
         </dependency>
+
 	</dependencies>
 
 	<dependencyManagement>
@@ -223,7 +249,6 @@
 
 		</plugins>
 	</build>
-
 	<reporting>
 		<plugins>
 			<plugin>
