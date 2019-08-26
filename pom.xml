@@ -29,6 +29,7 @@
 		<module>config-server</module>
 		<module>eureka-server</module>
 		<module>fetch-webpage-service</module>
+		<module>domain-expert-authentication-service</module>
 		<module>zuul-api</module>
 	</modules>
 
