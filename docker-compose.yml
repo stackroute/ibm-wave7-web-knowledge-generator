@@ -43,3 +43,12 @@ services:
     hostname: localhost
     ports:
       - 8090:8090
+
+  fetch-webpage-service:
+    build: fetch-webpage-service/
+    restart: always
+    network_mode: "host"
+    image: fetch-webpage-service
+    hostname: localhost
+    ports:
+      - 8080:8080
