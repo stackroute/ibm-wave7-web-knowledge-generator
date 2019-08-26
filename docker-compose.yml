@@ -32,7 +32,7 @@ services:
       - 8080:8080
 
   web-search-service:
-    build: web-search-services/
+    build: web-search-service/
     depends_on:
       - zuul-api
       - eureka-server

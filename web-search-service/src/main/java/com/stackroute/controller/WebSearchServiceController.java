@@ -1,9 +1,7 @@
 package com.stackroute.controller;
 
-import com.stackroute.Modals.CodeBeautify;
-import com.stackroute.Modals.Result;
+import com.stackroute.modals.Result;
 import com.stackroute.service.WebSearchService;
-import org.bson.types.Code;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URISyntaxException;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class WebSearchServiceController {

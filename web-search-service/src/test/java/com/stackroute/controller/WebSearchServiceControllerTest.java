@@ -1,7 +1,7 @@
 package com.stackroute.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.stackroute.Modals.Result;
+import com.stackroute.modals.Result;
 import com.stackroute.service.WebSearchService;
 import org.junit.Before;
 import org.junit.Test;

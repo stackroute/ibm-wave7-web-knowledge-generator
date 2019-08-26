@@ -1,4 +1,4 @@
-package com.stackroute.Modals;
+package com.stackroute.modals;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

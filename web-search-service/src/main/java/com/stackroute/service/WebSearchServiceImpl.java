@@ -1,8 +1,8 @@
 package com.stackroute.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.stackroute.Modals.CodeBeautify;
-import com.stackroute.Modals.Result;
+import com.stackroute.modals.CodeBeautify;
+import com.stackroute.modals.Result;
 import com.stackroute.repository.SearchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +26,7 @@ public class WebSearchServiceImpl implements WebSearchService {
     public List<Result> getSearchResults(String searchString) throws URISyntaxException {
         List<Result>  output= new ArrayList<>();
         RestTemplate restTemplate = new RestTemplate();
+        //api to get links from
         String url = "https://app.zenserp.com/api/v2/search?q="+searchString+"&hl=en&gl=US&location=United%20States&search_engine=google.com&apikey=9df762e0-c56a-11e9-b82a-eb4e4c7a090f";
         URI uri = new URI(url);
         String string = restTemplate.getForObject(uri, String.class);
@@ -33,7 +34,9 @@ public class WebSearchServiceImpl implements WebSearchService {
         CodeBeautify result = null;
         try {
             result = objectMapper.readValue(string, CodeBeautify.class);
+            //list of links from the data
             List<Result> resultList = result.getOrganic();
+            //saving the results
             output = saveResults(resultList);
         }
         catch (IOException e) {
@@ -48,6 +51,7 @@ public class WebSearchServiceImpl implements WebSearchService {
 
             for (Result searchResult: resultList) {
                 Result result1 = searchRepository.save(searchResult);
+                //adding the links to output and saving
                 output.add(searchRepository.save(result1));
             }
         return output;

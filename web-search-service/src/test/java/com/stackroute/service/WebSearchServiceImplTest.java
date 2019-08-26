@@ -1,7 +1,6 @@
 package com.stackroute.service;
 
-import com.stackroute.Modals.Query;
-import com.stackroute.Modals.Result;
+import com.stackroute.modals.Result;
 import com.stackroute.repository.SearchRepository;
 import org.junit.Assert;
 import org.junit.Before;
@@ -14,13 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import javax.sound.midi.Track;
-
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.internal.verification.VerificationModeFactory.times;

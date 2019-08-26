@@ -29,8 +29,8 @@
 		<module>config-server</module>
 		<module>eureka-server</module>
 		<module>zuul-api</module>
-        <module>WebSearchServices</module>
-    </modules>
+        <module>web-search-service</module>
+	</modules>
 
 	<dependencies>
 		<dependency>
@@ -71,6 +71,10 @@
 				</exclusion>
 			</exclusions>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-autoconfigure</artifactId>
 		</dependency>
 	</dependencies>
 

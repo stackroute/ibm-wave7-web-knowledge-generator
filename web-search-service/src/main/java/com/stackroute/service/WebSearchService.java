@@ -1,12 +1,11 @@
 package com.stackroute.service;
 
-import com.stackroute.Modals.CodeBeautify;
-import com.stackroute.Modals.Result;
+import com.stackroute.modals.Result;
 
 import java.net.URISyntaxException;
 import java.util.List;
-import java.util.Map;
 
+//Interface
 public interface WebSearchService {
 
     List<Result> getSearchResults(String searchString) throws URISyntaxException;
