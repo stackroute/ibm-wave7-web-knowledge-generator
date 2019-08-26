@@ -3,6 +3,7 @@ package com.stackroute.modals;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+//class result to get links and positions
 public class Result {
 
     private int position;
@@ -14,9 +15,11 @@ public class Result {
         this.url = url;
     }
 
+    //default constructor
     public Result()
     {}
 
+    //getter and setter methods
     public int getPosition() {
         return position;
     }
@@ -33,6 +36,7 @@ public class Result {
         this.url = url;
     }
 
+    //generate toString
     @Override
     public String toString() {
         return "Result{" +

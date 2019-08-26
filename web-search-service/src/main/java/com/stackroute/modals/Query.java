@@ -2,6 +2,7 @@ package com.stackroute.modals;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Query {
     private String q;
@@ -12,6 +13,7 @@ public class Query {
     private String apikey;
     private String url;
 
+    //default constructor
     public Query() {
     }
 

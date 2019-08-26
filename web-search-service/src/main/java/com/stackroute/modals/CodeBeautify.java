@@ -1,10 +1,10 @@
 package com.stackroute.modals;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import java.util.ArrayList;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+//class codebeautify to get the data from the api
 public class CodeBeautify {
 
     Query queryObject;
@@ -46,6 +46,7 @@ public class CodeBeautify {
         this.number_of_results = number_of_results;
     }
 
+    //toString
     @Override
     public String toString() {
         return "CodeBeautify{" +
