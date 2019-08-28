@@ -33,6 +33,7 @@
 		<module>fetch-webpage-service</module>
 		<module>domain-expert-authentication-service</module>
 		<module>zuul-api</module>
+		<module>movieData-populator-service</module>
 
 	</modules>
 
