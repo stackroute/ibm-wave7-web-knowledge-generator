@@ -27,33 +27,48 @@ public class MoviePopulatorServiceImpl implements MoviePopulatorService{
 
     public void fetchDataFromOmdbApi() {
 //
-            System.out.println("service");
-            final String uri = "http://www.omdbapi.com/?apikey=43866b21&i=tt0048545";
+        ResponseEntity<String> result;
+        String jsonString = "";
+        JSONArray jsonArray = new JSONArray();
+        for(int i=530;i<=540;i++) {
+
+
+            final String uri = "http://www.omdbapi.com/?apikey=43866b21&i=tt0048" + i;
+
             RestTemplate restTemplate = new RestTemplate();
-           // ResponseEntity<String> result = restTemplate.getForEntity(uri, String.class);
-            ResponseEntity<String> result = restTemplate.getForEntity(uri,String.class);
+            // ResponseEntity<String> result = restTemplate.getForEntity(uri, String.class);
+            result = restTemplate.getForEntity(uri, String.class);
 
-            System.out.println(result.getBody());
+//            System.out.println(result.getBody());
 
-          String jsonString = result.getBody();
-
-        JSONObject output;
+            jsonString = result.getBody();
+            JSONObject output;
 
             try {
                 output = new JSONObject(jsonString);
-                System.out.println(output);
-                JSONArray jsonArray = new JSONArray();
+//                System.out.println(output);
                 jsonArray.put(output);
-                File file=new File("./moviedata.csv");
-                String csv = CDL.toString(jsonArray);
-                FileUtils.writeStringToFile(file, csv);
-                System.out.println("Data has been Sucessfully Writeen to "+file);
+
             } catch (JSONException e) {
                 e.printStackTrace();
-            } catch (IOException e) {
+            }
+        }
+
+        System.out.println(jsonArray);
+            try {
+                File file = new File("./moviedata.csv");
+                String csv = CDL.toString(jsonArray);
+                FileUtils.writeStringToFile(file, csv);
+                System.out.println("Data has been Sucessfully Writeen to " + file);
+            }  catch (JSONException e) {
+                e.printStackTrace();
+            }
+            catch (IOException e) {
 //                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
+
+
 
 
     }
