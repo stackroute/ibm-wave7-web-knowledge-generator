@@ -1,7 +1,9 @@
 package com.stackroute.service;
 
 
+import java.io.IOException;
+
 public interface MoviePopulatorService {
 
-    void fetchDataFromOmdbApi();
+    void fetchDataFromOmdbApi() throws IOException;
 }

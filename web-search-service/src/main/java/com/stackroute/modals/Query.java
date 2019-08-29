@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Query {
-    private String q;
-    private String hl;
-    private String gl;
+    private String string;
+    private String language;
+    private String country_code;
     private String location;
     private String search_engine;
     private String apikey;
@@ -19,16 +19,16 @@ public class Query {
 
  // Getter Methods
 
-    public String getQ() {
-        return q;
+    public String getString() {
+        return string;
     }
 
-    public String getHl() {
-        return hl;
+    public String getLanguage() {
+        return language;
     }
 
-    public String getGl() {
-        return gl;
+    public String getCountry_code() {
+        return country_code;
     }
 
     public String getLocation() {
@@ -49,16 +49,16 @@ public class Query {
 
     // Setter Methods
 
-    public void setQ(String q) {
-        this.q = q;
+    public void setString(String string) {
+        this.string = string;
     }
 
-    public void setHl(String hl) {
-        this.hl = hl;
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
-    public void setGl(String gl) {
-        this.gl = gl;
+    public void setCountry_code(String country_code) {
+        this.country_code = country_code;
     }
 
     public void setLocation(String location) {

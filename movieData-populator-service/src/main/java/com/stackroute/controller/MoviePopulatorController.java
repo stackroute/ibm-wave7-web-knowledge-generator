@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+
 @RestController
 public class MoviePopulatorController {
 
@@ -17,7 +19,7 @@ public class MoviePopulatorController {
     }
 
     @GetMapping("fetch")
-    public void fetchDataFromOmdbApi(){
+    public void fetchDataFromOmdbApi() throws IOException {
         System.out.println("controller");
         moviePopulatorService.fetchDataFromOmdbApi();
     }
