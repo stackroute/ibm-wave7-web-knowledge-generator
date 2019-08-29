@@ -2,8 +2,6 @@ package com.stackroute.controller;
 
 
 import com.stackroute.service.WebPageService;
-import com.stackroute.service.WebPageServiceImpl;
-import com.stackroute.model.Search;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +16,6 @@ public class WebPageController {
 
     private ResponseEntity responseEntity;
     private WebPageService webPageService;
-    private Search search;
-    private WebPageServiceImpl webPageServiceImpl;
 
     public WebPageController(WebPageService webPageService) throws IOException {
         this.webPageService = webPageService;
