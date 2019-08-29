@@ -17,8 +17,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 public class WebSearchServiceImplTest {
@@ -58,8 +57,8 @@ public class WebSearchServiceImplTest {
         List<Result> savedresults = webSearchService.saveResults(resultList);
         Assert.assertEquals(resultList,savedresults);
         verify(searchRepository,times(1)).save(Mockito.any(Result.class));
-       // verify(trackRepository,times(1)).existsById(1);
-     //   verifyNoMoreInteractions(trackRepository);
+      //  verify(trackRepository,times(1)).existsById(1);
+        verifyNoMoreInteractions(searchRepository);
     }
 
     @Test
@@ -68,7 +67,7 @@ public class WebSearchServiceImplTest {
         when(searchRepository.save(result)).thenReturn(result);
         List<Result> retrievedTracks = webSearchService.getSearchResults("movie");
         Assert.assertEquals(resultList,retrievedTracks);
-      //  verify(trackRepository,times(1)).findAll();
-        //verifyNoMoreInteractions(trackRepository);
+       verify(searchRepository,times(1)).findAll();
+        verifyNoMoreInteractions(searchRepository);
     }
 }
