@@ -8,7 +8,8 @@ services:
     hostname: localhost
     image: eureka-server
     ports:
-      - 8761:8761
+      - 8762:8762
+
 
   config-service:
     build: config-server/
@@ -17,7 +18,7 @@ services:
     image: config-service
     hostname: localhost
     ports:
-      - 8888:8888
+      - 8889:8889
 
   zuul-api:
     build: zuul-api/
@@ -29,7 +30,7 @@ services:
     image: zuul-api
     hostname: localhost
     ports:
-      - 8080:8080
+     - 8086:8086
 
   web-search-service:
     build: web-search-service/
@@ -44,6 +45,7 @@ services:
     ports:
       - 8090:8090
 
+
   fetch-webpage-service:
     build: fetch-webpage-service/
     restart: always
@@ -51,4 +53,13 @@ services:
     image: fetch-webpage-service
     hostname: localhost
     ports:
-      - 8080:8080
+      - 8083:8083
+
+  domain-expert-authentication-service:
+    build: domain-expert-authentication-service/
+    restart: always
+    network_mode: "host"
+    image: domain-expert-authentication-servicedocker
+    hostname: localhost
+    ports:
+        - 9090:9090

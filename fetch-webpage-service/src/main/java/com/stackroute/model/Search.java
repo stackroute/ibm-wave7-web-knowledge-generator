@@ -1,7 +1,7 @@
 package com.stackroute.model;
 //class to get Search url
 public class Search {
-    String url;
+   private String url;
 //get method for url
     public String getUrl() {
         return url;

@@ -1,4 +1,4 @@
-FROM openjdk:11.0.3
+FROM openjdk:11
 
 ADD ./target/fetch-webpage-service-1.0-SNAPSHOT.jar /usr/src/fetch-webpage-service-1.0-SNAPSHOT.jar
 

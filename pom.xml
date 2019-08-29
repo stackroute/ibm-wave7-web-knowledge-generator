@@ -29,10 +29,11 @@
 	<modules>
 		<module>config-server</module>
 		<module>eureka-server</module>
-
         <module>web-search-service</module>
 		<module>fetch-webpage-service</module>
+		<module>domain-expert-authentication-service</module>
 		<module>zuul-api</module>
+		<module>movieData-populator-service</module>
 
 	</modules>
 
@@ -90,7 +91,9 @@
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-impl</artifactId>
+            <version>2.3.2</version>
         </dependency>
+
 	</dependencies>
 
 	<dependencyManagement>
