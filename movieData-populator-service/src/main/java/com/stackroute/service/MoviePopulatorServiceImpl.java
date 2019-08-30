@@ -55,6 +55,17 @@ public class MoviePopulatorServiceImpl implements MoviePopulatorService{
         }
 
         System.out.println(jsonArray);
+        for(int i = 0; i < jsonArray.length(); i++)
+        {
+            try {
+                JSONObject objects = jsonArray.getJSONObject(i);
+//                String a = objects.get("Title");
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
             try {
                 File file = new File("./moviedata.csv");
                 String csv = CDL.toString(jsonArray);
