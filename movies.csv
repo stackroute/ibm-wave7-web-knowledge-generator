@@ -1,6 +1,6 @@
 id,title,country,year,ratings_source,rating_value,actors
-1,Wall Street,USA,1987,Internet Movie Database,7.8/10,"Salman khan,bhagya shree"
-,,,,"Rotten Tomatoes","96%",
+1,N/A,USA,1987,Internet Movie Database,7.8/10,"Salman khan,bhagya shree"
+N/A,N/A,N/A,N/A,"Rotten Tomatoes","96%",N/A
 ,,,,"Metacritic","87/100",
 2,The American President,USA,1995,Internet Movie Database,7.8/10,"Amitabh bacchan"
 ,,,,"Rotten Tomatoes","96%",
