@@ -27,7 +27,7 @@ public class WebPageController {
     public ResponseEntity<String> getAllContent(@RequestParam(value = "url") String url) throws IOException {
        String result = "";
         System.out.println(url);
-       result = webPageService.getTitle(url)+"\n\n\n";
+//       result = webPageService.getTitle(url)+"\n\n\n";
         result = result + webPageService.getHeading(url)+"\n\n\n";
         result = result + webPageService.getAllPTextsFromBody(url)+"\n\n\n";
 //        result = result + webPageService.printImages()+"\n\n\n";
