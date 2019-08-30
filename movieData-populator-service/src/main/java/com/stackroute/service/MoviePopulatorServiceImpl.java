@@ -30,7 +30,7 @@ public class MoviePopulatorServiceImpl implements MoviePopulatorService{
         ResponseEntity<String> result;
         String jsonString = "";
         JSONArray jsonArray = new JSONArray();
-        for(int i=530;i<=540;i++) {
+        for(int i=501;i<=520;i++) {
 
 
             final String uri = "http://www.omdbapi.com/?apikey=43866b21&i=tt0048" + i;
