@@ -23,8 +23,16 @@ public class MoviePopulatorServiceImpl implements MoviePopulatorService{
         this.moviePopulatorRepository = moviePopulatorRepository;
     }
 
+    // method to fetch data from omdb and save into neo4j
     @Override
+    public void saveDataFromOmdbApiToNeo4j() throws IOException {
 
+        // call repository method to save movie data into neo4j
+        moviePopulatorRepository.saveMovie();
+    }
+
+
+    @Override
     public void fetchDataFromOmdbApi() {
         ResponseEntity<String> result;
         String jsonString = "";

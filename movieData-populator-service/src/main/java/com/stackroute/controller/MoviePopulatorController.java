@@ -20,7 +20,11 @@ public class MoviePopulatorController {
 
     @GetMapping("fetch")
     public void fetchDataFromOmdbApi() throws IOException {
-        System.out.println("controller");
         moviePopulatorService.fetchDataFromOmdbApi();
+    }
+    // method to store movie data from Omdb to neo4j
+    @GetMapping("export-movies")
+    public void fetch() throws IOException {
+        moviePopulatorService.saveDataFromOmdbApiToNeo4j();
     }
 }
