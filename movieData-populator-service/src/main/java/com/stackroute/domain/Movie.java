@@ -1,26 +1,46 @@
 package com.stackroute.domain;
 
 import java.util.List;
+import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvBindByPosition;
 
 public class Movie {
 
+    @CsvBindByName(column = "title")
     private String title;
+    @CsvBindByName(column = "releaseDate")
     private String releaseDate;
+    @CsvBindByName(column = "genre")
     private String genre;
+    @CsvBindByName(column = "releaseYear")
     private String releaseYear;
+    @CsvBindByName(column = "director")
     private String director;
+    @CsvBindByName(column = "writer")
     private List<String> writer;
+    @CsvBindByName(column = "actor")
     private List<String> actor;
+    @CsvBindByName(column = "summary")
     private String summary;
+    @CsvBindByName(column = "rated")
     private String rated;
+    @CsvBindByName(column = "rating")
     private List<Rating> rating;
+    @CsvBindByName(column = "language")
     private String language;
+    @CsvBindByName(column = "duration")
     private String duration;
+    @CsvBindByName(column = "awards")
     private String awards;
+    @CsvBindByName(column = "ibdbId")
     private String ibdbId;
+    @CsvBindByName(column = "production")
     private String production;
+    @CsvBindByName(column = "country")
     private String country;
+    @CsvBindByName(column = "poster")
     private String poster;
+
 
     public String getTitle() {
         return title;

@@ -5,5 +5,6 @@ import java.io.IOException;
 
 public interface MoviePopulatorService {
 
-    void fetchDataFromOmdbApi() throws IOException;
+    // method to fetch data from omdb
+     void fetchDataFromOmdbApi() throws IOException;
 }
