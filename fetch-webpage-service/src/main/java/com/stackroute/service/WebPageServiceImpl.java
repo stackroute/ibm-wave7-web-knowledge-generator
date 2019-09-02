@@ -37,6 +37,7 @@ public class WebPageServiceImpl implements WebPageService {
 
         Document doc = Jsoup.connect(url).get();
 
+<<<<<<< HEAD
         Elements link = doc.select("p:lt(7)");
             String linkText = link.text();
             String result = " ";
@@ -49,6 +50,22 @@ public class WebPageServiceImpl implements WebPageService {
                 result =result +"\n" +str;
             }
             return "BodyContentP:"+"\n"+linkText;
+=======
+        Elements link = doc.select("div p:lt(7)");
+        String linkText = link.text();
+        String result = " ";
+
+        System.out.println(linkText);
+//            String[] words=linkText.split("[^.!?\\s][^.!?]*(?:[.!?](?!['\"]?\\s|$)[^.!?]*)");
+        String[] words=linkText.split("[\n]");
+        String word = words[0];
+        for(String str:words)
+        {
+            result =result +"\n" +str;
+        }
+
+        return  linkText;
+>>>>>>> 4a82ad6651eb3dce21cf31f3a640bd3c770359e9
         }
 
 
@@ -76,10 +93,11 @@ return body;
         Document doc = Jsoup.connect(url).get();
 
         Elements h1 = doc.select("h1");
-        Elements h2 = doc.select("h2");
-        Elements h3 = doc.select("h3");
-        Elements h4 = doc.select("h4");
-        String heading = "Hedings:"+"\n"+"h1: "+h1.text()+"\n"+"h2: "+h2.text()+"\n"+"h3: "+h3.text()+"\n"+"h4: "+h4.text();
+//        Elements h2 = doc.select("h2");
+//        Elements h3 = doc.select("h3");
+//        Elements h4 = doc.select("h4");
+//        String heading = "Hedings:"+"\n"+"h1: "+h1.text()+"\n"+"h2: "+h2.text()+"\n"+"h3: "+h3.text()+"\n"+"h4: "+h4.text();
+        String heading =  h1.text();
         return heading;
     }
 
