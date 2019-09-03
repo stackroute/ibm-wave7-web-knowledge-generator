@@ -34,8 +34,9 @@
 		<module>domain-expert-authentication-service</module>
 		<module>zuul-api</module>
 		<module>movieData-populator-service</module>
+        <module>fetch-knowledge-data-neo4jdb-service</module>
 
-	</modules>
+    </modules>
 
 	<dependencies>
 		<dependency>
