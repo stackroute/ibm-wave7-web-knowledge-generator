@@ -63,15 +63,14 @@
 
         </dependency>
         <dependency>
-<<<<<<< HEAD
             <groupId>com.opencsv</groupId>
             <artifactId>opencsv</artifactId>
             <version>4.5</version>
-=======
+        </dependency>
+        <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20090211</version>
->>>>>>> 4a82ad6651eb3dce21cf31f3a640bd3c770359e9
         </dependency>
     </dependencies>
 

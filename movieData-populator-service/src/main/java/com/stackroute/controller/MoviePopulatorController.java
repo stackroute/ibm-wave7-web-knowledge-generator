@@ -27,10 +27,17 @@ public class MoviePopulatorController {
     public MoviePopulatorController(MoviePopulatorService moviePopulatorService) {
         this.moviePopulatorService = moviePopulatorService;
     }
-
     // method to store movie data from Omdb to neo4j
-    @GetMapping("/export-movies")
+    @GetMapping("/fetch-movies")
     public void fetch() throws IOException {
         moviePopulatorService.fetchDataFromOmdbApi();
     }
+
+    // method to store movie data from Omdb to neo4j
+    @GetMapping("/save-movies")
+    public void save() throws IOException {
+        moviePopulatorService.saveDataFromCsv();
+    }
+
+
 }
