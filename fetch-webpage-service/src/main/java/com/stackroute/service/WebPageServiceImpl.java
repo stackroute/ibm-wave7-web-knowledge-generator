@@ -37,20 +37,7 @@ public class WebPageServiceImpl implements WebPageService {
 
         Document doc = Jsoup.connect(url).get();
 
-<<<<<<< HEAD
-        Elements link = doc.select("p:lt(7)");
-            String linkText = link.text();
-            String result = " ";
 
-            //System.out.println(linkText);
-//            String[] words=linkText.split("[^.!?\\s][^.!?]*(?:[.!?](?!['\"]?\\s|$)[^.!?]*)");
-        String[] words=linkText.split("[.]");
-            for(String str:words)
-            {
-                result =result +"\n" +str;
-            }
-            return "BodyContentP:"+"\n"+linkText;
-=======
         Elements link = doc.select("div p:lt(7)");
         String linkText = link.text();
         String result = " ";
@@ -65,7 +52,6 @@ public class WebPageServiceImpl implements WebPageService {
         }
 
         return  linkText;
->>>>>>> 4a82ad6651eb3dce21cf31f3a640bd3c770359e9
         }
 
 

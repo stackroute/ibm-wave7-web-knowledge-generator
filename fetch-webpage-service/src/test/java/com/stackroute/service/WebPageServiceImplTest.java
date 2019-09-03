@@ -58,15 +58,14 @@ public class WebPageServiceImplTest {
 
     @Test
     public void getAllContentSuccess() throws Exception {
-        System.out.println("hello");
         when(webPageService.getTitle(any())).thenReturn("");
+         mockMvc.perform(get("/getContent?url="+search.getUrl())
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .content((asJsonString(data))))
+                    .andExpect(status().isOk())
+                    .andDo(print());
 
-        mockMvc.perform(get("/getContent?url="+search.getUrl())
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .accept(MediaType.APPLICATION_JSON)
-                .content((asJsonString(data))))
-                .andExpect(status().isOk())
-                .andDo(print());
     }
 
     private String asJsonString(String data) throws JsonProcessingException {

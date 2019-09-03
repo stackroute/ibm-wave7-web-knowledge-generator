@@ -27,12 +27,11 @@ public class WebPageController {
     public ResponseEntity<String> getAllContent(@RequestParam(value = "url") String url) throws IOException {
        String result = "";
         System.out.println(url);
-<<<<<<< HEAD
+
         result = url +"\n\n\n";
        result = webPageService.getTitle(url)+"\n\n\n";
-=======
+
 //       result = webPageService.getTitle(url)+"\n\n\n";
->>>>>>> 4a82ad6651eb3dce21cf31f3a640bd3c770359e9
         result = result + webPageService.getHeading(url)+"\n\n\n";
         result = result + webPageService.getAllPTextsFromBody(url)+"\n\n\n" + url;
 //        result = result + webPageService.printImages()+"\n\n\n";

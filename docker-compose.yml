@@ -63,3 +63,12 @@ services:
     hostname: localhost
     ports:
         - 9090:9090
+
+  moviedata-populator-service:
+    build: moviedata-populator-service/
+    restart: always
+    network_mode: "host"
+    image: moviedata-populator-servicedocker
+    hostname: localhost
+    ports:
+      - 8888:8888
