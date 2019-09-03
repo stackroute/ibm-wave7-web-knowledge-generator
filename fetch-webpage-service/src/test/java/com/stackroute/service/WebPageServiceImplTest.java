@@ -27,11 +27,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = FetchWebPage.class)
 @WebMvcTest(WebPageController.class)
 public class WebPageServiceImplTest {
+
     @Autowired
     private MockMvc mockMvc;
 
@@ -43,7 +43,7 @@ public class WebPageServiceImplTest {
     private WebPageService webPageService;
 
     @InjectMocks
-    private WebPageServiceImpl webPageServiceImpl;
+    private WebPageController webPageController;
 
     private List<Search> list= null;
 
@@ -51,21 +51,102 @@ public class WebPageServiceImplTest {
     public void setUp() throws Exception{
         //Initialising the mock object
         MockitoAnnotations.initMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(webPageService).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(webPageController).build();
         search = new Search();
         search.setUrl("https://en.wikipedia.org/wiki/Google");
     }
 
     @Test
-    public void getAllContentSuccess() throws Exception {
-        when(webPageService.getTitle(any())).thenReturn("");
-         mockMvc.perform(get("/getContent?url="+search.getUrl())
-                    .contentType(MediaType.APPLICATION_JSON_UTF8)
-                    .accept(MediaType.APPLICATION_JSON)
-                    .content((asJsonString(data))))
-                    .andExpect(status().isOk())
-                    .andDo(print());
+    public void getSourceCodeSuccess() throws Exception {
+        System.out.println("hello");
+        when(webPageService.getSourceCodeOfWebPage(any())).thenReturn("");
 
+
+        mockMvc.perform(get("/getContent?url="+search.getUrl())
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .accept(MediaType.APPLICATION_JSON)
+                .content((asJsonString(data))))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
+    @Test
+    public void getTextsFromBodySuccess() throws Exception {
+        System.out.println("hello");
+        when(webPageService.getAllPTextsFromBody(any())).thenReturn("");
+
+
+        mockMvc.perform(get("/getContent?url="+search.getUrl())
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .accept(MediaType.APPLICATION_JSON)
+                .content((asJsonString(data))))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
+
+    @Test
+    public void getTitleSuccess() throws Exception {
+        System.out.println("hello");
+        when(webPageService.getTitle(any())).thenReturn("");
+
+
+        mockMvc.perform(get("/getContent?url="+search.getUrl())
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .accept(MediaType.APPLICATION_JSON)
+                .content((asJsonString(data))))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
+    @Test
+    public void getBodySuccess() throws Exception {
+        System.out.println("hello");
+        when(webPageService.getBody(any())).thenReturn("");
+
+
+        mockMvc.perform(get("/getContent?url="+search.getUrl())
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .accept(MediaType.APPLICATION_JSON)
+                .content((asJsonString(data))))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
+    @Test
+    public void getHeadingSuccess() throws Exception {
+        System.out.println("hello");
+        when(webPageService.getHeading(any())).thenReturn("");
+
+
+        mockMvc.perform(get("/getContent?url="+search.getUrl())
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .accept(MediaType.APPLICATION_JSON)
+                .content((asJsonString(data))))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
+    @Test
+    public void getImagesSuccess() throws Exception {
+        System.out.println("hello");
+        when(webPageService.getImages(any())).thenReturn("");
+
+
+        mockMvc.perform(get("/getContent?url="+search.getUrl())
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .accept(MediaType.APPLICATION_JSON)
+                .content((asJsonString(data))))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
+    @Test
+    public void getFormSuccess() throws Exception {
+        System.out.println("hello");
+        when(webPageService.getForm(any())).thenReturn("");
+
+
+        mockMvc.perform(get("/getContent?url="+search.getUrl())
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .accept(MediaType.APPLICATION_JSON)
+                .content((asJsonString(data))))
+                .andExpect(status().isOk())
+                .andDo(print());
     }
 
     private String asJsonString(String data) throws JsonProcessingException {
@@ -77,6 +158,6 @@ public class WebPageServiceImplTest {
         }
     }
 
-
-
 }
+
+
