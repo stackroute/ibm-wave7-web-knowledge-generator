@@ -11,6 +11,7 @@ import java.util.List;
 public class MovieService {
     private MovieRepository movieRepository;
      String[] actor= {"actor","star","hero","performer"," player", "trouper", "artist"};
+     String[] writer={"author","scriptwriter"};
 
     public MovieService(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
@@ -21,14 +22,18 @@ public class MovieService {
 
     public Collection<Node> getData(String nodelabel, String relation) {
         for(int i = 0; i < actor.length; i++) {
-            if(nodelabel==actor[i])
+            if(nodelabel.equals(actor[i]))
             {
                 nodelabel="Actor";
                 break;
             }
-            else
+
+        }
+        for(int i = 0; i < writer.length; i++) {
+
+            if(nodelabel.equals(writer[i]))
             {
-                nodelabel="Actor";
+                nodelabel="Writer";
             }
         }
         System.out.println(nodelabel);
