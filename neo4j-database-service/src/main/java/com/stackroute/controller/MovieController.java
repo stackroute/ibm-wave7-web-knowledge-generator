@@ -23,4 +23,9 @@ public class MovieController {
     {
         return (Collection<Node>) movieService.getData(nodelabel,relation);
     }
+    @GetMapping("/graph1/{nodelabel1}/{nodelabel2}")
+    public Collection<Node> getdata2labels(@PathVariable String nodelabel1,@PathVariable String nodelabel2)
+    {
+        return (Collection<Node>) movieService.getDataforDoubleNode(nodelabel1,nodelabel2);
+    }
 }
