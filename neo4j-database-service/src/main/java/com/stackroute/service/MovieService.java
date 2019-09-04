@@ -41,6 +41,10 @@ public class MovieService {
         System.out.println(movieRepository.findData(nodelabel,relation));
         return (Collection<Node>) movieRepository.findData(nodelabel,relation);
     }
+    public Collection<Node> getDataforDoubleNode(String nodelabel1,String nodelabel2)
+    {
+        return (Collection<Node>) movieRepository.findDoubleData(nodelabel1,nodelabel2);
+    }
 
 
 }
