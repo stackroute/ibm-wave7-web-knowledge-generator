@@ -34,6 +34,7 @@
 		<module>domain-expert-authentication-service</module>
 		<module>zuul-api</module>
 		<module>movieData-populator-service</module>
+		<module>keyword-phrase-service</module>
 
 	</modules>
 

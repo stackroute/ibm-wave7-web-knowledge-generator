@@ -1,47 +1,36 @@
 package com.stackroute.modals;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 //class result to get links and positions
+@Document
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Result {
 
-    private int position;
+  private String url;
 
-    private String url;
+  public Result(String url) {
+    this.url = url;
+  }
 
-    public Result(int position, String url) {
-        this.position = position;
-        this.url = url;
-    }
+  public Result() {
+  }
 
-    //default constructor
-    public Result()
-    {}
+  public String getUrl() {
+    return url;
+  }
 
-    //getter and setter methods
-    public int getPosition() {
-        return position;
-    }
+  public void setUrl(String url) {
+    this.url = url;
+  }
 
-    public void setPosition(int position) {
-        this.position = position;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    //generate toString
-    @Override
-    public String toString() {
-        return "Result{" +
-                "position=" + position +
-                ", url='" + url + '\'' +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "Result{" +
+        url + '\'' +
+      '}';
+  }
 }

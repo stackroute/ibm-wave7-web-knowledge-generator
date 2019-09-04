@@ -55,6 +55,19 @@ services:
     ports:
       - 8083:8083
 
+  keyword-phrase-service:
+    build: keyword-phrase-service/
+    depends_on:
+      - zuul-api
+      - eureka-server
+      - config-service
+    restart: always
+    network_mode: "host"
+    image: keyword-phrase-service
+    hostname: localhost
+    ports:
+      - 8092:8092
+
   domain-expert-authentication-service:
     build: domain-expert-authentication-service/
     restart: always
