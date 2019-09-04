@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stackroute.FetchWebPage;
 import com.stackroute.model.Search;
 import com.stackroute.service.WebPageService;
+import com.stackroute.service.WebPageServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +14,9 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -27,11 +30,14 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
+
+
+
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = FetchWebPage.class)
 @WebMvcTest(WebPageController.class)
 public class WebPageControllerTest {
-
     @Autowired
     private MockMvc mockMvc;
 
@@ -57,89 +63,9 @@ public class WebPageControllerTest {
     }
 
     @Test
-    public void getSourceCodeSuccess() throws Exception {
-        System.out.println("hello");
-        when(webPageService.getSourceCodeOfWebPage(any())).thenReturn("");
-
-
-        mockMvc.perform(get("/getContent?url="+search.getUrl())
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .accept(MediaType.APPLICATION_JSON)
-                .content((asJsonString(data))))
-                .andExpect(status().isOk())
-                .andDo(print());
-    }
-    @Test
-    public void getTextsFromBodySuccess() throws Exception {
-        System.out.println("hello");
-        when(webPageService.getAllPTextsFromBody(any())).thenReturn("");
-
-
-        mockMvc.perform(get("/getContent?url="+search.getUrl())
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .accept(MediaType.APPLICATION_JSON)
-                .content((asJsonString(data))))
-                .andExpect(status().isOk())
-                .andDo(print());
-    }
-
-    @Test
-    public void getTitleSuccess() throws Exception {
-        System.out.println("hello");
-        when(webPageService.getTitle(any())).thenReturn("");
-
-
-        mockMvc.perform(get("/getContent?url="+search.getUrl())
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .accept(MediaType.APPLICATION_JSON)
-                .content((asJsonString(data))))
-                .andExpect(status().isOk())
-                .andDo(print());
-    }
-    @Test
-    public void getBodySuccess() throws Exception {
-        System.out.println("hello");
-        when(webPageService.getBody(any())).thenReturn("");
-
-
-        mockMvc.perform(get("/getContent?url="+search.getUrl())
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .accept(MediaType.APPLICATION_JSON)
-                .content((asJsonString(data))))
-                .andExpect(status().isOk())
-                .andDo(print());
-    }
-    @Test
-    public void getHeadingSuccess() throws Exception {
-        System.out.println("hello");
+    public void getAllContentSuccess() throws Exception {
         when(webPageService.getHeading(any())).thenReturn("");
-
-
-        mockMvc.perform(get("/getContent?url="+search.getUrl())
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .accept(MediaType.APPLICATION_JSON)
-                .content((asJsonString(data))))
-                .andExpect(status().isOk())
-                .andDo(print());
-    }
-    @Test
-    public void getImagesSuccess() throws Exception {
-        System.out.println("hello");
-        when(webPageService.getImages(any())).thenReturn("");
-
-
-        mockMvc.perform(get("/getContent?url="+search.getUrl())
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .accept(MediaType.APPLICATION_JSON)
-                .content((asJsonString(data))))
-                .andExpect(status().isOk())
-                .andDo(print());
-    }
-    @Test
-    public void getFormSuccess() throws Exception {
-        System.out.println("hello");
-        when(webPageService.getForm(any())).thenReturn("");
-
+        when(webPageService.getAllPTextsFromBody(any())).thenReturn("");
 
         mockMvc.perform(get("/getContent?url="+search.getUrl())
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -157,5 +83,7 @@ public class WebPageControllerTest {
             throw new RuntimeException();
         }
     }
+
+
 
 }

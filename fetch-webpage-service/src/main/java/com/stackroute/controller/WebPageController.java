@@ -34,17 +34,28 @@ public class WebPageController {
     //getMapping to fetch the reqiured contents from the url
     @GetMapping("getContent")
     //Controller method to return the data
+<<<<<<< HEAD
     public ResponseEntity<String> getAllContent() throws IOException {
         System.out.println("inside mapping");
 //        System.out.println(url);
         String url=this.consumedUrl;
         url = url.substring(15,url.length()-3);
+=======
+    public ResponseEntity<String> getAllContent(@RequestParam(value = "url") String url) throws IOException {
+       String result = "";
+        System.out.println(url);
+
+        result = url +"\n\n\n";
+       result = webPageService.getTitle(url)+"\n\n\n";
+
+>>>>>>> 79fbce1071e0284f1e50f4078f5571a722bac160
 //       result = webPageService.getTitle(url)+"\n\n\n";
         System.out.println("this is the url:"+url);
         String result = "";
         result = result + webPageService.getHeading(url)+"\n\n\n";
-        result = result + webPageService.getAllPTextsFromBody(url)+"\n\n\n";
+        result = result + webPageService.getAllPTextsFromBody(url)+"\n\n\n" + url;
 //        result = result + webPageService.printImages()+"\n\n\n";
+//        result = result + webPageService.getSourceCodeOfWebPage(url)+"\n\n\n";
         responseEntity = new ResponseEntity<String>(result,HttpStatus.OK);
         this.kafkaTemplate.send(TOPIC,result);
         System.out.println("Data is produced");

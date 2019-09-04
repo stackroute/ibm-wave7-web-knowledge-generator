@@ -37,6 +37,7 @@ public class WebPageServiceImpl implements WebPageService {
 
         Document doc = Jsoup.connect(url).get();
 
+
         Elements link = doc.select("div p:lt(7)");
         String linkText = link.text();
         String result = " ";
