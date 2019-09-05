@@ -41,15 +41,15 @@ public class WebPageController {
         url = url.substring(12,url.length()-4);
 
 //       result = webPageService.getTitle(url)+"\n\n\n";
-            System.out.println("this is the url:"+url);
-            String result = "";
-            result = result + webPageService.getHeading(url)+"\n\n\n";
-            result = result + webPageService.getAllPTextsFromBody(url)+"\n\n\n" ;
+        System.out.println("this is the url:"+url);
+        String result = "";
+        result = result + webPageService.getHeading(url)+"\n\n\n";
+        result = result + webPageService.getAllPTextsFromBody(url)+"\n\n\n" ;
 //        result = result + webPageService.printImages()+"\n\n\n";
 //        result = result + webPageService.getSourceCodeOfWebPage(url)+"\n\n\n";
-            responseEntity = new ResponseEntity<String>(result,HttpStatus.OK);
-            this.kafkaTemplate.send(TOPIC,result);
-            System.out.println("Data is produced");
-            return responseEntity;
-        }
+        responseEntity = new ResponseEntity<String>(result,HttpStatus.OK);
+        this.kafkaTemplate.send(TOPIC,result);
+        System.out.println("Data is produced");
+        return responseEntity;
     }
+}
