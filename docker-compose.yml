@@ -1,0 +1,87 @@
+version: '2'
+
+services:
+  eureka-server:
+    build: eureka-server/
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    image: eureka-server
+    ports:
+      - 8762:8762
+
+
+  config-service:
+    build: config-server/
+    restart: always
+    network_mode: "host"
+    image: config-service
+    hostname: localhost
+    ports:
+      - 8889:8889
+
+  zuul-api:
+    build: zuul-api/
+    depends_on:
+      - config-service
+      - eureka-server
+    restart: always
+    network_mode: "host"
+    image: zuul-api
+    hostname: localhost
+    ports:
+     - 8086:8086
+
+  web-search-service:
+    build: web-search-service/
+    depends_on:
+      - zuul-api
+      - eureka-server
+      - config-service
+    restart: always
+    network_mode: "host"
+    image: web-search-service
+    hostname: localhost
+    ports:
+      - 8090:8090
+
+
+  fetch-webpage-service:
+    build: fetch-webpage-service/
+    restart: always
+    network_mode: "host"
+    image: fetch-webpage-service
+    hostname: localhost
+    ports:
+      - 8083:8083
+
+  keyword-phrase-service:
+    build: keyword-phrase-service/
+    depends_on:
+      - zuul-api
+      - eureka-server
+      - config-service
+    restart: always
+    network_mode: "host"
+    image: keyword-phrase-service
+    hostname: localhost
+    ports:
+      - 8092:8092
+
+  domain-expert-authentication-service:
+    build: domain-expert-authentication-service/
+    restart: always
+    network_mode: "host"
+    image: domain-expert-authentication-servicedocker
+    hostname: localhost
+    ports:
+        - 9090:9090
+
+  moviedata-populator-service:
+    build: moviedata-populator-service/
+    restart: always
+    network_mode: "host"
+    image: moviedata-populator-servicedocker
+    hostname: localhost
+    ports:
+      - 8888:8888
