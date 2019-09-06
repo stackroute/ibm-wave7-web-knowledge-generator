@@ -23,7 +23,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
-import {FlexLayoutModule} from '@angular/flex-layout'
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {FormsModule} from '@angular/forms';
+import { SpeechService } from './speech.service';
+
 
 @NgModule({
   declarations: [
@@ -53,9 +56,10 @@ import {FlexLayoutModule} from '@angular/flex-layout'
     MatInputModule,
     MatDialogModule,
     MatCardModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [SpeechService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

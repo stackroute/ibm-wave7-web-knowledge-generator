@@ -85,3 +85,9 @@ transform: translate(-50%, -50%);
         align-items: center;
 
 }
+.micbutton{
+    margin:10px;
+    background-color: transparent;
+    border-radius: 10px;
+    align-items: center;
+}
