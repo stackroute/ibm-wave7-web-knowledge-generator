@@ -10,25 +10,25 @@ public class Movie {
     private String title;
     @JsonProperty("Year")
     private String year;
-    @JsonProperty("Actor")
-    private String actor;
+    @JsonProperty("Starring")
+    private String starring;
     @JsonProperty("Director")
     private String director;
-    @JsonProperty("Production")
-    private String production;
-    @JsonProperty("Writer")
-    private String writer;
+    @JsonProperty("ProductionHouse")
+    private String productionHouse;
+    @JsonProperty("Producer")
+    private String producer;
 
     public Movie() {
     }
 
-    public Movie(String title, String year, String actor, String director, String production, String writer) {
+    public Movie(String title, String year, String starring, String director, String productionHouse, String producer) {
         this.title = title;
         this.year = year;
-        this.actor = actor;
+        this.starring = starring;
         this.director = director;
-        this.production = production;
-        this.writer = writer;
+        this.productionHouse = productionHouse;
+        this.producer = producer;
     }
 
     public String getTitle() {
@@ -47,12 +47,12 @@ public class Movie {
         this.year = year;
     }
 
-    public String getActor() {
-        return actor;
+    public String getStarring() {
+        return starring;
     }
 
-    public void setActor(String actor) {
-        this.actor = actor;
+    public void setStarring(String starring) {
+        this.starring = starring;
     }
 
     public String getDirector() {
@@ -63,20 +63,20 @@ public class Movie {
         this.director = director;
     }
 
-    public String getProduction() {
-        return production;
+    public String getProductionHouse() {
+        return productionHouse;
     }
 
-    public void setProduction(String production) {
-        this.production = production;
+    public void setProductionHouse(String production) {
+        this.productionHouse = production;
     }
 
-    public String getWriter() {
-        return writer;
+    public String getProducer() {
+        return producer;
     }
 
-    public void setWriter(String writer) {
-        this.writer = writer;
+    public void setProducer(String producer) {
+        this.producer = producer;
     }
 
     @Override
@@ -84,10 +84,10 @@ public class Movie {
         return "Movie{" +
                 "title='" + title + '\'' +
                 ", year='" + year + '\'' +
-                ", actor='" + actor + '\'' +
+                ", starring='" + starring + '\'' +
                 ", director='" + director + '\'' +
-                ", production='" + production + '\'' +
-                ", writer='" + writer + '\'' +
+                ", productionHouse='" + productionHouse + '\'' +
+                ", producer='" + producer + '\'' +
                 '}';
     }
 }

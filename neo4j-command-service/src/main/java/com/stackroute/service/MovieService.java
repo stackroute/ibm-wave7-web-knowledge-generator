@@ -7,5 +7,5 @@ import java.util.Collection;
 
 public interface MovieService {
 
-  Collection<Movie> saveMovie(Movie movie);
+  Movie saveMovie(Movie movie);
 }

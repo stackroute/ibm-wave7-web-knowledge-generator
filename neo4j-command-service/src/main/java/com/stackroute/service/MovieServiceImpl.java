@@ -19,10 +19,10 @@ public class MovieServiceImpl implements MovieService{
 
 
     @Override
-    public Collection<Movie> saveMovie(Movie movie) {
+    public Movie saveMovie(Movie movie) {
 
         System.out.println(movie);
         System.out.println(movie);
         return movieRepository.saveMovie(movie);
-    }
+      }
 }
