@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -17,6 +18,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -35,7 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = FetchWebPage.class)
+@ContextConfiguration(classes = WebPageControllerTest.class)
 @WebMvcTest(WebPageController.class)
 public class WebPageControllerTest {
     @Autowired
@@ -53,6 +55,9 @@ public class WebPageControllerTest {
 
     private List<Search> list= null;
 
+    @Mock
+    private KafkaTemplate<String, String> kafkaTemplate;
+
     @Before
     public void setUp() throws Exception{
         //Initialising the mock object
@@ -60,6 +65,7 @@ public class WebPageControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(webPageController).build();
         search = new Search();
         search.setUrl("https://en.wikipedia.org/wiki/Google");
+        webPageController.consumedUrl = "https://en.wikipedia.org/wiki/Kabir_Singh";
     }
 
     @Test
@@ -67,7 +73,7 @@ public class WebPageControllerTest {
         when(webPageService.getHeading(any())).thenReturn("");
         when(webPageService.getAllPTextsFromBody(any())).thenReturn("");
 
-        mockMvc.perform(get("/getContent?url="+search.getUrl())
+        mockMvc.perform(get("/getContent")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .accept(MediaType.APPLICATION_JSON)
                 .content((asJsonString(data))))
