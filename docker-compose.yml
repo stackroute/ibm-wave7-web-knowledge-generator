@@ -85,3 +85,12 @@ services:
     hostname: localhost
     ports:
       - 8888:8888
+
+  neo4j-command-service:
+    build: neo4j-command-service/
+    restart: always
+    network_mode: "host"
+    image: neo4j-command-servicedocker
+    hostname: localhost
+    ports:
+      - 8995:8995
