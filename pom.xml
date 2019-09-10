@@ -10,7 +10,7 @@
 	<packaging>pom</packaging>
 
 
-    <parent>
+    	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.6.RELEASE</version>
@@ -29,13 +29,13 @@
 	<modules>
 		<module>config-server</module>
 		<module>eureka-server</module>
-        <module>web-search-service</module>
+        	<module>web-search-service</module>
 		<module>fetch-webpage-service</module>
 		<module>domain-expert-authentication-service</module>
 		<module>zuul-api</module>
 		<module>keyword-phrase-service</module>
 		<module>moviedata-populator-service</module>
-        <module>neo4j-database-service</module>
+        	<module>neo4j-database-service</module>
 
 
     </modules>
