@@ -1,8 +1,6 @@
 package com.stackroute.controller;
 
 
-
-
 import com.stackroute.model.TypeNER;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreLabel;

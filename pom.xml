@@ -36,8 +36,7 @@
 		<module>keyword-phrase-service</module>
 		<module>moviedata-populator-service</module>
         <module>neo4j-database-service</module>
-
-
+        <module>neo4j-command-service</module>
     </modules>
 
 	<dependencies>

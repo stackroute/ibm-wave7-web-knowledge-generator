@@ -8,8 +8,6 @@ import org.neo4j.ogm.annotation.NodeEntity;
 public class Movie {
 
     private String duration;
-
-
     private String imdbId;
     private String title;
     private String summary;

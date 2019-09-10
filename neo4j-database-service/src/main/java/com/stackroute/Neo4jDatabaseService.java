@@ -8,10 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  */
 @SpringBootApplication
-public class FetchKnowledgeNe04jApplication
+public class Neo4jDatabaseService
 {
     public static void main(String[] args)
     {
-        SpringApplication.run(FetchKnowledgeNe04jApplication.class, args);
+        SpringApplication.run(Neo4jDatabaseService.class, args);
     }
 }
