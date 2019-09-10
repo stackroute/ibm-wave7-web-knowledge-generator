@@ -8,7 +8,7 @@ services:
     hostname: localhost
     image: eureka-server
     ports:
-      - 8762:8762
+      - 8761:8761
     healthcheck:
       test: "exit 0"
 
@@ -49,7 +49,7 @@ services:
     image: web-search-service
     hostname: localhost
     ports:
-      - 8090:8090
+      - 8099:8099
     healthcheck:
       test: "exit 0"
 
@@ -62,7 +62,7 @@ services:
     image: fetch-webpage-service
     hostname: localhost
     ports:
-      - 8083:8083
+      - 8090:8090
     healthcheck:
       test: "exit 0"
 
