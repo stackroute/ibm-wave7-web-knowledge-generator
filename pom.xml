@@ -37,7 +37,8 @@
 		<module>moviedata-populator-service</module>
         <module>neo4j-database-service</module>
         <module>neo4j-command-service</module>
-    </modules>
+		<module>search-nlp-service</module>
+	</modules>
 
 	<dependencies>
 		<dependency>

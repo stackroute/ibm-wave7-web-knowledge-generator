@@ -95,6 +95,22 @@ services:
     healthcheck:
       test: "exit 0"
 
+  search-nlp-service:
+    build: search-nlp-service/
+    depends_on:
+      - config-service
+      - eureka-server
+      - zuul-api
+      - mongo
+    restart: always
+    network_mode: "host"
+    image: search-nlp-servicedocker
+    hostname: localhost
+    ports:
+      - 8091:8091
+    healthcheck:
+      test: "exit 0"
+
   moviedata-populator-service:
     build: moviedata-populator-service/
     depends_on:
