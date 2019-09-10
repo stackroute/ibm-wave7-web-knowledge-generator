@@ -31,6 +31,37 @@ public class WebPageServiceImpl implements WebPageService {
             return html;
         }
 
+
+        @Override
+     public String getTableData(String url) throws IOException{
+         org.jsoup.nodes.Document doc = Jsoup.connect(url).get();
+         Element elements = doc.getElementsByTag("table").first();
+         String s1=elements.toString();
+         //s1=s1.replace("<br>","$");
+         s1=s1.replaceAll("<([^<]*)>","");
+         s1=s1.replaceAll("\n","%");
+         s1=s1.replaceAll("([% ])\\1+","$1");
+         //s1=s1.replaceAll("[%%*]","%");
+         s1=s1.replaceAll("&nbsp;","");
+         s1=s1.replaceAll("\\[(.*?)\\]", "");
+         s1=s1.replaceAll("\\((.*?)\\)","");
+         s1=s1.replaceAll("Theatrical release poster","");
+//        String[] res=s1.split("%");
+//        System.out.println(Arrays.toString(res));
+         System.out.println(s1);
+//        //String[] clint=s1.split("$");
+//        //s1=s1.replace("$","\n");
+
+//        Pattern pattern=Pattern.compile("Directed by%");
+//        Matcher m =pattern.matcher(s1);
+//        System.out.println(res[17]);
+//        System.out.println(m.start());
+         return s1;
+     }
+
+
+
+
     @Override
     //Method to fetch the data in <p> tags.
     public String getAllPTextsFromBody(String url) throws IOException {

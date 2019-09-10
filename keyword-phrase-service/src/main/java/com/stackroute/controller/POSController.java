@@ -2,6 +2,7 @@ package com.stackroute.controller;
 
 
 
+import com.stackroute.core.Pipeline;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.pipeline.CoreDocument;
@@ -26,36 +27,85 @@ String input="";
     public void consumer(String message) throws IOException {
 
         this.input=message;
-        System.out.println("consumed url is:"+input);
+       // System.out.println("consumed url is:"+input);
     }
 
     @GetMapping
     @RequestMapping(value="/pos")
-    public Set<String> ner()
+    public HashMap<String,String> ner()
     {
 
-        CoreDocument coreDocument = new CoreDocument(this.input);
-        stanfordCoreNLP.annotate(coreDocument);
-        List<CoreLabel> coreLabels=coreDocument.tokens();
-        return new HashSet<String>(collectionList(coreLabels));
+        //System.out.println("input"+input);
+
+        HashMap<String,String> collect=new HashMap<>();
+        String[] nodes=input.split("%");
+        nodes[0]=" ";
+        int flag=0;
+        for(int i=0;i<nodes.length;i++)
+        {
+            if(!nodes[i].equals(" ")&&flag==0)
+            {
+                collect.put("title",nodes[i].trim());
+                flag+=1;
+            }
+            else if(nodes[i].trim().equals("Directed by")||nodes[i].trim().equals("Produced by")||nodes[i].trim().equals("Starring"))
+            {
+                String crew=nodes[i].trim();
+                int length=findDirectors(nodes,i+1).length();
+                String res=findDirectors(nodes,i+1).substring(0,length-1);
+                collect.put(crew,res);
+            }
+            else if(nodes[i].equals(" Release date"))
+            {
+                String result=findNext(nodes,i+1).trim();
+                int length=result.length();
+                collect.put("Release year",result.substring(length-4));
+            }
+        }
+        System.out.println("qwe"+collect);
+        return collect;
     }
 
-
-    private List<String> collectionList(List<CoreLabel> coreLabels)
+    public static String findDirectors(String[] nodes, int posn)
     {
-        List<String> res= Arrays.asList(new String[coreLabels.size()]);
-        int i=0;
-        for(CoreLabel corelabel : coreLabels)
+        StanfordCoreNLP stanfordCoreNLP = Pipeline.getPipeline();
+        String directors="";
+
+        for(int i=posn;i<nodes.length;i++)
         {
-            String pos=corelabel.get(CoreAnnotations.PartOfSpeechAnnotation.class);
-            if(pos.equals("NNP") || pos.equals("VBN") || pos.equals("VBZ") || pos.equals("CD"))
+            CoreDocument coreDocument=new CoreDocument(nodes[i]);
+            stanfordCoreNLP.annotate(coreDocument);
+            List<CoreLabel> coreLabels=coreDocument.tokens();
+            for(CoreLabel coreLabel:coreLabels)
             {
-                res.set(i, corelabel.originalText());
-                i++;
+                String pos=coreLabel.get(CoreAnnotations.PartOfSpeechAnnotation.class);
+                if(pos.equals("NNP"))
+                {
+                    directors+=nodes[i]+",";
+                    break;
+
+                }
+                else
+                {
+                    return directors;
+                }
             }
-
-
         }
-        return res;
+        return directors;
+    }
+    public static String findNext(String[] nodes, int posn)
+    {
+        for(int i=posn;i<nodes.length;i++)
+        {
+            if(nodes[i].equals(" "))
+            {
+
+            }
+            else
+            {
+                return nodes[i];
+            }
+        }
+        return null;
     }
 }

@@ -19,4 +19,5 @@ public interface WebPageService {
     public String getForm(String url) throws IOException;
     //Method to fetch the <a href> tags data from the website
     public  void getLinks(String url) throws IOException;
+    public String getTableData(String url) throws IOException;
 }

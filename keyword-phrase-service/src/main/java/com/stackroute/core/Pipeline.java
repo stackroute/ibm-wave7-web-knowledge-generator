@@ -25,7 +25,7 @@ public class Pipeline {
 
 
     @Bean(name = "stanfordCoreNLP")
-    public  static StanfordCoreNLP getInstance()
+    public  static StanfordCoreNLP getPipeline()
     {
         if(stanfordCoreNLP == null)
         {

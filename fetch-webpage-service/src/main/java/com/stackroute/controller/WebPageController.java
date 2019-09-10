@@ -23,7 +23,7 @@ public class WebPageController {
     @Autowired
     private KafkaTemplate<String,String> kafkaTemplate;
     private static final String TOPIC = "Fetch_Webpage";
-    String consumedUrl;
+    public String consumedUrl;
     @KafkaListener(topics = "Kafka_Example", groupId = "group_id")
     public void consumer(String url) throws IOException {
 //    Search obj = new ObjectMapper().readValue(url,Search.class);
@@ -38,13 +38,13 @@ public class WebPageController {
         System.out.println("inside mapping");
 //        System.out.println(url);
         String url=this.consumedUrl;
-        url = url.substring(12,url.length()-4);
+        url = url.substring(14,url.length()-3);
 
 //       result = webPageService.getTitle(url)+"\n\n\n";
         System.out.println("this is the url:"+url);
         String result = "";
-        result = result + webPageService.getHeading(url)+"\n\n\n";
-        result = result + webPageService.getAllPTextsFromBody(url)+"\n\n\n" ;
+
+        result = result + webPageService.getTableData(url)+"\n\n\n" ;
 //        result = result + webPageService.printImages()+"\n\n\n";
 //        result = result + webPageService.getSourceCodeOfWebPage(url)+"\n\n\n";
         responseEntity = new ResponseEntity<String>(result,HttpStatus.OK);
