@@ -5,10 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import static org.springframework.boot.SpringApplication.*;
 
 @SpringBootApplication
-public class WebSearchServices{
+public class WebSearchService{
         public static void main(String[] args)
         {
-            SpringApplication.run(WebSearchServices.class, args);
+            SpringApplication.run(WebSearchService.class, args);
         }
     }
 
