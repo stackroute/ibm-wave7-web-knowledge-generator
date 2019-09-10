@@ -1,11 +1,6 @@
 package com.stackroute.controller;
 
-<<<<<<< HEAD
-=======
 
-
-
->>>>>>> f30945102d142b2d1705088dce996bfdbb348780
 import com.stackroute.model.TypeNER;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreLabel;

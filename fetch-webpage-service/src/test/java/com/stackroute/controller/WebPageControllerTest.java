@@ -10,10 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-<<<<<<< HEAD
 import org.mockito.Mock;
-=======
->>>>>>> f30945102d142b2d1705088dce996bfdbb348780
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -21,10 +18,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-<<<<<<< HEAD
 import org.springframework.kafka.core.KafkaTemplate;
-=======
->>>>>>> f30945102d142b2d1705088dce996bfdbb348780
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -43,11 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @RunWith(SpringRunner.class)
-<<<<<<< HEAD
 @ContextConfiguration(classes = WebPageControllerTest.class)
-=======
-@ContextConfiguration(classes = FetchWebPage.class)
->>>>>>> f30945102d142b2d1705088dce996bfdbb348780
 @WebMvcTest(WebPageController.class)
 public class WebPageControllerTest {
     @Autowired
@@ -65,12 +55,9 @@ public class WebPageControllerTest {
 
     private List<Search> list= null;
 
-<<<<<<< HEAD
     @Mock
     private KafkaTemplate<String, String> kafkaTemplate;
 
-=======
->>>>>>> f30945102d142b2d1705088dce996bfdbb348780
     @Before
     public void setUp() throws Exception{
         //Initialising the mock object
@@ -78,10 +65,7 @@ public class WebPageControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(webPageController).build();
         search = new Search();
         search.setUrl("https://en.wikipedia.org/wiki/Google");
-<<<<<<< HEAD
         webPageController.consumedUrl = "https://en.wikipedia.org/wiki/Kabir_Singh";
-=======
->>>>>>> f30945102d142b2d1705088dce996bfdbb348780
     }
 
     @Test
@@ -89,11 +73,7 @@ public class WebPageControllerTest {
         when(webPageService.getHeading(any())).thenReturn("");
         when(webPageService.getAllPTextsFromBody(any())).thenReturn("");
 
-<<<<<<< HEAD
         mockMvc.perform(get("/getContent")
-=======
-        mockMvc.perform(get("/getContent?url="+search.getUrl())
->>>>>>> f30945102d142b2d1705088dce996bfdbb348780
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .accept(MediaType.APPLICATION_JSON)
                 .content((asJsonString(data))))

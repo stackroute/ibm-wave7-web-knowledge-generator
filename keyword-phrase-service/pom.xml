@@ -15,11 +15,8 @@
 
 
     <properties>
-<<<<<<< HEAD
         <java.version>11</java.version>
-=======
-        <java.version>1.8</java.version>
->>>>>>> f30945102d142b2d1705088dce996bfdbb348780
+
     </properties>
 
     <dependencies>

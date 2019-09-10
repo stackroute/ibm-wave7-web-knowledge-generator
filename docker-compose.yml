@@ -1,4 +1,4 @@
-version: '2'
+version: '2.1'
 
 services:
   eureka-server:
@@ -9,12 +9,8 @@ services:
     image: eureka-server
     ports:
       - 8762:8762
-<<<<<<< HEAD
     healthcheck:
       test: "exit 0"
-=======
-
->>>>>>> f30945102d142b2d1705088dce996bfdbb348780
 
   config-service:
     build: config-server/
@@ -24,11 +20,8 @@ services:
     hostname: localhost
     ports:
       - 8889:8889
-<<<<<<< HEAD
     healthcheck:
       test: "exit 0"
-=======
->>>>>>> f30945102d142b2d1705088dce996bfdbb348780
 
   zuul-api:
     build: zuul-api/
@@ -40,12 +33,9 @@ services:
     image: zuul-api
     hostname: localhost
     ports:
-     - 8086:8086
-<<<<<<< HEAD
+      - 8086:8086
     healthcheck:
       test: "exit 0"
-=======
->>>>>>> f30945102d142b2d1705088dce996bfdbb348780
 
   web-search-service:
     build: web-search-service/
@@ -53,17 +43,13 @@ services:
       - zuul-api
       - eureka-server
       - config-service
-<<<<<<< HEAD
       - mongo
-=======
->>>>>>> f30945102d142b2d1705088dce996bfdbb348780
     restart: always
     network_mode: "host"
     image: web-search-service
     hostname: localhost
     ports:
       - 8090:8090
-<<<<<<< HEAD
     healthcheck:
       test: "exit 0"
 
@@ -71,41 +57,25 @@ services:
     build: fetch-webpage-service/
     depends_on:
       - web-search-service
-=======
-
-
-  fetch-webpage-service:
-    build: fetch-webpage-service/
->>>>>>> f30945102d142b2d1705088dce996bfdbb348780
     restart: always
     network_mode: "host"
     image: fetch-webpage-service
     hostname: localhost
     ports:
       - 8083:8083
-<<<<<<< HEAD
     healthcheck:
       test: "exit 0"
-=======
->>>>>>> f30945102d142b2d1705088dce996bfdbb348780
 
   keyword-phrase-service:
     build: keyword-phrase-service/
     depends_on:
-<<<<<<< HEAD
       - fetch-webpage-service
-=======
-      - zuul-api
-      - eureka-server
-      - config-service
->>>>>>> f30945102d142b2d1705088dce996bfdbb348780
     restart: always
     network_mode: "host"
     image: keyword-phrase-service
     hostname: localhost
     ports:
       - 8092:8092
-<<<<<<< HEAD
     healthcheck:
       test: "exit 0"
 
@@ -116,18 +86,12 @@ services:
       - eureka-server
       - zuul-api
       - mongo
-=======
-
-  domain-expert-authentication-service:
-    build: domain-expert-authentication-service/
->>>>>>> f30945102d142b2d1705088dce996bfdbb348780
     restart: always
     network_mode: "host"
     image: domain-expert-authentication-servicedocker
     hostname: localhost
     ports:
-        - 9090:9090
-<<<<<<< HEAD
+      - 9090:9090
     healthcheck:
       test: "exit 0"
 
@@ -138,19 +102,12 @@ services:
       - eureka-server
       - zuul-api
       - neo4j
-=======
-
-  moviedata-populator-service:
-    build: moviedata-populator-service/
->>>>>>> f30945102d142b2d1705088dce996bfdbb348780
     restart: always
     network_mode: "host"
     image: moviedata-populator-servicedocker
     hostname: localhost
     ports:
       - 8888:8888
-<<<<<<< HEAD
-<<<<<<< HEAD
     healthcheck:
       test: "exit 0"
 
@@ -162,8 +119,8 @@ services:
     network_mode: host
     hostname: localhost
     restart: always
-#    volumes:
-#      - /DB/mongo:/data/db
+    #    volumes:
+    #      - /DB/mongo:/data/db
     healthcheck:
       test: "exit 0"
 
@@ -211,20 +168,3 @@ services:
     restart: always
     healthcheck:
       test: "exit 0"
-=======
-=======
->>>>>>> f30945102d142b2d1705088dce996bfdbb348780
-
-  neo4j-command-service:
-    build: neo4j-command-service/
-    restart: always
-    network_mode: "host"
-    image: neo4j-command-servicedocker
-    hostname: localhost
-    ports:
-<<<<<<< HEAD
-      - 8995:8995
->>>>>>> f30945102d142b2d1705088dce996bfdbb348780
-=======
-      - 8995:8995
->>>>>>> f30945102d142b2d1705088dce996bfdbb348780

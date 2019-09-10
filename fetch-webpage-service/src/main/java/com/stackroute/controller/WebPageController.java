@@ -23,11 +23,7 @@ public class WebPageController {
     @Autowired
     private KafkaTemplate<String,String> kafkaTemplate;
     private static final String TOPIC = "Fetch_Webpage";
-<<<<<<< HEAD
     public String consumedUrl;
-=======
-    String consumedUrl;
->>>>>>> f30945102d142b2d1705088dce996bfdbb348780
     @KafkaListener(topics = "Kafka_Example", groupId = "group_id")
     public void consumer(String url) throws IOException {
 //    Search obj = new ObjectMapper().readValue(url,Search.class);
