@@ -16,6 +16,7 @@ import java.util.Collection;
 @RestController
 public class MovieController {
 
+    // autowire the movieService
     @Autowired
     private MovieService movieService;
 
@@ -28,9 +29,11 @@ public class MovieController {
     // method to save json data into neo4j as nodes and relationships
     @PostMapping("/saveMovie")
     public ResponseEntity<?> saveMovie(@RequestBody Movie movieString) throws IOException {
-
-        movieService.saveMovie(movieString);
-        responseEntity = new ResponseEntity<String>("movie node added", HttpStatus.CREATED);
+        String result=(movieService.saveMovie(movieString));
+        if(result!="null")
+            responseEntity = new ResponseEntity<String>(movieService.saveMovie(movieString), HttpStatus.CREATED);
+        else 
+            responseEntity = new ResponseEntity<String>(movieService.saveMovie(movieString), HttpStatus.CONFLICT);
         return responseEntity;
     }
 }

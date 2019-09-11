@@ -7,5 +7,6 @@ import java.util.Collection;
 
 public interface MovieService {
 
-  Movie saveMovie(Movie movie);
+   // method to save movie in neo4j database
+  String saveMovie(Movie movie);
 }
