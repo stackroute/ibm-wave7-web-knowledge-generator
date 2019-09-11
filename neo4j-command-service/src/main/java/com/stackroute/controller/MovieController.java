@@ -30,10 +30,11 @@ public class MovieController {
     @PostMapping("/saveMovie")
     public ResponseEntity<?> saveMovie(@RequestBody Movie movieString) throws IOException {
         String result=(movieService.saveMovie(movieString));
-        if(result!="null")
-            responseEntity = new ResponseEntity<String>(movieService.saveMovie(movieString), HttpStatus.CREATED);
-        else 
-            responseEntity = new ResponseEntity<String>(movieService.saveMovie(movieString), HttpStatus.CONFLICT);
+        System.out.println(result);
+        if(result!=null)
+            responseEntity = new ResponseEntity<String>(result, HttpStatus.CREATED);
+        else
+            responseEntity = new ResponseEntity<String>(result, HttpStatus.CONFLICT);
         return responseEntity;
     }
 }
