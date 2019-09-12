@@ -8,29 +8,32 @@ public class Movie {
     // properties of movie
     @JsonProperty("Title")
     private String title;
-    @JsonProperty("Year")
+    @JsonProperty("Release year")
     private String year;
     @JsonProperty("Starring")
     private String starring;
-    @JsonProperty("Director")
+    @JsonProperty("Directed by")
     private String director;
-    @JsonProperty("ProductionHouse")
-    private String productionHouse;
-    @JsonProperty("Producer")
+    @JsonProperty("Language")
+    private String language;
+    @JsonProperty("Produced by")
     private String producer;
 
+    // no args constructor
     public Movie() {
     }
 
-    public Movie(String title, String year, String starring, String director, String productionHouse, String producer) {
+    // all args constructor
+    public Movie(String title, String year, String starring, String director, String language, String producer) {
         this.title = title;
         this.year = year;
         this.starring = starring;
         this.director = director;
-        this.productionHouse = productionHouse;
+        this.language = language;
         this.producer = producer;
     }
 
+    // getter and setter methods
     public String getTitle() {
         return title;
     }
@@ -63,12 +66,12 @@ public class Movie {
         this.director = director;
     }
 
-    public String getProductionHouse() {
-        return productionHouse;
+    public String getLanguage() {
+        return language;
     }
 
-    public void setProductionHouse(String production) {
-        this.productionHouse = production;
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
     public String getProducer() {
@@ -79,6 +82,7 @@ public class Movie {
         this.producer = producer;
     }
 
+    // toString method
     @Override
     public String toString() {
         return "Movie{" +
@@ -86,7 +90,7 @@ public class Movie {
                 ", year='" + year + '\'' +
                 ", starring='" + starring + '\'' +
                 ", director='" + director + '\'' +
-                ", productionHouse='" + productionHouse + '\'' +
+                ", language='" + language + '\'' +
                 ", producer='" + producer + '\'' +
                 '}';
     }

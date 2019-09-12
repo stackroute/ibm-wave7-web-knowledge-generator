@@ -1,6 +1,7 @@
 package com.stackroute.model;
 
 
+//NLP keywords in stanfordlibrary
 public enum TypePOS {
     CoordinatingConjunction("CC"),
     CardinalNumber("CD"),

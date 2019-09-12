@@ -14,54 +14,67 @@ import java.util.Collection;
 @Repository
 public interface MovieRepository extends Neo4jRepository<Movie, Long> {
 
+    // method to save movie into neo4j database
+    @Query("FOREACH ( ignoreMe in CASE WHEN  {title}<>'null' AND {starring}<>'null' AND {year}<>'null' AND {director}<>'null' THEN [1]\n" +
+            " ELSE [] END | " +
+            "MERGE (movie:Movie {title: {title}}))\n" +
 
-    @Query("WITH :#{#movie} AS data\n" +
-            "WHERE NOT (data.Title='null' AND data.Starring='null' AND data.Director='null' AND data.Year='null') \n" +
-            "MERGE (movie:Movie {title: data.Title})\n" +
-            "WITH data WHERE NOT (data.Title='null' AND data.Starring='null' AND data.Director='null' AND data.Year='null') \n" +
-            "UNWIND split(data.ProductionHouse, ',') AS productionHouse\n" +
-            "MERGE (varProductionHouse:ProductionHouse {company: productionHouse})\n" +
-            "WITH data WHERE NOT (data.Title='null' AND data.Starring='null' AND data.Director='null' AND data.Year='null') \n" +
-            "MATCH (movie:Movie {title: data.Title})\n" +
-            "UNWIND split(data.ProductionHouse, ',') AS matchedProductionHouse\n" +
-            "MATCH (varMatchedProductionHouse:ProductionHouse {company: matchedProductionHouse})\n" +
-            "MERGE (movie)-[r:PRODUCTION_BY]->(varMatchedProductionHouse)\n" +
-            "MERGE (movie)<-[rb:PRODUCTION]-(varMatchedProductionHouse)\n" +
-            "WITH data WHERE NOT (data.Title='null' AND data.Starring='null' AND data.Director='null' AND data.Year='null') \n" +
-            "UNWIND split(data.Director, ',') AS director\n" +
-            "MERGE (varDirector:Director {name: director})\n" +
-            "WITH data WHERE NOT (data.Title='null' AND data.Starring='null' AND data.Director='null' AND data.Year='null') \n" +
-            "MATCH (movie:Movie {title: data.Title})\n" +
-            "UNWIND split(data.Director, ',') AS matchedDirector\n" +
+            "WITH {language} as l UNWIND split({language}, ',') AS languag\n" +
+            "FOREACH ( ignoreMe in CASE WHEN  {title}<>'null' AND {starring}<>'null' AND {year}<>'null' AND {director}<>'null' THEN [1]\n" +
+            "ELSE [] END | " +
+            "MERGE (varLanguage:Language {name: languag}))\n" +
+            "WITH {language} as lang\n" +
+            "MATCH (movie:Movie {title: {title}})\n" +
+            "UNWIND split({language}, ',') AS matchedLanguage\n" +
+            "MATCH (varMatchedLanguage:Language {name: matchedLanguage})\n" +
+            "MERGE (movie)-[r:HAS_LANGUAGE]->(varMatchedLanguage)\n" +
+            "MERGE (movie)<-[rb:LANGUAGE_OF]-(varMatchedLanguage)\n" +
+
+            "WITH {director} as d UNWIND split({director}, ',') AS director\n" +
+            "FOREACH ( ignoreMe in CASE WHEN  {title}<>'null' AND {starring}<>'null' AND {year}<>'null' AND {director}<>'null' THEN [1]\n" +
+            "ELSE [] END | " +
+            "MERGE (varDirector:Director {name: director}))\n" +
+            "WITH {director} as dir\n" +
+            "MATCH (movie:Movie {title: {title}})\n" +
+            "UNWIND split({director}, ',') AS matchedDirector\n" +
             "MATCH (varMatchedDirector:Director {name: matchedDirector})\n" +
             "MERGE (movie)-[r:DIRECTED_BY]->(varMatchedDirector)\n" +
             "MERGE (movie)<-[rb:DIRECTED]-(varMatchedDirector)\n" +
-            "WITH data WHERE NOT (data.Title='null' AND data.Starring='null' AND data.Director='null' AND data.Year='null') \n" +
-            "UNWIND split(data.Producer, ',') AS producer\n" +
-            "MERGE (varProducer:Producer {name: producer})\n" +
-            "WITH data WHERE NOT (data.Title='null' AND data.Starring='null' AND data.Director='null' AND data.Year='null') \n" +
-            "MATCH (movie:Movie {title: data.Title})\n" +
-            "UNWIND split(data.Producer, ',') AS matchedProducer\n" +
+
+            "WITH {producer} as p UNWIND split({producer}, ',') AS producer\n" +
+            "FOREACH ( ignoreMe in CASE WHEN  {title}<>'null' AND {starring}<>'null' AND {year}<>'null' AND {director}<>'null' THEN [1]\n" +
+            "ELSE [] END | " +
+            "MERGE (varProducer:Producer {name: producer}))\n" +
+            "WITH {producer} as pro\n" +
+            "MATCH (movie:Movie {title: {title}})\n" +
+            "UNWIND split({producer}, ',') AS matchedProducer\n" +
             "MATCH (varMatchedProducer:Producer {name: matchedProducer})\n" +
             "MERGE (movie)-[r:PRODUCED_BY]->(varMatchedProducer)\n" +
-            "MERGE (movie)<-[rb:PRODUCED]-(varMatchedProducer)\n"+
-            "WITH data WHERE NOT (data.Title='null' AND data.Starring='null' AND data.Director='null' AND data.Year='null') \n" +
-            "UNWIND split(data.Starring, ',') AS starring \n" +
-            "MERGE (varStarring:Starring {name: starring})\n" +
-            "WITH data WHERE NOT (data.Title='null' AND data.Starring='null' AND data.Director='null' AND data.Year='null') \n" +
-            "MATCH (movie:Movie {title: data.Title})\n" +
-            "UNWIND split(data.Starring, ',') AS matchedStarring\n" +
+            "MERGE (movie)<-[rb:PRODUCED]-(varMatchedProducer)\n" +
+
+            "WITH {starring} as s UNWIND split({starring}, ',') AS starring \n" +
+            "FOREACH ( ignoreMe in CASE WHEN  {title}<>'null' AND {starring}<>'null' AND {year}<>'null' AND {director}<>'null' THEN [1]\n" +
+            "ELSE [] END | " +
+            "MERGE (varStarring:Starring {name: starring}))\n" +
+            "WITH {starring} as star\n" +
+            "MATCH (movie:Movie {title: {title}})\n" +
+            "UNWIND split({starring}, ',') AS matchedStarring\n" +
             "MATCH (varMatchedStarring:Starring {name: matchedStarring})\n" +
             "MERGE (movie)-[r:HAS_CAST]->(varMatchedStarring)\n" +
             "MERGE (movie)<-[rb:CASTED_IN]-(varMatchedStarring)\n" +
-            "WITH data WHERE NOT (data.Title='null' AND data.Starring='null' AND data.Director='null' AND data.Year='null') \n" +
-            "MERGE (year:ReleasedYear {year: data.Year})\n" +
-            "WITH data WHERE NOT (data.Title='null' AND data.Starring='null' AND data.Director='null' AND data.Year='null') \n" +
-            "MATCH (movie:Movie {title: data.Title})\n" +
-            "MATCH (year:ReleasedYear {year: data.Year})\n" +
+
+            "WITH {year} as y\n" +
+            "FOREACH ( ignoreMe in CASE WHEN  {title}<>'null' AND {starring}<>'null' AND {year}<>'null' AND {director}<>'null' THEN [1]\n" +
+            "ELSE [] END | " +
+            "MERGE (year:ReleasedYear {year: {year}}))\n" +
+            "WITH {year} as ye\n" +
+            "MATCH (movie:Movie {title: {title}})\n" +
+            "MATCH (year:ReleasedYear {year: {year}})\n" +
             "MERGE (movie)-[r:RELEASED_IN]->(year)\n" +
-            "MERGE (movie)<-[rb:HAS_MOVIE]-(year)\n")
-            public Movie saveMovie(@Param("movie") Movie movie);
+            "MERGE (movie)<-[rb:HAS_MOVIE]-(year);")
+    public String saveMovie(String title, String starring, String year, String director, String producer, String language);
+
+    // method to get movie by title from neo4j database
+    @Query("MATCH (m:Movie{title:{title}}) RETURN m.title")
+    public String getMovieByTitle(String title);
 }
-
-
