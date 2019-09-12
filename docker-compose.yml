@@ -79,6 +79,20 @@ services:
     healthcheck:
       test: "exit 0"
 
+  neo4j-command-service:
+    build: neo4j-command-service/
+    depends_on:
+      - keyword-phrase-service
+      - neo4j
+    restart: always
+    network_mode: "host"
+    image: neo4j-command-servicedocker
+    hostname: localhost
+    ports:
+      - 8995:8995
+    healthcheck:
+      test: "exit 0"
+
   domain-expert-authentication-service:
     build: domain-expert-authentication-service/
     depends_on:
