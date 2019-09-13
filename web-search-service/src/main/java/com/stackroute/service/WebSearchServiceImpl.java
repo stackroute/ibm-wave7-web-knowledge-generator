@@ -31,7 +31,7 @@ public class WebSearchServiceImpl implements WebSearchService {
         RestTemplate restTemplate = new RestTemplate();
         //api to get links from
         String url = "https://app.zenserp.com/api/v2/search?q=wikipedia+film"+searchString+"&hl=en&gl=US&location=United%20States&search_engine=google.com&apikey=ffd367c0-cd88-11e9-9bc5-594f8022ff50";
-         //        String url = "https://app.zenserp.com/api/v2/search?q=wikipedia"+searchString+"&hl=en&gl=US&location=United%20States&search_engine=google.com&apikey=1fb802e0-cec9-11e9-832d-db422e6db58d";
+        //        String url = "https://app.zenserp.com/api/v2/search?q=wikipedia+film"+searchString+"&hl=en&gl=US&location=United%20States&search_engine=google.com&apikey=1fb802e0-cec9-11e9-832d-db422e6db58d";
         URI uri = new URI(url);
         String string = restTemplate.getForObject(uri, String.class);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -54,5 +54,4 @@ public class WebSearchServiceImpl implements WebSearchService {
         return searchRepository.save(resultList);
     }
 }
-
 

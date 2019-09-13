@@ -1,5 +1,6 @@
 package com.stackroute;
 
+import com.fasterxml.jackson.databind.ser.std.MapSerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

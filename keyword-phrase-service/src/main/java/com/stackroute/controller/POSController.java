@@ -1,7 +1,6 @@
 package com.stackroute.controller;
 
 
-
 import com.stackroute.core.Pipeline;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreLabel;
@@ -18,94 +17,112 @@ import java.util.stream.Collectors;
 
 
 @RestController
+
+//Creates the base url
 @RequestMapping(value="/api/v1")
 public class POSController {
+
     @Autowired
     private StanfordCoreNLP stanfordCoreNLP;
-String input="";
+    String input="";
     @KafkaListener(topics = "Fetch_Webpage", groupId = "group_id")
     public void consumer(String message) throws IOException {
 
         this.input=message;
-       // System.out.println("consumed url is:"+input);
+        //System.out.println(input);
     }
+
+
+    @Autowired
+    private KafkaTemplate<String,String> kafkaTemplate;
+    private static final String TOPIC = "Fetch-Keyword";
+
+
 
     @GetMapping
     @RequestMapping(value="/pos")
-    public HashMap<String,String> ner()
+    public LinkedHashMap<String,String> ner(String data)
     {
-
-        //System.out.println("input"+input);
-
-        HashMap<String,String> collect=new HashMap<>();
-        String[] nodes=input.split("%");
+        data=input;
+        //System.out.println(data);
+        //String is converted to string array
+        String[] nodes=data.split("%");
         nodes[0]=" ";
+        LinkedHashMap<String,String> collect=new LinkedHashMap<>();
         int flag=0;
         for(int i=0;i<nodes.length;i++)
         {
             if(!nodes[i].equals(" ")&&flag==0)
             {
-                collect.put("title",nodes[i].trim());
+
+                //put is used to add key-value pairs in LinkedHashMap
+                collect.put("Title",nodes[i]);
                 flag+=1;
             }
-            else if(nodes[i].trim().equals("Directed by")||nodes[i].trim().equals("Produced by")||nodes[i].trim().equals("Starring"))
+
+            if(nodes[i].trim().equals("Directed by")||nodes[i].trim().equals("Produced by")||nodes[i].trim().equals("Starring"))
             {
-                String crew=nodes[i].trim();
-                int length=findDirectors(nodes,i+1).length();
-                String res=findDirectors(nodes,i+1).substring(0,length-1);
-                collect.put(crew,res);
+                String activity=nodes[i].trim();
+                String directors=giveDirectors(nodes,i+1);
+                collect.put(activity,directors.substring(0,directors.length()-1));
             }
-            else if(nodes[i].equals(" Release date"))
+
+            if(nodes[i].trim().equals("Release date"))
             {
-                String result=findNext(nodes,i+1).trim();
-                int length=result.length();
-                collect.put("Release year",result.substring(length-4));
+                String date=giveDate(nodes,i+1);
+                collect.put("Release year",date.substring(date.length()-4));
             }
+
+            if(nodes[i].trim().equals("Language"))
+            {
+                String lang=giveDate(nodes,i+1);
+                collect.put("Language",lang);
+            }
+
         }
-        System.out.println("qwe"+collect);
+        //produce map object to kafka
+        this.kafkaTemplate.send(TOPIC,collect.toString());
+        //System.out.println("published");
         return collect;
     }
 
-    public static String findDirectors(String[] nodes, int posn)
-    {
-        StanfordCoreNLP stanfordCoreNLP = Pipeline.getPipeline();
-        String directors="";
 
+    //Method to extract values for each key
+    public static String giveDirectors(String[] nodes, int posn)
+    {
+        String names="";
         for(int i=posn;i<nodes.length;i++)
         {
-            CoreDocument coreDocument=new CoreDocument(nodes[i]);
-            stanfordCoreNLP.annotate(coreDocument);
-            List<CoreLabel> coreLabels=coreDocument.tokens();
-            for(CoreLabel coreLabel:coreLabels)
-            {
-                String pos=coreLabel.get(CoreAnnotations.PartOfSpeechAnnotation.class);
-                if(pos.equals("NNP"))
-                {
-                    directors+=nodes[i]+",";
-                    break;
 
+            if(!nodes[i].equals(" "))
+            {
+
+                if (nodes[i].trim().equals("Produced by")||nodes[i].trim().equals("Written by")||nodes[i].trim().equals("Music by"))
+                {
+                    break;
                 }
                 else
                 {
-                    return directors;
+                    names += nodes[i].trim() + ",";
                 }
             }
         }
-        return directors;
+        return names;
     }
-    public static String findNext(String[] nodes, int posn)
+
+    //Method to extract value for Released year
+    public static String giveDate(String[] nodes, int posn)
     {
+
+        String date="";
         for(int i=posn;i<nodes.length;i++)
         {
-            if(nodes[i].equals(" "))
+            if(!nodes[i].equals(" "))
             {
-
-            }
-            else
-            {
-                return nodes[i];
+                date+=nodes[i];
+                break;
             }
         }
-        return null;
+        return date;
     }
 }
