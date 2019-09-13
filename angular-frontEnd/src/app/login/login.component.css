@@ -1,0 +1,28 @@
+.wrapper{
+overflow-y: hidden;
+}
+
+.login-main{
+    margin-top: 15%;
+}
+    mat-card{
+    min-width: 30%;
+    margin-left: 35%;
+    margin-right: 35%;
+    }
+
+    mat-card-content{
+        margin-left: 25%;
+    }
+
+    mat-card-header{
+        margin-left: 20%;
+    }
+    mat-card-actions{
+        margin-left: 40%;
+    }
+
+    .invalid{
+        color: red;
+        margin-left:20%;
+    }

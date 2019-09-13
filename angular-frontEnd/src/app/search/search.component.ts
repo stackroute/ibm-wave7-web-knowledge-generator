@@ -94,6 +94,16 @@ export class SearchComponent implements OnInit {
     }
   }
 
+  login(){
+    // alert("hello");
+    console.log(localStorage.getItem('username'));
+    if( localStorage.getItem('username')!='undefined'){
+      this.router.navigate(["domainexpert"]);
+    } else{
+      this.router.navigate(["login"]);
+    }
+   }
+
   ngOnDestroy() {
     this.nounSub.unsubscribe();
     this.verbSub.unsubscribe();

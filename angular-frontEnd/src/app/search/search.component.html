@@ -1,5 +1,15 @@
 <div class="search">
-        <mat-icon width="40" height="40" class="user">account_circle</mat-icon>
+   
+    <!-- <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon> -->
+    <!-- <mat-icon (click)="login()">account_circle</mat-icon> -->
+ 
+    <!-- <mat-icon width="40" height="40" class="user" (click)="login()"></mat-icon> -->
+ 
+    <button mat-button class="logobutton" width="40" height="40"  (click)="login()">
+      <mat-icon  class="user" inline=true>account_circle</mat-icon>
+      
+    </button>
+
     <div class="center">
         
         <form class="searchForm">
