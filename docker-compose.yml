@@ -8,7 +8,7 @@ services:
     hostname: localhost
     image: eureka-server
     ports:
-      - 8762:8762
+      - 8761:8761
     healthcheck:
       test: "exit 0"
 
@@ -49,7 +49,7 @@ services:
     image: web-search-service
     hostname: localhost
     ports:
-      - 8090:8090
+      - 8099:8099
     healthcheck:
       test: "exit 0"
 
@@ -62,7 +62,7 @@ services:
     image: fetch-webpage-service
     hostname: localhost
     ports:
-      - 8083:8083
+      - 8090:8090
     healthcheck:
       test: "exit 0"
 
@@ -76,20 +76,6 @@ services:
     hostname: localhost
     ports:
       - 8092:8092
-    healthcheck:
-      test: "exit 0"
-
-  neo4j-command-service:
-    build: neo4j-command-service/
-    depends_on:
-      - keyword-phrase-service
-      - neo4j
-    restart: always
-    network_mode: "host"
-    image: neo4j-command-servicedocker
-    hostname: localhost
-    ports:
-      - 8995:8995
     healthcheck:
       test: "exit 0"
 
@@ -138,6 +124,35 @@ services:
     hostname: localhost
     ports:
       - 8888:8888
+    healthcheck:
+      test: "exit 0"
+
+
+  neo4j-command-service:
+    build: neo4j-command-service/
+    depends_on:
+      - keyword-phrase-service
+      - neo4j
+    restart: always
+    network_mode: "host"
+    image: neo4j-command-servicedocker
+    hostname: localhost
+    ports:
+      - 8995:8995
+    healthcheck:
+      test: "exit 0"
+
+  neo4j-database-service:
+    build: neo4j-database-service/
+    depends_on:
+      - search-nlp-service
+      - neo4j
+    restart: always
+    network_mode: "host"
+    image: neo4j-database-servicedocker
+    hostname: localhost
+    ports:
+      - 8991:8991
     healthcheck:
       test: "exit 0"
 

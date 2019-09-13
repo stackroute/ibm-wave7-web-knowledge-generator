@@ -6,6 +6,7 @@ import com.stackroute.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +23,16 @@ public class MovieController {
 
     ResponseEntity responseEntity;
 
-    public MovieController(MovieService movieService) {
+    String input="";
+    @KafkaListener(topics = "Fetch-Keyword", groupId = "group_id")
+    public void consumer(String message) throws IOException {
+
+        this.input=message;
+        System.out.println(input);
+    }
+
+    public MovieController(MovieService movieService)
+    {
         this.movieService = movieService;
     }
 

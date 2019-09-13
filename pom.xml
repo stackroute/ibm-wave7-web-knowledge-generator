@@ -10,7 +10,7 @@
 	<packaging>pom</packaging>
 
 
-    <parent>
+    	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.6.RELEASE</version>
@@ -29,16 +29,17 @@
 	<modules>
 		<module>config-server</module>
 		<module>eureka-server</module>
-        <module>web-search-service</module>
+       	<module>web-search-service</module>
 		<module>fetch-webpage-service</module>
 		<module>domain-expert-authentication-service</module>
 		<module>zuul-api</module>
 		<module>keyword-phrase-service</module>
 		<module>moviedata-populator-service</module>
-        <module>neo4j-database-service</module>
+        <module>neo4j-fetchdatabase-service</module>
         <module>neo4j-command-service</module>
-		<module>search-nlp-service</module>
-	</modules>
+        <module>search-nlp-service</module>
+
+    </modules>
 
 	<dependencies>
 		<dependency>
@@ -84,18 +85,29 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-autoconfigure</artifactId>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>2.2.11</version>
-        </dependency>
+
         <!-- https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-impl -->
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-impl</artifactId>
             <version>2.3.2</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+ <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-mongodb -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-mongodb</artifactId>
+        </dependency>
+
+      <dependency>
+        <groupId>org.springframework.kafka</groupId>
+        <artifactId>spring-kafka</artifactId>
+      </dependency>
 
 	</dependencies>
 
@@ -112,18 +124,6 @@
 	</dependencyManagement>
 
 	<build>
-
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.sonarsource.scanner.maven</groupId>
-					<artifactId>sonar-maven-plugin</artifactId>
-					<version>3.6.0.1398</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-
-
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -272,6 +272,14 @@
 				<artifactId>maven-surefire-report-plugin</artifactId>
 				<version>2.22.0</version>
 			</plugin>
+
+
+                   <plugin>
+                       <groupId>org.springframework.boot</groupId>
+                       <artifactId>spring-boot-maven-plugin</artifactId>
+                   </plugin>
+
+
 			<plugin>
 				<groupId>com.github.spotbugs</groupId>
 				<artifactId>spotbugs-maven-plugin</artifactId>
@@ -281,4 +289,3 @@
 	</reporting>
 
 </project>
-
