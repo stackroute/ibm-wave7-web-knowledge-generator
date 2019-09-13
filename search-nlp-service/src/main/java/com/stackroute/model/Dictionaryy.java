@@ -322,7 +322,7 @@ public class Dictionaryy {
             }
         }
 
-     
+
         System.out.println(nodelist);
         System.out.println(relationlist);
         System.out.println(valuelist);
@@ -345,18 +345,18 @@ public class Dictionaryy {
         index2=1;
         index3=1;
 
-         movie.clear();
-       starring.clear();
+        movie.clear();
+        starring.clear();
         director.clear();
         releasedyear.clear();
         productionhouse.clear();
-       producer.clear();
+        producer.clear();
         moviename.clear();
         actorname.clear();
-       directorname.clear();
+        directorname.clear();
         producername.clear();
         releaseyear.clear();
-       productionhousename.clear();
+        productionhousename.clear();
 
 
 

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 
 @Service
-public class MovieServiceImpl implements MovieService {
+public class MovieServiceImpl implements MovieService{
 
     // autowire the movieRepository
     @Autowired
@@ -25,8 +25,8 @@ public class MovieServiceImpl implements MovieService {
 
         // call repository method to save movie
         movieRepository.saveMovie(movie.getTitle(),movie.getStarring(),movie.getYear(),movie.getDirector(),movie.getProducer()
-        ,movie.getLanguage());
+                ,movie.getLanguage());
         // return the title of saved movie
         return movieRepository.getMovieByTitle(movie.getTitle());
-      }
+    }
 }
