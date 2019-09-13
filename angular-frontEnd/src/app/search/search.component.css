@@ -67,6 +67,10 @@
     position: relative;
 }
 
+app-search-bar{
+    margin-top: 50wh;
+}
+
 .center .searchForm {
 margin: 0;
 position: absolute;

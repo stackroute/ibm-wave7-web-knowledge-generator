@@ -38,6 +38,7 @@
         <module>neo4j-database-service</module>
         <module>neo4j-command-service</module>
         <module>search-nlp-service</module>
+        <module>notification-service</module>
 
     </modules>
 
