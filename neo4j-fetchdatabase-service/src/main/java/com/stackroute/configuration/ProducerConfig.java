@@ -1,6 +1,6 @@
-package com.stackroute;
+package com.stackroute.configuration;
 
-import com.fasterxml.jackson.databind.ser.std.MapSerializer;
+import com.stackroute.model.Result;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +15,7 @@ import java.util.Map;
 @Configuration
 public class ProducerConfig {
     @Bean
-    public ProducerFactory<String,HashMap> producerFactory() {
+    public ProducerFactory<String, Result> producerFactory() {
         Map<String, Object> config = new HashMap<>();
         config.put(org.apache.kafka.clients.producer.ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         config.put(org.apache.kafka.clients.producer.ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -23,7 +23,7 @@ public class ProducerConfig {
         return new DefaultKafkaProducerFactory<>(config);
     }
     @Bean
-    public KafkaTemplate<String,HashMap> kafkaTemplate()
+    public KafkaTemplate<String,Result> kafkaTemplate()
     {
         return new KafkaTemplate<>(producerFactory());
     }

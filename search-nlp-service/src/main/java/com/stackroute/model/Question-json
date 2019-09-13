@@ -1,0 +1,138 @@
+1.movie with director Imtiaz Ali and actor Shahid Kapoor
+
+{
+    "node2": "Director",
+    "node3": "Starring",
+    "value2": "Shahid Kapoor",
+    "value1": "Imtiaz Ali",
+    "node1": "Movie",
+    "relation2": "CASTED_IN",
+    "relation1": "DIRECTED"
+}
+
+2.movies of actor Shahid Kapoor
+
+{
+    "node2": "Starring",
+    "value1": "Shahid Kapoor",
+    "node1": "Movie",
+    "relation1": "CASTED_IN"
+}
+
+3.movies of actor Shahid Kapoor and Kareena Kapoor
+
+{
+    "node2": "Starring",
+    "node3": "MANY",
+    "value2": "Kareena Kapoor",
+    "value1": "Shahid Kapoor",
+    "node1": "Movie",
+    "relation2": "MANY",
+    "relation1": "CASTED_IN"
+}
+
+4.movies of Shahid Kapoor and Kareena Kapoor
+{
+   "node2": "MANY",
+   "node3": "MANY",
+   "value2": "Kareena Kapoor",
+   "value1": "Shahid Kapoor",
+   "node1": "Movie",
+   "relation2": "MANY",
+   "relation1": "MANY"
+}
+5.movies of actor Shahid Kapoor and actor Kareena Kapoor
+
+{
+    "node2": "Starring",
+    "node3": "Starring",
+    "value2": "Kareena Kapoor",
+    "value1": "Shahid Kapoor",
+    "node1": "Movie",
+    "relation2": "CASTED_IN",
+    "relation1": "CASTED_IN"
+}
+
+6.movies of actor Shahid Kapoor and actor Kareena Kapoor with director IMtiaz Ali
+{
+    "node4": "Director",
+    "node2": "Starring",
+    "node3": "Starring",
+    "value2": "Kareena Kapoor",
+    "value1": "Shahid Kapoor",
+    "value3": "IMtiaz Ali",
+    "relation3": "DIRECTED",
+    "node1": "Movie",
+    "relation2": "CASTED_IN",
+    "relation1": "CASTED_IN"
+}
+7.movies of actor Shahid Kapoor in 2017
+{
+    "node2": "Starring",
+    "node3": "ReleasedYear",
+    "value2": "2017",
+    "value1": "Shahid Kapoor",
+    "node1": "Movie",
+    "relation2": "RELEASES",
+    "relation1": "CASTED_IN"
+}
+8.movies of actor Shahid Kapoor in 2017 and 2019
+{
+    "node4": "ReleasedYear",
+    "node2": "Starring",
+    "node3": "ReleasedYear",
+    "value2": "2017",
+    "value1": "Shahid Kapoor",
+    "value3": "2019",
+    "relation3": "RELEASES",
+    "node1": "Movie",
+    "relation2": "RELEASES",
+    "relation1": "CASTED_IN"
+}
+9.movies of actor Shahid Kapoor and Imtiaz Ali
+{
+    "node2": "Starring",
+    "node3": "MANY",
+    "value2": "Imtiaz Ali",
+    "value1": "Shahid Kapoor",
+    "node1": "Movie",
+    "relation2": "MANY",
+    "relation1": "CASTED_IN"
+}
+10.movies of Shahid Kapoor with director Imtiaz Ali
+{
+    "node2": "MANY",
+    "node3": "Director",
+    "value2": "Imtiaz Ali",
+    "value1": "Shahid Kapoor",
+    "node1": "Movie",
+    "relation2": "DIRECTED",
+    "relation1": "MANY"
+}
+11.film of Kareena and Saif
+{
+    "node2": "MANY",
+    "node3": "MANY",
+    "value2": "Saif",
+    "value1": "Kareena",
+    "node1": "Movie",
+    "relation2": "MANY",
+    "relation1": "MANY"
+}
+12.hindi movies of Shahid
+{
+    "node2": "Movie",
+    "value1": "Shahid",
+    "node1": "ReleasedYear",
+    "relation1": "RELEASES"
+}
+13.hindi movies of Shahid Kapoor and Shilpa Shetty
+{
+    "node2": "Movie",
+    "node3": "MANY",
+    "value2": "Shilpa Shetty",
+    "value1": "Shahid Kapoor",
+    "node1": "Language",
+    "relation2": "MANY",
+    "relation1": "HAS_LANGUAGE"
+}

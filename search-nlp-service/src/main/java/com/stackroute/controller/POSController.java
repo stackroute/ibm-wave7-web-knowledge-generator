@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,11 +29,19 @@ public class POSController {
     private KafkaTemplate<String,HashMap> kafkaTemplate;
     private static final String TOPIC = "Search-nlp";
 
+    String searchString="";
+    @KafkaListener(topics = "SearchString", groupId = "group_id")
+    public void consumer(String message) throws IOException {
+
+        this.searchString=message;
+        //System.out.println(input);
+    }
+
     @PostMapping
     @RequestMapping(value="/pos")
-    public HashMap<String,String> ner(@RequestBody final String input)
+    public HashMap<String,String> ner()
     {
-        CoreDocument coreDocument = new CoreDocument(input);
+        CoreDocument coreDocument = new CoreDocument(searchString+"?");
         System.out.println("coreDocument : "+coreDocument);
         stanfordCoreNLP.annotate(coreDocument);
         List<CoreLabel> coreLabels=coreDocument.tokens();
@@ -54,32 +63,24 @@ public class POSController {
         for(CoreLabel corelabel : coreLabels)
         {
             String pos=corelabel.get(CoreAnnotations.PartOfSpeechAnnotation.class);
-
             System.out.println(pos);
-            if(pos.equals("NNP") || pos.equals("VBN") || pos.equals("VBZ") || pos.equals("CD") || pos.equals("NN") || pos.equals("NNPS") || pos.equals("JJS") || pos.equals("VBP") ||pos.equals("FW")||pos.equals("VBD"))
+            if(pos.equals("NNP"))
             {
+                splstring+=corelabel.originalText()+" ";
 
-//                  if(pos.equals("NNP")){
-//
-//                      splstring = splstring+" "+corelabel.originalText();
-//                      finalstring = splstring;
-//
-//                  }else if(pos.equals("VBN") || pos.equals("VBZ") || pos.equals("CD") || pos.equals("NN") || pos.equals("NNPS") || pos.equals("JJS") || pos.equals("VBP") ||pos.equals("FW")||pos.equals("VBD"))
-//                  {
-//
-//                      if(finalstring != ""){
-//                          System.out.println("final"+finalstring);
-//                          res.set(i, finalstring);
-//                      }else{
-//                          finalstring = corelabel.originalText();
-//                          System.out.println("fin"+finalstring);
-//                          res.set(i, finalstring);
-//                      }
-//                      splstring="";
-//
-//
-//                  }
-                res.set(i, corelabel.originalText());
+            }
+            else if(pos.equals("NN")||pos.equals("NNS")||pos.equals("CD")||pos.equals("VBN")||pos.equals("VBD"))
+            {
+                if(!corelabel.originalText().equals("name")||!corelabel.originalText().trim().equals("list")||!corelabel.originalText().equals("is")) {
+                    res.set(i, corelabel.originalText().trim());
+                    i++;
+                }
+            }
+            else
+            {
+                System.out.println(splstring);
+                res.set(i,splstring.trim());
+                splstring="";
                 i++;
             }
         }
