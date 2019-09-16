@@ -1,0 +1,83 @@
+ <app-header></app-header>
+ <!-- <button mat-raised-button color="primary" class="logout" (click)="logout()">Logout</button> -->
+
+ <body>
+  
+ <mat-card class="layout" >
+  <div class="example-container">
+    <mat-card-title>Domain Expert Login</mat-card-title>
+    <mat-form-field >
+      <mat-label >Username</mat-label>
+      <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+      </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Password" [(ngModel)]="password"type="password" name="password" required>
+    </mat-form-field>
+
+    
+    <mat-card-footer>
+      <p *ngIf="result==true" class="invalid">Please enter valid credentials</p>
+      </mat-card-footer>
+
+     </div> 
+     <button mat-raised-button class="login-button" (click)="login()">Login</button>
+    
+</mat-card>
+</body>
+
+<app-footer></app-footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <body>
+<div class="wrapper">
+
+<app-header></app-header>
+
+<div class="container">
+<mat-card class="layout">
+  
+  <mat-card-header>
+      <mat-card-title>Domain-Expert Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="example-form">
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field fxLayout="column" class="example-full-width">
+              <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+          <td><mat-form-field fxLayout="column" class="example-full-width">
+            <input matInput placeholder="Password" [(ngModel)]="password"type="password" name="password" required>
+          </mat-form-field></td>
+        </tr></table>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button (click)="login()" class="login-button">Login</button>
+    </mat-card-actions>
+    <mat-card-footer>
+      <p *ngIf="result==true" class="invalid">Please enter valid credentials</p>
+      </mat-card-footer>
+  
+  </mat-card>
+</div>
+  <app-footer></app-footer>
+  </div>
+  </body> -->

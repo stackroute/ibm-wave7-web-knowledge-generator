@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SearchComponent } from './search/search.component';
+import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -24,10 +25,13 @@ import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SpeechService } from './speech.service';
 import { SearchBarComponent } from './search-bar/search-bar.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { LoginServiceService } from './service/login-service.service';
+import { DomainComponent } from './domainexpert/domainexpert.component';
+import { MatSelectModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -42,6 +46,8 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     ContactUsComponent,
     FeedbackComponent,
     SearchBarComponent,
+    LoginComponent,
+    DomainComponent,
     
   ],
   imports: [
@@ -59,9 +65,14 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     MatDialogModule,
     MatCardModule,
     FlexLayoutModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    MatSelectModule
+    
   ],
-  providers: [SpeechService],
+  providers: [SpeechService,
+  LoginServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

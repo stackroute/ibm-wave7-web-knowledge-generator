@@ -6,6 +6,7 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import { WebSocketAPI } from '../WebSocketAPI';
 import { Observable } from 'rxjs';
+import { IfStmt } from '@angular/compiler';
 
 
 @Component({
@@ -26,8 +27,9 @@ export class SearchResultPageComponent implements OnInit {
   ngOnInit() {
       this.message$ = this.webSocketAPI.data;
       this.message$.subscribe(data => {
-        this.message = data;
         this.message = JSON.stringify(this.message).split("content")[3];
+       
+        this.message = data;
         });
     this.webSocketAPI._connect();
   }  
