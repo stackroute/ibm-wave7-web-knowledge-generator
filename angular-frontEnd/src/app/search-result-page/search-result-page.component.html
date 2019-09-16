@@ -1,28 +1,11 @@
 <div class="searchResultPage">
 <div class="container">
     <div class="center" >
-    <form class="searchForm">
-      <input class="input" type="text" name="searchtext" [(ngModel)]="searchtext"  >
-            
-      <button  class="micbutton" *ngIf="!speech.listening"
-      [disabled]="speech.listening">
-      <mat-icon (click)="listentext()">mic</mat-icon>
-    </button>
-    <button  class="micbutton" *ngIf="speech.listening"
-      [disabled]="!speech.listening" (click)="speech.abort()">
-      <mat-icon >mic_off</mat-icon>
-     Stop
-    </button>
-      <a routerLink="/content" (click)="click1()">
-           <button mat-raised-button >Search</button>
-      </a>
-      <p class="listen">{{btnLabel}}</p> 
-  </form>
+    
 </div>   
 
 <div class="p">
-    <p id="rcorners2">Amitabh Bachchan  is an Indian film actor,
-     film producer, television host, occasional playback singer and former politician. .</p>
+    <p id="rcorners2">{{message}}</p>
     </div>
 
 <div class="peoplesearch">

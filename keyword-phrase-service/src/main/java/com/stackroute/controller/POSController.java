@@ -55,7 +55,7 @@ public class POSController {
             collect=new LinkedHashMap<>();
             //String is converted to string array
             String content=contentarr[j].toString();
-           // System.out.println("cont "+content+"j= "+j);
+            // System.out.println("cont "+content+"j= "+j);
             String[] nodes=content.split("%");
             nodes[0]=" ";
             int flag=0;
@@ -114,7 +114,7 @@ public class POSController {
                     break;
                 }
                 else
-                    {
+                {
                     names += nodes[i].trim() + ",";
                 }
             }

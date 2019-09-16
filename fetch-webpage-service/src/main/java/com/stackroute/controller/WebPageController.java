@@ -53,7 +53,7 @@ public class WebPageController {
         for(i=0;i<urlarr.length;i++){
             System.out.println(urlarr[i]);
 
-                result = result + webPageService.getTableData(urlarr[i])+"\n\n\n" ;
+            result = result + webPageService.getTableData(urlarr[i])+"\n\n\n" ;
 
         }
         System.out.println(result);

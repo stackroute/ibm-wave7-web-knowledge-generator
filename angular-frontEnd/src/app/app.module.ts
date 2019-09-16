@@ -26,6 +26,7 @@ import {MatCardModule} from '@angular/material/card';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule} from '@angular/forms';
 import { SpeechService } from './speech.service';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { SpeechService } from './speech.service';
     HelpComponent,
     ContactUsComponent,
     FeedbackComponent,
+    SearchBarComponent,
     
   ],
   imports: [

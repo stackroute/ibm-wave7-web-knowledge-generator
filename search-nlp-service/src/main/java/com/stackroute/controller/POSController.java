@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,33 +29,64 @@ public class POSController {
     private KafkaTemplate<String,HashMap> kafkaTemplate;
     private static final String TOPIC = "Search-nlp";
 
+    String searchString="";
+    @KafkaListener(topics = "SearchString", groupId = "group_id")
+    public void consumer(String message) throws IOException {
+
+        this.searchString=message;
+        //System.out.println(input);
+    }
+
     @PostMapping
     @RequestMapping(value="/pos")
-    public HashMap<String,String> ner(@RequestBody final String input)
+    public HashMap<String,String> ner()
     {
-        CoreDocument coreDocument = new CoreDocument(input);
+        CoreDocument coreDocument = new CoreDocument(searchString+"?");
+        System.out.println("coreDocument : "+coreDocument);
         stanfordCoreNLP.annotate(coreDocument);
         List<CoreLabel> coreLabels=coreDocument.tokens();
+        System.out.println("coreLabels  :"+coreLabels.toString());
         LinkedList<String> listobj = new LinkedList<String>(collectionList(coreLabels));
+        System.out.println("listObj :"+listobj.toString());
         HashMap<String,String> response= new HashMap<String,String>(dictionary.mapvalue(listobj));
-        System.out.println(response);
+        System.out.println("response : "+response);
         this.kafkaTemplate.send(TOPIC,response);
-       return response;
+        return response;
 
     }
     private List<String> collectionList(List<CoreLabel> coreLabels)
     {
         List<String> res= Arrays.asList(new String[coreLabels.size()]);
         int i=0;
+        String splstring = "";
+        String finalstring = "";
         for(CoreLabel corelabel : coreLabels)
         {
             String pos=corelabel.get(CoreAnnotations.PartOfSpeechAnnotation.class);
-            if(pos.equals("NNP") || pos.equals("VBN") || pos.equals("VBZ") || pos.equals("CD") || pos.equals("NN") || pos.equals("NNPS") || pos.equals("JJS") || pos.equals("VBP") ||pos.equals("FW")||pos.equals("VBD"))
+            System.out.println(pos);
+            if(pos.equals("NNP"))
             {
-                res.set(i, corelabel.originalText());
+                splstring+=corelabel.originalText()+" ";
+
+            }
+            else if(pos.equals("NN")||pos.equals("NNS")||pos.equals("CD")||pos.equals("VBN")||pos.equals("VBD"))
+            {
+                if(!corelabel.originalText().equals("name")||!corelabel.originalText().trim().equals("list")||!corelabel.originalText().equals("is")) {
+                    res.set(i, corelabel.originalText().trim());
+                    i++;
+                }
+            }
+            else
+            {
+                System.out.println(splstring);
+                res.set(i,splstring.trim());
+                splstring="";
                 i++;
             }
         }
+
+
         return res;
+
     }
 }

@@ -19,11 +19,13 @@ public class Dictionaryy {
     ArrayList<String> producername = new ArrayList<String>();
     ArrayList<String> releaseyear = new ArrayList<String>();
     ArrayList<String> productionhousename = new ArrayList<String>();
+    ArrayList<String> language = new ArrayList<String>();
 
 
     public HashMap<String,String> mapvalue(LinkedList<String> list) {
         movie.add("Movie");
         movie.add("cinema");
+        movie.add("movies");
         movie.add("motion picture");
         movie.add("picture");
         movie.add("film");
@@ -46,12 +48,16 @@ public class Dictionaryy {
         movie.add("scene");
         movie.add("computer animation");
         movie.add("film noir");
-        moviename.add("Kiss.of.Fire");
 
+
+        moviename.add("Kiss.of.Fire");
+        moviename.add("The.Girl.Rush");
+        moviename.add("Guns.Don't.Argue");
+        moviename.add("Hi-Jack.Highway");
 
         //star cast dictionary
         starring.add("Starring");
-        starring.add("CAST");
+        starring.add("CASTED_IN");
         starring.add("casting");
         starring.add("casted");
         starring.add("actor");
@@ -72,6 +78,7 @@ public class Dictionaryy {
         starring.add("protagonist");
         starring.add("leader");
         starring.add("superstar");
+        starring.add("done");
         starring.add("fighter");
         starring.add("superhero");
         starring.add("man");
@@ -83,8 +90,15 @@ public class Dictionaryy {
         starring.add("actors");
         starring.add("heroes");
         starring.add("actresses");
+
         actorname.add("Delia.Scala");
         actorname.add("Barbara.Rush");
+        actorname.add("Rosalind.Russell");
+        actorname.add("Eddie.Albert");
+        actorname.add("Jean.Harvey");
+        actorname.add("Paul.Dubov");
+        actorname.add("Jean.Gabin");
+        actorname.add("Gaby.Basset");
 
         // director dictionary
 
@@ -104,9 +118,12 @@ public class Dictionaryy {
         director.add("manager");
         director.add("shoot");
         director.add("shooted");
-
         director.add("direction");
 
+
+        directorname.add("Robert.Pirosh");
+        directorname.add("Bill.Karn");
+        directorname.add("Gilles.Grangier");
         //producer dictionary
 
         producer.add("Producer");
@@ -124,16 +141,16 @@ public class Dictionaryy {
         producer.add("producing");
 
         //production house dictionary
-        productionhouse.add("ProductionHouse");
-        productionhouse.add("PRODUCTION");
-        productionhouse.add("company");
-        productionhouse.add("production house");
-        productionhouse.add("house");
-        productionhouse.add("production company");
-        productionhouse.add("production");
-        productionhouse.add("produced");
-        productionhouse.add("made");
-        productionhouse.add("making");
+        producer.add("ProductionHouse");
+        producer.add("PRODUCTION");
+        producer.add("company");
+        producer.add("production house");
+        producer.add("house");
+        producer.add("production company");
+        producer.add("production");
+        producer.add("made");
+        producer.add("making");
+        productionhousename.add("Visual.Drama.inc");
 
         // released year dictionary
         releasedyear.add("ReleasedYear");
@@ -151,167 +168,239 @@ public class Dictionaryy {
         releasedyear.add("first");
         releasedyear.add("last");
 
-        moviename.add("The.Girl.Rush");
-        actorname.add("Rosalind.Russell");
-        actorname.add("Eddie.Albert");
-        directorname.add("Robert.Pirosh");
-        producername.add("?");
+
+
         releaseyear.add("1955");
-        moviename.add("Guns.Don't.Argue");
-        actorname.add("Jean.Harvey");
-        actorname.add("Paul.Dubov");
-        directorname.add("Bill.Karn");
-        producername.add("?");
-        productionhousename.add("Visual.Drama.inc");
         releaseyear.add("1957");
-        moviename.add("Hi-Jack.Highway");
-        actorname.add("Jean.Gabin");
-        actorname.add("Gaby.Basset");
-        directorname.add("Gilles.Grangier");
-        producername.add("?");
         releaseyear.add("1955");
 
-        String relation1;
-        ArrayList<Object> mergelist = new ArrayList<Object>();
-//        ArrayList<String> relationlist = new ArrayList<String>();
-//        ArrayList<String> valuelist = new ArrayList<String>();
+        //language dictionary
+
+        language.add("Language");
+        language.add("HAS_LANGUAGE");
+        language.add("Hindi");
+        language.add("English");
+        language.add("Telugu");
+        language.add("Punjabi");
+        language.add("Tamil");
+        language.add("Kannad");
+        language.add("Bengali");
+        language.add("French");
+        language.add("Urdu");
+        language.add("Russian");
+        language.add("Spanish");
+        language.add("Korean");
+        language.add("Malayali");
+        language.add("Chinese");
+
+
+
+
+
         HashMap<String, String> relationlist = new HashMap<String, String>();
         HashMap<String, String> valuelist = new HashMap<String, String>();
         HashMap<String, String> nodelist = new HashMap<String, String>();
-//        HashMap<String,Object> mergelist = new HashMap<String,Object>();
         HashMap<String,String> result = new HashMap<String,String>();
 
-        System.out.println(list);
+        System.out.println("list value is :"+list);
         int index1=1;
         int index2=1;
         int index3=1;
-        System.out.println(relationlist.size());
-        System.out.println(valuelist.size());
-        System.out.println(nodelist.size());
+
+
+        Boolean isactor = false;
+        Boolean isproducer = false;
+        Boolean isdirector = false;
+        Boolean isyear = false;
+        Boolean isLanguage = false;
 
         for (int i = 0; i < list.size(); i++) {
 
-            if (list.get(i) != null) {
-
-                System.out.println(starring.get(1));
+            Boolean flag = false;
 
 
-                for (String item : movie) {
+            if((list.get(i) == "") || (list.get(i) == " ")){
 
-                    if (list.get(i).equalsIgnoreCase(item)) {
-                        nodelist.put("node"+(index1++),movie.get(0));
+            }else {
 
-                    }
-                    break;
 
-                }
-                for (String item12 : moviename) {
-                    if (list.get(i).equalsIgnoreCase(item12)) {
-                        nodelist.put("node"+(index1++),movie.get(0));
-                        valuelist.put("value"+(index3++),item12);
+                if (list.get(i) != null) {
+                    System.out.println("EACH KEYWORD"+list.get(i));
+                    for (String item : movie) {
+                        if (list.get(i).equalsIgnoreCase(item)) {
+                            nodelist.put("node" + (index1++), movie.get(0));
+                            flag = true;
+                            break;
+                        }
                     }
 
-
-                }
-
-                for (int j = 0; j < starring.size(); j++) {
-                    System.out.println("starring");
-                    if (list.get(i).equalsIgnoreCase(starring.get(j))) {
-                        nodelist.put("nodestar"+(index1++),starring.get(0));
-                        relationlist.put("relation"+(index2++),starring.get(1));
-
-                    }
-                    break;
-                }
-                for (String item13 : actorname) {
-                    if (list.get(i).equalsIgnoreCase(item13)) {
-                        nodelist.put("nodeactor"+(index1++),starring.get(0));
-                        valuelist.put("value"+(index3++),item13);
-                        relationlist.put("relation"+(index2++),starring.get(1));
-
-                    }
-
-                }
-                for (String item2 : director) {
-                    if (list.get(i).equalsIgnoreCase(item2)) {
-                        nodelist.put("node"+(index1++),director.get(0));
-
-                        relationlist.put("relation"+(index2++),director.get(1));
-
-                    }
-                    break;
-                }
-                for (String item14 : directorname) {
-                    if (list.get(i).equalsIgnoreCase(item14)) {
-                        nodelist.put("node"+(index1++),director.get(0));
-                        valuelist.put("value"+(index3++),item14);
-                        relationlist.put("relation"+(index2++),director.get(1));
-
-                    }
-
-                }
-                for (String item3 : producer) {
-                    if (list.get(i).equalsIgnoreCase(item3)) {
-                        nodelist.put("node"+(index1++),producer.get(0));
-
-                        relationlist.put("relation"+(index2++),producer.get(1));
-
-                    }
-
-                }
-                for (String item15 : producername) {
-                    if (list.get(i).equalsIgnoreCase(item15)) {
-                        nodelist.put("node"+(index1++),producer.get(0));
-                        valuelist.put("value"+(index3++),item15);
-                        relationlist.put("relation"+(index2++),producer.get(1));
-
-                    }
-                    break;
-
-                }
-                for (String item4 : productionhouse) {
-                    if (list.get(i).equalsIgnoreCase(item4)) {
-                        nodelist.put("node"+(index1++),productionhouse.get(0));
-
-                        relationlist.put("relation"+(index2++),productionhouse.get(1));
-
-
-                    }
-                }
-                for (String item16 : productionhousename) {
-                    if (list.get(i).equalsIgnoreCase(item16)) {
-                        nodelist.put("node"+(index1++),productionhouse.get(0));
-                        valuelist.put("value"+(index3++),item16);
-                        relationlist.put("relation"+(index2++),productionhouse.get(1));
-
-                    }
-
-
-                }
-                for (String item5 : releasedyear) {
-                    if (list.get(i).equalsIgnoreCase(item5)) {
-                        nodelist.put("nodereleasedyear"+(index1++),releasedyear.get(0));
-
-                        relationlist.put("relation"+(index2++),releasedyear.get(1));
-
-
-                    }
-                    break;
-                }
-                for (String item17 : releaseyear) {
-                    if (list.get(i).equalsIgnoreCase(item17)) {
-                        nodelist.put("nodereleases"+(index1++),releasedyear.get(0));
-                        valuelist.put("value"+(index3++),item17);
-                        relationlist.put("relation"+(index2++),releasedyear.get(1));
-
-                    }
-
-                }
+//                for (String item1 : moviename) {
+//                    if (list.get(i).equalsIgnoreCase(item1)) {
+//                        valuelist.put("value"+(index3++),item1);
+//                        break;
+//                    }
 //
+//                }
+
+                    for (String item2 : starring) {
+
+                        if (list.get(i).equalsIgnoreCase(item2)) {
+                            System.out.println("starring");
+                            nodelist.put("node" + (index1++), starring.get(0));
+                            relationlist.put("relation" + (index2++), starring.get(1));
+                            flag = true;
+                            isactor = true;
+                            break;
+
+                        }
+
+                    }
+//                for (String item3 : actorname) {
+//                    if (list.get(i).equalsIgnoreCase(item3)) {
+//
+//                        valuelist.put("value"+(index3++),item3);
+//
+//                        break;
+//                    }
+//
+//                }
+                    for (String item4 : director) {
+                        if (list.get(i).equalsIgnoreCase(item4)) {
+                            nodelist.put("node" + (index1++), director.get(0));
+                            relationlist.put("relation" + (index2++), director.get(1));
+                            flag = true;
+                            isdirector = true;
+                            break;
+                        }
+
+                    }
+//                for (String item5 : directorname) {
+//                    if (list.get(i).equalsIgnoreCase(item5)) {
+//
+//                        valuelist.put("value"+(index3++),item5);
+//
+//                        break;
+//                    }
+//
+//                }
+                    for (String item6 : producer) {
+                        if (list.get(i).equalsIgnoreCase(item6)) {
+                            nodelist.put("node" + (index1++), producer.get(0));
+                            relationlist.put("relation" + (index2++), producer.get(1));
+                            flag = true;
+                            isproducer = true;
+                            break;
+                        }
+
+                    }
+//                for (String item7 : producername) {
+//                    if (list.get(i).equalsIgnoreCase(item7)) {
+//                        nodelist.put("node"+(index1++),producer.get(0));
+//                        valuelist.put("value"+(index3++),item7);
+//                        relationlist.put("relation"+(index2++),producer.get(1));
+//                        break;
+//                    }
+//
+//
+//                }
+//                    for (String item8 : productionhouse) {
+//                        if (list.get(i).equalsIgnoreCase(item8)) {
+//                            nodelist.put("node" + (index1++), productionhouse.get(0));
+//                            relationlist.put("relation" + (index2++), productionhouse.get(1));
+//                            flag = true;
+//                             = false;
+//                            break;
+//                        }
+//                    }
+//                for (String item9 : productionhousename) {
+//                    if (list.get(i).equalsIgnoreCase(item9)) {
+//                        nodelist.put("node"+(index1++),productionhouse.get(0));
+//                        valuelist.put("value"+(index3++),item9);
+//                        relationlist.put("relation"+(index2++),productionhouse.get(1));
+//                        break;
+//                    }
+//
+//
+//                }
+                    for (String item10 : releasedyear) {
+                        if (list.get(i).equalsIgnoreCase(item10)) {
+                            nodelist.put("node" + (index1++), releasedyear.get(0));
+                            relationlist.put("relation" + (index2++), releasedyear.get(1));
+                            flag = true;
+                            isyear = true;
+                            break;
+
+                        }
+
+                    }
+
+                    for (String item11 : language) {
+                        if (list.get(i).equalsIgnoreCase(item11)) {
+                            nodelist.put("node" + (index1++), language.get(0));
+                            relationlist.put("relation" + (index2++), language.get(1));
+                            flag = true;
+                            isLanguage = true;
+                            break;
+
+                        }
+
+                    }
+
+
+//                for (String item11 : releaseyear) {
+//                    if (list.get(i).equalsIgnoreCase(item11)) {
+//                        nodelist.put("nodery"+(index1++),releasedyear.get(0));
+//                        valuelist.put("valuery"+(index3++),item11);
+//                        relationlist.put("relationry"+(index2++),releasedyear.get(1));
+//                        break;
+//                    }
+//
+//                }
+//
+                    if (flag == false) {
+
+                        if (list.get(i).matches("^[0-9]{4}$")) {
+                            if (isyear == true) {
+                                valuelist.put("value" + (index3++), list.get(i));
+                            } else {
+                                nodelist.put("node" + (index1++), "ReleasedYear");
+                                relationlist.put("relation" + (index2++), "RELEASES");
+                                valuelist.put("value" + (index3++), list.get(i));
+                            }
+
+                        } else {
+                            System.out.println("ACTOR VALUE"+isactor);
+                            if (isactor == true) {
+                                valuelist.put("value" + (index3++), list.get(i));
+                                isactor = false;
+                            }else if (isdirector == true) {
+                                valuelist.put("value" + (index3++), list.get(i));
+                                isdirector = false;
+                            }else  if (isproducer == true) {
+                                valuelist.put("value" + (index3++), list.get(i));
+                                isproducer = false;
+                            }else  if (isLanguage == true) {
+                                valuelist.put("value" + (index3++), list.get(i));
+                                isLanguage = false;
+                            }
+                            else {
+                                nodelist.put("node" + (index1++), "MANY");
+                                relationlist.put("relation" + (index2++), "MANY");
+                                valuelist.put("value" + (index3++), list.get(i));
+                                System.out.println("all many node reation value");
+                            }
+
+                        }
+
+                    }
+
+
+                }
+
             }
         }
 
-     
+
         System.out.println(nodelist);
         System.out.println(relationlist);
         System.out.println(valuelist);
@@ -325,25 +414,31 @@ public class Dictionaryy {
         for (Map.Entry<String,String> entry : valuelist.entrySet()){
             result.put(entry.getKey(),entry.getValue());
         }
-         movie.clear();
-       starring.clear();
+
+
+        System.out.println(result);
+
+
+        index1=1;
+        index2=1;
+        index3=1;
+
+        movie.clear();
+        starring.clear();
         director.clear();
         releasedyear.clear();
         productionhouse.clear();
-       producer.clear();
+        producer.clear();
         moviename.clear();
         actorname.clear();
-       directorname.clear();
+        directorname.clear();
         producername.clear();
         releaseyear.clear();
-       productionhousename.clear();
+        productionhousename.clear();
 
-       index1=1;
-       index2=1;
-       index3=1;
-       nodelist=new HashMap<String,String>();
-        relationlist=new HashMap<String,String>();
-        valuelist=new HashMap<String,String>();
+
+
+
         return result;
     }
 }
