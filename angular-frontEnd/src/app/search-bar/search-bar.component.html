@@ -1,7 +1,7 @@
-<div class="center">
-<form class="searchForm">
-    <mat-icon  class="logo" alt="App Logo">movie</mat-icon>
-    <br>
+ <div class="center">        
+ <form class="searchForm">
+    <!-- <mat-icon  class="logo" alt="App Logo">movie</mat-icon>
+    <br> -->
     
 <input type="text" class="form-control" name="name" [(ngModel)]="name" [value]="name" placeholder="Search here">
 <p>{{message}}</p>
@@ -12,11 +12,23 @@
 <button  class="micbutton" *ngIf="speech.listening"
 [disabled]="!speech.listening" (click)="speech.abort()">
 <mat-icon >mic_off</mat-icon>
-Stop
+<!-- Stop -->
 </button>
+
+
 <a routerLink="/content">
-     <button mat-raised-button (click)="sendMessage()" class="btn btn-default" type="submit" >Search</button>
+     <!-- <i class="material-icons" (click)="sendMessage()">
+          search
+     </i> -->
+     <button (click)="sendMessage()" class="search-button">
+          <mat-icon>
+               search
+          </mat-icon>
+     </button>
 </a>
-<p>{{btnLabel}}</p> 
-</form>
+<div><p class="btn-label">{{btnLabel}}</p></div>
+<!-- <p class="btn-label">{{btnLabel}}</p> -->
+<!-- <br><p class="btn-label">{{btnLabel}}</p> -->
+</form> 
+
 </div>

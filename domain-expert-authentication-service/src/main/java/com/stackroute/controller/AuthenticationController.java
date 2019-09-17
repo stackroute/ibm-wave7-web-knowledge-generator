@@ -14,10 +14,10 @@ public class AuthenticationController {
     AuthenticationService authenticationService;
 
     @CrossOrigin
-   @GetMapping("api/v1")
-   //controller method to getValues of userName and password and validate
+    @GetMapping("api/v1")
+    //controller method to getValues of userName and password and validate
     public boolean authenticateDomainExpert(@RequestParam String userName,@RequestParam String userPassword){
-       return authenticationService.authenticateDomainExpert(userName,userPassword);
+        return authenticationService.authenticateDomainExpert(userName,userPassword);
     }
 
 }

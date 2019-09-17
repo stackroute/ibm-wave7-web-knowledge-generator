@@ -2,21 +2,23 @@
     color: black;
 }
 .navbar{
-    background-color: rgb(143, 30, 30);
+    /* background-color: rgb(143, 30, 30); */
+     background-color:#0A344E; 
+    
 }
 .logo{
-    padding-left: 11vw;
+    /* padding-left: 11vw; */
     font-size: 70px;
     color: white;
 }
 .header img{
-    padding-top: 10px;
+    /* padding-top: 10px; */
     width:70px;
-    height:40;
+    height:60px;
 }
 
 .user{
-
+    /* margin-top: 1%; */
     font-size: 70px;
     color: white;
     float: right;

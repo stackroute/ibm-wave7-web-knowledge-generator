@@ -37,8 +37,31 @@ services:
     healthcheck:
       test: "exit 0"
 
+<<<<<<< HEAD
   domain-expert-authentication-service:
     build: domain-expert-authentication-service/
+=======
+
+  movie-names-service:
+    build: movie-names-service/
+    depends_on:
+      - zuul-api
+      - eureka-server
+      - config-service
+      - mongo
+    restart: always
+    network_mode: "host"
+    image: movie-names-service
+    hostname: localhost
+    ports:
+      - 8402:8402
+    healthcheck:
+      test: "exit 0"
+
+
+  web-search-service:
+    build: web-search-service/
+>>>>>>> 4b217abd114695aa3bdbe5d79e77bc61f1b6d65d
     depends_on:
       - config-service
       - eureka-server

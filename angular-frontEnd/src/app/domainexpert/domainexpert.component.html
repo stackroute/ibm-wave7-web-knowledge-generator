@@ -1,6 +1,6 @@
 <html ng-app="plunker">
  <app-header></app-header>
- <button mat-raised-button color="primary" class="logout" (click)="logout()">Logout</button>
+ <!-- <button mat-raised-button color="primary" class="logout" (click)="logout()">Logout</button> -->
 
  <body ng-controller="MainCtrl">
   
@@ -24,7 +24,7 @@
       id="txtFileUpload" (change)="fileChangeListener($event)" acdomaincept=".csv" /><br>
       </div>
     
-    <button mat-raised-button color="primary" (click)="populate()">Populate</button>
+    <button mat-raised-button class="submit-button" (click)="populate()">Populate</button>
 </mat-card>
 </body>
 

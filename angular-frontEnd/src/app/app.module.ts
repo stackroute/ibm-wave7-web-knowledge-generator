@@ -68,6 +68,7 @@ import { MatSelectModule } from '@angular/material';
     HttpClientModule,
     ReactiveFormsModule,
     MatSelectModule
+    
   ],
   providers: [SpeechService,
   LoginServiceService],
