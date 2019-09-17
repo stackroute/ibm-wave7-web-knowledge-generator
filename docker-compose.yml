@@ -24,7 +24,7 @@ services:
       test: "exit 0"
 
   angular-front-end:
-    build: angular-frontEnd/
+    build: angular-front-end/
     restart: always
     network_mode: "host"
     image: angular-front-end
