@@ -1,12 +1,10 @@
 import{Router} from '@angular/router'
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { SpeechService } from './../speech.service';
-import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import { WebSocketAPI } from '../WebSocketAPI';
 import { Observable } from 'rxjs';
-import { IfStmt } from '@angular/compiler';
+import { element } from 'protractor';
 
 
 @Component({
@@ -19,20 +17,65 @@ export class SearchResultPageComponent implements OnInit {
 
   name: string;
   greeting: string;
-  message$: Observable<string>;
-  message: string;
+  result$: Observable<string>;
+  result: any=[];
+  suggestions$: Observable<string>;
+  suggestion: string;
+  
+  suggestions: string[];
+  title: string;
+  arr1: string[];
+  questions: string[] = []
+  answers: string[] = []
+  maincontent:any=[];
 
   constructor(private router:Router, private webSocketAPI:WebSocketAPI) { }
 
   ngOnInit() {
-      this.message$ = this.webSocketAPI.data;
-      this.message$.subscribe(data => {
-        this.message = JSON.stringify(this.message).split("content")[3];
+      this.result$ = this.webSocketAPI.resultData;
+      this.result$.subscribe(data => {
+        this.result = data;
+        console.log(this.result);
+        this.maincontent=[];
+        for(var i=0;i<this.result.length;i++){
+          if(this.result[i].name.title){
+            this.maincontent.push(this.result[i].name.title);
+            console.log("title")
+          }else if(this.result[i].name.name){
+            this.maincontent.push(this.result[i].name.name);
+            console.log("name")
+          }else{
+            this.maincontent.push(this.result[i].name.year);
+            console.log("year")
+          }
+         
+        }
+        console.log(this.maincontent)
        
-        this.message = data;
+      });
+    
+
+  
+      this.suggestions = []
+      this.suggestions$ = this.webSocketAPI.suggestionsData;
+      this.suggestions$.subscribe(data => {
+        this.suggestion = data;
+        console.log(data);
+        this.suggestions = JSON.stringify(this.suggestion).replace("{","").replace("}","").replace("\"","").trim().split(',')
+        console.log(this.suggestions);
+        this.questions = []
+        this.answers = []
+        this.suggestions.forEach(element => {
+          let questionAnswer = element.split(":")
+          this.questions.push(questionAnswer[0].replace("\"","").replace("  ","").replace("\"",""))
+          this.answers.push(questionAnswer[1])
+          console.log(this.questions)
+          console.log(this.answers)
         });
+   });
     this.webSocketAPI._connect();
-  }  
+  }
+  
  _connect(){
    
 }
@@ -42,7 +85,6 @@ disconnect(){
 }
 
 sendMessage() {
-  
   this.webSocketAPI._send(this.name);
 }
 }

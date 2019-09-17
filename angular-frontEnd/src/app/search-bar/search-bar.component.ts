@@ -7,7 +7,6 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/internal/Observable';
 import { WebSocketAPI } from '../WebSocketAPI';
 
-
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
@@ -15,13 +14,10 @@ import { WebSocketAPI } from '../WebSocketAPI';
 })
 export class SearchBarComponent implements OnInit {
 
-
-
-  name: string;
+  // name: string;
   greeting: string;
-  message$: Observable<string>;
   message: string;
-  
+
   nouns: string[];
   verbs: string[];
   adjs: string[];
@@ -30,7 +26,7 @@ export class SearchBarComponent implements OnInit {
   adjSub: Subscription;
   errorsSub: Subscription;
   errorMsg: string;
-  public searchtext='';
+  public name='';
   constructor( private router:Router,public speech: SpeechService, public webSocketAPI: WebSocketAPI) { }
 
   ngOnInit() {
@@ -39,15 +35,8 @@ export class SearchBarComponent implements OnInit {
     this._listenVerbs();
     this._listenAdj();
     this._listenErrors();
-    this.searchtext="";
-    
-    this.message$ = this.webSocketAPI.data;
-    this.message$.subscribe(data => {
-      this.message = data;
-    });
+    this.name="";
     this.webSocketAPI._connect();
-  
-    
   }
   search(){
     this.router.navigateByUrl('content');
@@ -57,8 +46,8 @@ export class SearchBarComponent implements OnInit {
   }
   listentext(){
    
-    this.searchtext='';
-    console.log(this.searchtext);
+    this.name='';
+    console.log(this.name);
     this.speech.startListening();
   }
 
@@ -106,7 +95,7 @@ export class SearchBarComponent implements OnInit {
   private _setError(err?: any) {
     if (err) {
       console.log('Speech Recognition:', err);
-      this.searchtext = err.obj.results[0];
+      this.name = err.obj.results[0];
       this.errorMsg = err.message;
     } else {
       this.errorMsg = null;
@@ -131,6 +120,7 @@ export class SearchBarComponent implements OnInit {
   sendMessage() {
     
     this.webSocketAPI._send(this.name);
+
   }
 }
 

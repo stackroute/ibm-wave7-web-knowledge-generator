@@ -1,65 +1,38 @@
 <body>
 <div class="searchResultPage">
-<div class="container">
-    <div class="center" >
-    
-</div>   
+  <div class="container">
+    <div class="center">
 
-<div class="p">
-    <p id="rcorners2">{{message}}</p>
     </div>
 
-<div class="peoplesearch">
-    <h4>PEOPLE ALSO SEARCH</h4>
-<mat-accordion>
-    
-       
-        <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    Movies of amithab
-                  </mat-panel-title>
-                  <mat-panel-description>
-                  </mat-panel-description>
-                </mat-expansion-panel-header>
-            
-               
-              </mat-expansion-panel>
-              <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                      <mat-panel-title>
-                        Award winning movies of amitab
-                      </mat-panel-title>
-                      <mat-panel-description>
-                      </mat-panel-description>
-                    </mat-expansion-panel-header>
-                
-                   
-                  </mat-expansion-panel>
-        <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    Top 10 amitab movies
-                  </mat-panel-title>
-                  <mat-panel-description>
-                  </mat-panel-description>
-                </mat-expansion-panel-header>
-            
-               
-              </mat-expansion-panel>
-              <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                      <mat-panel-title>
-                        Dharma Production movies of amitab
-                      </mat-panel-title>
-                      <mat-panel-description>
-                      </mat-panel-description>
-                    </mat-expansion-panel-header>
-                
-                   
-                  </mat-expansion-panel>
-      </mat-accordion>
+    <div class="p">
+      <div id="rcorners2">
+        <div *ngFor="let result of maincontent">
+          {{result}}
+        </div>
+      </div>
     </div>
-</div>
+
+    <div class="peoplesearch">
+      <h4>PEOPLE ALSO SEARCH</h4>
+      <div *ngFor="let question of questions;let i=index">
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title [innerHTML]="question">
+                </mat-panel-title>
+                <mat-panel-description>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <ul>
+                <li>
+                  <p [innerHTML]="answers[i].replace()" ></p>
+                </li>
+              </ul>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </div>
+    </div>
 </div>
 </body>

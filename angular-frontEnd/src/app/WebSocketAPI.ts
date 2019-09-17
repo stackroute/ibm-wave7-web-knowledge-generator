@@ -9,11 +9,15 @@ import { Injectable } from '@angular/core';
 })
 export class WebSocketAPI {
     webSocketEndPoint: string = 'http://localhost:8404/ws';
+
+   
     topic: string = "/topic/result";
     stompClient: any;
     
-    private dataSource = new BehaviorSubject<string>("");
-    data = this.dataSource.asObservable();
+    private resultDataSource = new BehaviorSubject<string>("");
+    resultData = this.resultDataSource.asObservable();
+    private suggestionsDataSource = new BehaviorSubject<string>("");
+    suggestionsData = this.suggestionsDataSource.asObservable();
 
     constructor() { }
 
@@ -51,11 +55,18 @@ export class WebSocketAPI {
 	 */
     _send(message) {
         console.log("calling logout api via web socket");
+       
+
         this.stompClient.send("/app/search", {}, JSON.stringify(message));
+        
     }
 
     onMessageReceived(message) {
-        this.dataSource.next(message);
-        console.log("Message Recieved from Server :: " +{}, JSON.stringify(message));
+        let messageData = JSON.parse(message.body)
+        let messageString = messageData.content as string;
+        let result = JSON.parse(messageString)
+        this.resultDataSource.next(result.node)
+        this.suggestionsDataSource.next(result.suggestions)
+        console.log("Message Recieved from Server :: " +{}, messageString);
     }
 }

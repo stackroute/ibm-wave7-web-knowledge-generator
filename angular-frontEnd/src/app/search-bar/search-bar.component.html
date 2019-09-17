@@ -3,8 +3,8 @@
     <!-- <mat-icon  class="logo" alt="App Logo">movie</mat-icon>
     <br> -->
     
-<input type="text" [(ngModel)]="name" class="form-control" name="name" placeholder="Search here">
-
+<input type="text" class="form-control" name="name" [(ngModel)]="name" [value]="name" placeholder="Search here">
+<p>{{message}}</p>
 <button  class="micbutton" *ngIf="!speech.listening"
 [disabled]="speech.listening">
 <mat-icon (click)="listentext()">mic</mat-icon>

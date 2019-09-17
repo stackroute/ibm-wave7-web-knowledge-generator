@@ -32,7 +32,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginServiceService } from './service/login-service.service';
 import { DomainComponent } from './domainexpert/domainexpert.component';
 import { MatSelectModule } from '@angular/material';
-
 @NgModule({
   declarations: [
     AppComponent,
