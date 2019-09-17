@@ -213,6 +213,7 @@ public class Dictionaryy {
         Boolean isdirector = false;
         Boolean isyear = false;
         Boolean isLanguage = false;
+        Boolean isMovie = false;
 
         for (int i = 0; i < list.size(); i++) {
 
@@ -226,10 +227,12 @@ public class Dictionaryy {
 
                 if (list.get(i) != null) {
                     System.out.println("EACH KEYWORD"+list.get(i));
+
                     for (String item : movie) {
                         if (list.get(i).equalsIgnoreCase(item)) {
                             nodelist.put("node" + (index1++), movie.get(0));
                             flag = true;
+                            isMovie = true;
                             break;
                         }
                     }
@@ -370,6 +373,10 @@ public class Dictionaryy {
 
                         } else {
                             System.out.println("ACTOR VALUE"+isactor);
+                            if(isMovie == true){
+                                valuelist.put("value" + (index3++), list.get(i));
+                                isMovie = false;
+                            }
                             if (isactor == true) {
                                 valuelist.put("value" + (index3++), list.get(i));
                                 isactor = false;
@@ -400,10 +407,14 @@ public class Dictionaryy {
             }
         }
 
-     
+
         System.out.println(nodelist);
         System.out.println(relationlist);
         System.out.println(valuelist);
+        if(nodelist.size() == 1){
+            nodelist.put("node" + 2, "MANY");
+            relationlist.put("relation" + 2, "MANY");
+        }
 
         for (Map.Entry<String,String> entry : nodelist.entrySet()){
             result.put(entry.getKey(),entry.getValue());
@@ -423,18 +434,18 @@ public class Dictionaryy {
         index2=1;
         index3=1;
 
-         movie.clear();
-       starring.clear();
+        movie.clear();
+        starring.clear();
         director.clear();
         releasedyear.clear();
         productionhouse.clear();
-       producer.clear();
+        producer.clear();
         moviename.clear();
         actorname.clear();
-       directorname.clear();
+        directorname.clear();
         producername.clear();
         releaseyear.clear();
-       productionhousename.clear();
+        productionhousename.clear();
 
 
 

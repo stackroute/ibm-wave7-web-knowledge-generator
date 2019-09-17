@@ -35,6 +35,7 @@ public class POSController {
 
         this.searchString=message;
         //System.out.println(input);
+        ner();
     }
 
     @PostMapping

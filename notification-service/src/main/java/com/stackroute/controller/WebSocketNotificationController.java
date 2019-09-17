@@ -23,35 +23,41 @@ import java.io.IOException;
 public class WebSocketNotificationController {
 
 
-    @Autowired
-    private KafkaTemplate kafkaTemplate;
     private static final String TOPIC = "SearchString";
-
+   
+    private WebSocketNotificationSending webSocketNotificationSending;
+    public String data [];
 
     String input="";
+
     Result node=new Result();
+
+    String resultMapper;
+
     ObjectMapper objectMapper = new ObjectMapper();
+
+    @Autowired
+    private KafkaTemplate kafkaTemplate;
+
     @KafkaListener(topics = "SearchResult", groupId = "group_id")
     public void consumer(String mapper) throws IOException {
-        this.input=mapper;
+        input = mapper;
         Result node1 = objectMapper.readValue(mapper, Result.class);
         this.node=node1;
-        System.out.println("consumed url is:"+mapper);
-        System.out.println("heloooooooo"+node1);
     }
 
-
-
-
-    public String data [];
-        @MessageMapping("/search")
-        @SendTo("/topic/result")
-        @CrossOrigin
-        public WebSocketNotificationSending webSocketNotificationSending(WebSocketNotificationReceiving webSocketNotificationReceiving) throws Exception{
-            String searchString = HtmlUtils.htmlEscape(webSocketNotificationReceiving.getName());
-            this.kafkaTemplate.send(TOPIC,searchString);
-            System.out.println(searchString);
-                return  new WebSocketNotificationSending( HtmlUtils.htmlEscape(node.toString()) );
+    @MessageMapping("/search")
+    @SendTo("/topic/result")
+    @CrossOrigin
+    public WebSocketNotificationSending webSocketNotificationSending(WebSocketNotificationReceiving webSocketNotificationReceiving) throws Exception {
+        String searchString = HtmlUtils.htmlEscape(webSocketNotificationReceiving.getName());
+        this.kafkaTemplate.send(TOPIC,searchString);
+        System.out.println(searchString);
+        if(!input.equals("")) {
+            System.out.println("resultMapper" + input);
+            return new WebSocketNotificationSending(HtmlUtils.htmlEscape("") + input);
         }
+        return new WebSocketNotificationSending(("Result Not Found"));
+    }
 
     }//HtmlUtils.htmlEscape(webSocketNotificationReceiving.getName())

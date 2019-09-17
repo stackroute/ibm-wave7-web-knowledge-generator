@@ -2,7 +2,8 @@ package com.stackroute.domain;
 
 public class WebSocketNotificationSending {
     private String content;
-
+    public WebSocketNotificationSending() {
+    }
     public String getContent() {
         return content;
     }
@@ -14,6 +15,5 @@ public class WebSocketNotificationSending {
     public WebSocketNotificationSending(String content) {
         this.content = content;
     }
-    public WebSocketNotificationSending() {
-    }
+
 }

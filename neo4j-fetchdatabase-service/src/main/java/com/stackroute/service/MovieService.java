@@ -71,16 +71,14 @@ public class MovieService {
             return result;
         } else {
             Collection<Node> nodesuggestions = movieRepository.suggestions1(node, key1);
-            Collection<Node> nodesuggestions1 = movieRepository.suggestions1(node, key2);
-            Collection<Node> nodesuggestions2 = movieRepository.suggestions1(node, key3);
             HashMap<String, String> queries1 = getsuggestions(nodesuggestions, node);
-            queries1 = getsuggestions(nodesuggestions1, node);
-            queries1 = getsuggestions(nodesuggestions2, node);
+
             System.out.println(queries1);
             System.out.println(key1);
             System.out.println(key2);
             Result result = new Result();
-            result.setNode(movieRepository.findData2(node, key1, key2));
+            result.setNode(movieRepository.findData3(node, key1, key2,key3));
+            result.setSuggestions(queries1);
             System.out.println(result);
             return result;
         }
@@ -88,7 +86,7 @@ public class MovieService {
 
     private HashMap<String, String> getsuggestions(Collection<Node> nodesuggestions, Node1 node) {
         HashMap<String, String> queries = new HashMap<>();
-        int index = 1;
+        String index="";
         for (Node node1 : nodesuggestions) {
             //System.out.println(node1);
             String movie = node.getValue1();
@@ -105,25 +103,25 @@ public class MovieService {
             String part = name.substring(0, i);
             //System.out.println(part);
             if (part.trim().equals("Starring") || part.trim().equals("Director") || part.trim().equals("Producer")) {
-                String questions = index + ") Who is " + part + " of " + movie + "?";
+                String questions =  " Who is " + part + " of " + movie + "?";
                 String[] values = name.split("'");
                 queries.put(questions, values[1].trim());
-                index++;
+
             } else if (part.trim().equals("ReleasedYear")) {
-                String question1 = index + ") In which year " + movie + " released?";
+                String question1 = " In which year " + movie + " released?";
                 String[] value1 = name.split("'");
                 queries.put(question1, value1[1].trim());
-                index++;
+
             } else if (part.trim().equals("Language")) {
-                String question2 = index + ") In which language " + movie + " released?";
+                String question2 =  " In which language " + movie + " released?";
                 String[] value1 = name.split("'");
                 queries.put(question2, value1[1].trim());
-                index++;
+
             } else if (part.trim().equals("Movie")) {
-                String question3 = index + ") Movie in which " + node.getValue1() + " also acted";
+                String question3 = " Other movies of " + node.getValue1() +index;
                 String[] value3 = name.split("'");
                 queries.put(question3, value3[1].trim());
-                index++;
+                index=index+" ";
             }
             System.out.println(queries);
         }

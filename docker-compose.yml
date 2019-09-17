@@ -37,19 +37,19 @@ services:
     healthcheck:
       test: "exit 0"
 
-  web-search-service:
-    build: web-search-service/
+  domain-expert-authentication-service:
+    build: domain-expert-authentication-service/
     depends_on:
-      - zuul-api
-      - eureka-server
       - config-service
+      - eureka-server
+      - zuul-api
       - mongo
     restart: always
     network_mode: "host"
-    image: web-search-service
+    image: domain-expert-authentication-servicedocker
     hostname: localhost
     ports:
-      - 8099:8099
+      - 9090:9090
     healthcheck:
       test: "exit 0"
 
@@ -79,21 +79,66 @@ services:
     healthcheck:
       test: "exit 0"
 
-  domain-expert-authentication-service:
-    build: domain-expert-authentication-service/
+  moviedata-populator-service:
+    build: moviedata-populator-service/
     depends_on:
       - config-service
       - eureka-server
       - zuul-api
-      - mongo
+      - neo4j
     restart: always
     network_mode: "host"
-    image: domain-expert-authentication-servicedocker
+    image: moviedata-populator-servicedocker
     hostname: localhost
     ports:
-      - 9090:9090
+      - 8888:8888
     healthcheck:
       test: "exit 0"
+
+  neo4j-command-service:
+    build: neo4j-command-service/
+    depends_on:
+      - keyword-phrase-service
+      - neo4j
+    restart: always
+    network_mode: "host"
+    image: neo4j-command-servicedocker
+    hostname: localhost
+    ports:
+      - 8995:8995
+    healthcheck:
+      test: "exit 0"
+
+  neo4j-fetchdatabase-service:
+    build: neo4j-fetchdatabase-service/
+    depends_on:
+      - search-nlp-service
+      - neo4j
+    restart: always
+    network_mode: "host"
+    image: neo4j-fetchdatabase-servicedocker
+    hostname: localhost
+    ports:
+      - 8991:8991
+    healthcheck:
+      test: "exit 0"
+
+  notification-service:
+    build: notification-service/
+    depends_on:
+      - zuul-api
+      - eureka-server
+      - config-service
+      - neo4j-fetchdatabase-service
+    restart: always
+    network_mode: "host"
+    image: notification-servicedocker
+    hostname: localhost
+    ports:
+      - 8404:8404
+    healthcheck:
+      test: "exit 0"
+
 
   search-nlp-service:
     build: search-nlp-service/
@@ -111,48 +156,19 @@ services:
     healthcheck:
       test: "exit 0"
 
-  moviedata-populator-service:
-    build: moviedata-populator-service/
+  web-search-service:
+    build: web-search-service/
     depends_on:
-      - config-service
-      - eureka-server
       - zuul-api
-      - neo4j
+      - eureka-server
+      - config-service
+      - mongo
     restart: always
     network_mode: "host"
-    image: moviedata-populator-servicedocker
+    image: web-search-service
     hostname: localhost
     ports:
-      - 8888:8888
-    healthcheck:
-      test: "exit 0"
-
-
-  neo4j-command-service:
-    build: neo4j-command-service/
-    depends_on:
-      - keyword-phrase-service
-      - neo4j
-    restart: always
-    network_mode: "host"
-    image: neo4j-command-servicedocker
-    hostname: localhost
-    ports:
-      - 8995:8995
-    healthcheck:
-      test: "exit 0"
-
-  neo4j-database-service:
-    build: neo4j-database-service/
-    depends_on:
-      - search-nlp-service
-      - neo4j
-    restart: always
-    network_mode: "host"
-    image: neo4j-database-servicedocker
-    hostname: localhost
-    ports:
-      - 8991:8991
+      - 8099:8099
     healthcheck:
       test: "exit 0"
 

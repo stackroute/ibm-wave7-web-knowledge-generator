@@ -19,7 +19,7 @@ const routes: Routes = [
   {path: 'feedback', component:FeedbackComponent},
   {path: 'login', component:LoginComponent},
   {path: 'domainexpert', component:DomainComponent},
-  {path:'',component:SearchComponent},
+  {path:'', component:SearchComponent},
   {path:'', redirectTo:'',pathMatch:'full'}
 ];
 
