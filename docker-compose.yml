@@ -71,6 +71,22 @@ services:
     healthcheck:
       test: "exit 0"
 
+  notification-service:
+    build: notification-service/
+    depends_on:
+      - zuul-api
+      - eureka-server
+      - config-service
+      - neo4j-fetchdatabase-service
+    restart: always
+    network_mode: "host"
+    image: notification-service
+    hostname: localhost
+    ports:
+      - 8404:8404
+    healthcheck:
+      test: "exit 0"
+
   fetch-webpage-service:
     build: fetch-webpage-service/
     depends_on:
@@ -160,14 +176,14 @@ services:
     healthcheck:
       test: "exit 0"
 
-  neo4j-database-service:
-    build: neo4j-database-service/
+  neo4j-fetchdatabase-service:
+    build: neo4j-fetchdatabase-service/
     depends_on:
       - search-nlp-service
       - neo4j
     restart: always
     network_mode: "host"
-    image: neo4j-database-servicedocker
+    image: neo4j-fetchdatabase-servicedocker
     hostname: localhost
     ports:
       - 8991:8991
