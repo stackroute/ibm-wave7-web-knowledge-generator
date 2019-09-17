@@ -1,4 +1,16 @@
+.search-button{
+border-radius: 25px;
+border: 0px solid white;
+background-color: white;
+margin-top: 4px;
 
+}
+
+.form-control{
+    height: 45px;
+    border-radius: 25px;
+    min-width: 172px;
+}
 .center {
     height: 100%;
     position: relative;
@@ -9,6 +21,8 @@ margin: 0;
 position: absolute;
 top: 50%;
 left: 50%;
+width: 45%;
+
 -ms-transform: translate(-50%, -50%);
 transform: translate(-50%, -50%);
 }
@@ -22,7 +36,11 @@ transform: translate(-50%, -50%);
 
 
 .searchForm{
-    display: inline;
+    display: flex;
+    flex-direction: row;
+  min-width: 220px;
+  height: 45px;
+  border-radius: 25px;
 }
 
 .input{
@@ -50,8 +68,20 @@ transform: translate(-50%, -50%);
 }
 
 .micbutton{
-    margin:10px;
+    border: 0px solid white;
+    border-radius: 25px;
+    height: 45px;
+    margin-right: 16px;
+    margin-left: -40px;
     background-color: transparent;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     align-items: center;
+    margin-bottom: 6px;
+}
+
+.btn-label{
+    white-space: pre-line;
+    margin-top:63%; 
+    margin-left:-170%;
+    color: white;
 }

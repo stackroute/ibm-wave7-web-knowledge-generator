@@ -1,7 +1,8 @@
 <div class="header">
         <nav class="navbar fixed-top navbar-expand-lg ">
                <a class="nav-link" routerLink="/">
-                 <mat-icon width="40" height="40" class="logo" alt="App Logo">movie</mat-icon>
+                <img src="assets/images/logoo.png" width="40" height="40" class="logo" alt="App Logo" />
+                 <!-- <mat-icon width="40" height="40" class="logo" alt="App Logo">movie</mat-icon> -->
              </a>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                  <span class="navbar-toggler-icon"></span>
@@ -16,7 +17,13 @@
                  </li>
                  </ul>
                   </div>
-                  <!-- <mat-icon width="40" height="40" class="user">account_circle</mat-icon> -->
-             </nav>
+                  <a (click)="logout()">
+                   <mat-icon width="40" height="40"
+                    class="user" *ngIf="username!='undefined'">account_circle</mat-icon> 
+                  </a>
+                    <!-- <button mat-button class="user" width="40" height="40"  (click)="logout()">
+                      <mat-icon inline=true>account_circle</mat-icon>
+                    </button> -->
+                  </nav>
            </div>
         

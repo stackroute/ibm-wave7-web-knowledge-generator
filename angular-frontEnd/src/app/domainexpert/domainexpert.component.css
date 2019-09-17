@@ -4,13 +4,22 @@
     
   }
  
-  
+  .submit-button{
+    background-color:#D5D8DC;
+}
+
+body{
+    background-color: #D5D8DC;
+
+}
+
    .example-container  {
     vertical-align: top;
     width: 92%;
      } 
   
 .layout{
+  min-width: 70px;
   margin-top: 70px;
   max-width: 500px;
   margin-left: 25vw;
@@ -44,7 +53,18 @@
   line-height: 1.8;
 }
 
-.logout{
-  float: right;
-  margin-top: 8%
-}
+
+@media only screen and (max-width: 320px) {
+  
+.layout{
+  min-width: 200px;
+  margin-top: 70px;
+  max-width: 500px;
+  margin-left: 15%;
+    margin-right: 25%;
+  text-align: center; 
+  border-inline-width: 10px;
+  align-items:center;
+  
+  
+}}

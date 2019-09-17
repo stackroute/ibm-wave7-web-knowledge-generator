@@ -34,12 +34,13 @@ public class MovieController {
     Node1 node=new Node1();
     ObjectMapper objectMapper = new ObjectMapper();
     @KafkaListener(topics = "Search-nlp", groupId = "group_id")
-    public void consumer(String mapper) throws IOException {
+    public void consumer(String mapper) throws IOException, ClassNotFoundException {
     this.input=mapper;
         Node1 node1 = objectMapper.readValue(mapper, Node1.class);
         this.node=node1;
         System.out.println("consumed url is:"+mapper);
         System.out.println(node1);
+        getdata();
     }
 
 

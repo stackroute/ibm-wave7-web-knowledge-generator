@@ -38,7 +38,7 @@ public class WebPageServiceImpl implements WebPageService {
          Element elements = doc.getElementsByTag("table").first();
          String s1=elements.toString();
          //s1=s1.replace("<br>","$");
-         s1=s1.replaceAll("<([^<]*)>","");
+         s1=s1.replaceAll("<([^<]*)>","%");
          s1=s1.replaceAll("\n","%");
          s1=s1.replaceAll("([% ])\\1+","$1");
          //s1=s1.replaceAll("[%%*]","%");

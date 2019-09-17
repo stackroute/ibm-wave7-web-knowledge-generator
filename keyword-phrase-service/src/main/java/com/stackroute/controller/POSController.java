@@ -9,6 +9,7 @@ import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -26,64 +27,75 @@ public class POSController {
     private StanfordCoreNLP stanfordCoreNLP;
     String input="";
     @KafkaListener(topics = "Fetch_Webpage", groupId = "group_id")
-    public void consumer(String message) throws IOException {
+    public void consumer(String message) throws IOException
+    {
 
         this.input=message;
+        ner(input);
         //System.out.println(input);
     }
 
-
     @Autowired
-    private KafkaTemplate<String,String> kafkaTemplate;
+    private KafkaTemplate<String,LinkedHashMap> kafkaTemplate;
     private static final String TOPIC = "Fetch-Keyword";
-
 
 
     @GetMapping
     @RequestMapping(value="/pos")
-    public LinkedHashMap<String,String> ner(String data)
+    public LinkedHashMap<Integer,LinkedHashMap<String,String>> ner(String data)
     {
         data=input;
-        //System.out.println(data);
-        //String is converted to string array
-        String[] nodes=data.split("%");
-        nodes[0]=" ";
-        LinkedHashMap<String,String> collect=new LinkedHashMap<>();
-        int flag=0;
-        for(int i=0;i<nodes.length;i++)
-        {
-            if(!nodes[i].equals(" ")&&flag==0)
-            {
-
-                //put is used to add key-value pairs in LinkedHashMap
-                collect.put("Title",nodes[i]);
-                flag+=1;
+        int j,k=0,y=0;
+        System.out.println("data "+data);
+        String[] contentarr  = data.split("\n");
+        LinkedHashMap<String,String> collect;
+        LinkedHashMap<Integer,LinkedHashMap<String,String>> all = new LinkedHashMap<>();
+        LinkedList<LinkedHashMap<String,String>> list = new LinkedList();
+        for(j=0;j<contentarr.length;j++){
+            collect=new LinkedHashMap<>();
+            //String is converted to string array
+            String content=contentarr[j].toString();
+            // System.out.println("cont "+content+"j= "+j);
+            String[] nodes=content.split("%");
+            nodes[0]=" ";
+            int flag=0;
+            for(int i=0;i<nodes.length;i++){
+                System.out.println("nodes[i] = "+nodes[i].toString());
+                if(!nodes[i].equals(" ")&&flag==0)
+                {
+                    //put is used to add key-value pairs in LinkedHashMap
+                    collect.put("Title",nodes[i]);
+                    flag+=1;
+                }
+                if(nodes[i].trim().equals("Directed by")||nodes[i].trim().equals("Produced by")||nodes[i].trim().equals("Starring"))
+                {
+                    String activity=nodes[i].trim();
+                    String directors=giveDirectors(nodes,i+1);
+                    collect.put(activity,directors.substring(0,directors.length()-1));
+                }
+                if(nodes[i].trim().equals("Release date"))
+                {
+                    String date=giveDate(nodes,i+1);
+                    collect.put("Release year",date.substring(date.length()-4));
+                }
+                if(nodes[i].trim().equals("Language"))
+                {
+                    String lang=giveDate(nodes,i+1);
+                    collect.put("Language",lang);
+                }
+                System.out.println("inside loop");
             }
-
-            if(nodes[i].trim().equals("Directed by")||nodes[i].trim().equals("Produced by")||nodes[i].trim().equals("Starring"))
-            {
-                String activity=nodes[i].trim();
-                String directors=giveDirectors(nodes,i+1);
-                collect.put(activity,directors.substring(0,directors.length()-1));
+            System.out.println("vv "+collect);
+//            all.putIfAbsent(k++,collect);
+            if(collect.size() != 0) {
+                all.put(k++, collect);
             }
-
-            if(nodes[i].trim().equals("Release date"))
-            {
-                String date=giveDate(nodes,i+1);
-                collect.put("Release year",date.substring(date.length()-4));
-            }
-
-            if(nodes[i].trim().equals("Language"))
-            {
-                String lang=giveDate(nodes,i+1);
-                collect.put("Language",lang);
-            }
-
+            System.out.println("hona chahie"+all);
         }
         //produce map object to kafka
-        this.kafkaTemplate.send(TOPIC,collect.toString());
+        this.kafkaTemplate.send(TOPIC,all);
         //System.out.println("published");
-        return collect;
+        return all;
     }
 
 
@@ -97,7 +109,7 @@ public class POSController {
             if(!nodes[i].equals(" "))
             {
 
-                if (nodes[i].trim().equals("Produced by")||nodes[i].trim().equals("Written by")||nodes[i].trim().equals("Music by"))
+                if (nodes[i].trim().equals("Produced by")||nodes[i].trim().equals("Written by")||nodes[i].trim().equals("Music by")||nodes[i].trim().equals("Screenplay by"))
                 {
                     break;
                 }

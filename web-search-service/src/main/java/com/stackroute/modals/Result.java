@@ -28,9 +28,8 @@ public class Result {
   }
 
   @Override
-  public String toString() {
-    return "Result{" +
-        url + '\'' +
-      '}';
+  public String toString()
+  {
+    return url ;
   }
 }

@@ -1,11 +1,13 @@
+
 .search {
+    overflow-y: hidden;
     /* The image used */
     /* background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).jpg"); */
 
     height: 80vh;
 }
 .search::before {
-    background-image: url('/assets/images/bgimgs.jpg');
+    background-image: url('/assets/images/background.jpg');
     /* background-size: cover; */
     content: "";
     display: block;
@@ -15,19 +17,21 @@
     width: 100%;
     height: 100%;
     /* z-index: -2; */
-    opacity: 0.6;
+    /* opacity: 0.6; */
     border-bottom: 0vh;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    content: "";
-    display: block;
-    position: absolute;
-    width: 100vw;
-    height: 100%;
-    background-repeat: no-repeat;
     background-size: 100% 100%;
-    opacity: 0.5;
+    background-position: 50%;
+    /* content: ""; */
+    /* display: block; */
+    /* position: absolute; */
+    /* width: 100vw; */
+    /* height: 100%; */
+    /* background-repeat: no-repeat; */
+    /* background-size: 100% 100%; */
+    /* opacity: 0.5; */
     }
 
 .searchForm{
@@ -84,6 +88,12 @@ left: 50%;
 -ms-transform: translate(-50%, -50%);
 transform: translate(-50%, -50%);
 }
+/* 
+.logobutton{
+    width:50px;
+    height: 50px;
+} */
+
 .logo
 {
     display: inline;
@@ -100,3 +110,32 @@ transform: translate(-50%, -50%);
     border-radius: 10px;
     align-items: center;
 }
+@media only screen and (max-width: 320px) {
+    .user{
+        margin-top: 6%;
+        padding-left: 80vw;
+        line-height: 0%;
+    }
+    .search::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* z-index: -2; */
+        /* opacity: 0.6; */
+        border-bottom: 0vh;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        }
+
+@media only screen and (max-width: 600px) {
+    .user{
+        margin-top: 3%;
+        padding-left: 60vw;
+    }
+} 
+    }
