@@ -1,83 +1,33 @@
- <app-header></app-header>
- <!-- <button mat-raised-button color="primary" class="logout" (click)="logout()">Logout</button> -->
-
- <body>
-  
- <mat-card class="layout" >
-  <div class="example-container">
-    <mat-card-title>Domain Expert Login</mat-card-title>
-    <mat-form-field >
-      <mat-label >Username</mat-label>
-      <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
-      </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Password" [(ngModel)]="password"type="password" name="password" required>
-    </mat-form-field>
-
-    
-    <mat-card-footer>
-      <p *ngIf="result==true" class="invalid">Please enter valid credentials</p>
-      </mat-card-footer>
-
-     </div> 
-     <button mat-raised-button class="login-button" (click)="login()">Login</button>
-    
-</mat-card>
-</body>
-
-<app-footer></app-footer>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <body>
-<div class="wrapper">
-
+<!-- for header -->
 <app-header></app-header>
 
-<div class="container">
-<mat-card class="layout">
-  
-  <mat-card-header>
-      <mat-card-title>Domain-Expert Login</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <form class="example-form">
-        <table class="example-full-width" cellspacing="0">
-          <tr>
-            <td>
-              <mat-form-field fxLayout="column" class="example-full-width">
-              <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
-              </mat-form-field>
-            </td>
-          </tr>
-          <tr>
-          <td><mat-form-field fxLayout="column" class="example-full-width">
-            <input matInput placeholder="Password" [(ngModel)]="password"type="password" name="password" required>
-          </mat-form-field></td>
-        </tr></table>
-      </form>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button (click)="login()" class="login-button">Login</button>
-    </mat-card-actions>
-    <mat-card-footer>
+<!--domain expert login -->
+<body><!--body for login page-->
+<mat-card class="layout" ><!--mat card starts here-->
+  <div class="example-container"><!--mat card container-->
+    <mat-card-title><!--mat card title starts here-->
+      Domain Expert Login
+    </mat-card-title><!--mat card title ends here-->
+    <mat-form-field ><!--login form username field-->
+      <mat-label >Username</mat-label><!--label for username-->
+      <!-- input for username -->
+      <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+    </mat-form-field><!--username field ends here-->
+    <mat-form-field><!--login form password field-->
+      <mat-label >Password</mat-label><!--label for password-->
+      <!-- input for username -->
+      <input matInput placeholder="Password" [(ngModel)]="password"type="password" name="password" required>
+    </mat-form-field><!--password field ends here-->
+    <mat-card-footer><!--card footer for displaying error message-->
+      <!--if the value of result is true, then error message will be displayed -->
       <p *ngIf="result==true" class="invalid">Please enter valid credentials</p>
-      </mat-card-footer>
-  
-  </mat-card>
-</div>
-  <app-footer></app-footer>
-  </div>
-  </body> -->
+    </mat-card-footer> <!--card footer ends here-->
+  </div> <!--card container ends here-->
+  <!-- button for login -->
+  <button mat-raised-button class="login-button" (click)="login()">Login</button>
+
+</mat-card><!--card ends here-->
+</body><!--body ends here-->
+
+<!-- for footer -->
+<app-footer></app-footer>

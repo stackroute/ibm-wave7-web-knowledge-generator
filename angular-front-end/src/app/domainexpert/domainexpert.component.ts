@@ -47,7 +47,7 @@ this._loginService.populateData(this.concepts).subscribe();
 // .subscribe(res=>console.log('Done'));
 
 }
- 
+
  click(file1){
     alert(1);
     console.log(file1);
@@ -58,78 +58,75 @@ this._loginService.populateData(this.concepts).subscribe();
     localStorage.setItem('password', undefined);
     this.router.navigate([""]);
    }
- 
+
   isCSVFile(file: any) {
    return file.name.endsWith(".csv");
  }
- getHeaderArray(csvRecordsArr: any) 
- {      
-    let headers = csvRecordsArr[0].split(',');      
-    let headerArray = [];            
- 
-    for (let j = 0; j < headers.length; j++) {        
-                headerArray.push(headers[j]);      
-    }        
-   return headerArray; 
- } 
- getDataRecordsArrayFromCSVFile(csvRecordsArray: any, headerLength: any) 
-{     
+ getHeaderArray(csvRecordsArr: any)
+ {
+    let headers = csvRecordsArr[0].split(',');
+    let headerArray = [];
 
-          this.dataArr = []          
+    for (let j = 0; j < headers.length; j++) {
+                headerArray.push(headers[j]);
+    }
+   return headerArray;
+ }
+ getDataRecordsArrayFromCSVFile(csvRecordsArray: any, headerLength: any)
+{
 
-          for (let i = 1; i < csvRecordsArray.length-1; i++) {         
-               let data = csvRecordsArray[i].split(',');         
-               // FOR EACH ROW IN CSV FILE IF THE NUMBER OF COLUMNS         
-               // ARE SAME AS NUMBER OF HEADER COLUMNS THEN PARSE THE DATA        
+          this.dataArr = []
 
-               if (data.length == headerLength) {            
-                    var csvRecord: CSVRecord = new CSVRecord();                                           
-                    csvRecord.title = data[0].trim();  
-                    this.dataArr.push(csvRecord);  
-                    // console.log(dataArr); 
-                    // alert(dataArr['CSVRecord']);       
-               }       
+          for (let i = 1; i < csvRecordsArray.length-1; i++) {
+               let data = csvRecordsArray[i].split(',');
+               // FOR EACH ROW IN CSV FILE IF THE NUMBER OF COLUMNS
+               // ARE SAME AS NUMBER OF HEADER COLUMNS THEN PARSE THE DATA
+
+               if (data.length == headerLength) {
+                    var csvRecord: CSVRecord = new CSVRecord();
+                    csvRecord.title = data[0].trim();
+                    this.dataArr.push(csvRecord);
+                    // console.log(dataArr);
+                    // alert(dataArr['CSVRecord']);
+               }
            }
-         console.log(this.dataArr);   
-    return this.dataArr; 
-} 
-fileChangeListener($event: any): void {     
-  var text = [];     
-  var files = $event.srcElement.files;          
+         console.log(this.dataArr);
+    return this.dataArr;
+}
+fileChangeListener($event: any): void {
+  var text = [];
+  var files = $event.srcElement.files;
 
-  if (this.isCSVFile(files[0])) {         
-     var input = $event.target;         
-     var reader = new FileReader();          
-     reader.readAsText(input.files[0]);         
+  if (this.isCSVFile(files[0])) {
+     var input = $event.target;
+     var reader = new FileReader();
+     reader.readAsText(input.files[0]);
 
-     reader.onload = (data) => {            
-          let csvData = reader.result;            
-          let csvRecordsArray = (csvData as String).split(/\r\n|\n/);             
-          let headersRow = this.getHeaderArray(csvRecordsArray);             
-          this.csvRecords =  
-             this.getDataRecordsArrayFromCSVFile(csvRecordsArray,                                    
-              headersRow.length);         }               
+     reader.onload = (data) => {
+          let csvData = reader.result;
+          let csvRecordsArray = (csvData as String).split(/\r\n|\n/);
+          let headersRow = this.getHeaderArray(csvRecordsArray);
+          this.csvRecords =
+             this.getDataRecordsArrayFromCSVFile(csvRecordsArray,
+              headersRow.length);         }
 
-             reader.onerror = function() {            
-                 alert('Unable to read' + input.files[0]);          
-             };      
-    } else {          
-           alert('Please import valid .csv file.');          
-           //this.fileReset();      
-    } 
-} 
+             reader.onerror = function() {
+                 alert('Unable to read' + input.files[0]);
+             };
+    } else {
+           alert('Please import valid .csv file.');
+           //this.fileReset();
+    }
+}
  domainControl = new FormControl('', [Validators.required]);
 
   domains: Domain[] = [
     {value: 'Movie-0', viewValue: 'Movie'},
-    
+
   ];
 
 
 }
-
-
-
 
 export class CSVRecord {
 

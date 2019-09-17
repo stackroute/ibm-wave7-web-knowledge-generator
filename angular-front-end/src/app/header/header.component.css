@@ -1,10 +1,14 @@
+nav{
+    max-height: 95px;
+}
+
 .header{
     color: black;
 }
 .navbar{
     /* background-color: rgb(143, 30, 30); */
-     background-color:#0A344E; 
-    
+     background-color:#0A344E;
+
 }
 .logo{
     /* padding-left: 11vw; */
@@ -12,6 +16,7 @@
     color: white;
 }
 .header img{
+
     /* padding-top: 10px; */
     width:70px;
     height:60px;
@@ -25,6 +30,8 @@
     text-align: right;
     padding-right: 17vw;
     padding-bottom: 10vh;
+    /* margin-left: 600px;
+    position:fixed;  */
 
 }
 
@@ -40,6 +47,62 @@
     font-family: 'Lobster', cursive;
     text-align:center;
     color: #ffffff;
-    font-size: 6vh;
-    padding-left: 30vw;
+    font-size: 50px;
+    padding-left: 20vw;
+    margin-left: 142px;
    }
+
+   .example-fill-remaining-space {
+    /* This fills the remaining space, by using flexbox.
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+  }
+/*
+   @media only screen  and (min-width: 1024px) {
+
+    .title{
+        margin-top: -60px!important;
+        font-size: 32px;
+        padding-left: 20vw!important;
+        margin-left: 142px!important;
+       }
+       .user{
+
+        font-size: 70px !important;
+        color: white;
+        float: right;
+        text-align: right !important;
+        padding-right: 17vw !important;
+        padding-bottom: 10vh !important;
+        margin-left: 600px !important;
+    }
+    }
+
+   @media only screen and (min-width: 320px) {
+
+    .title{
+        margin-top: -60px!important;
+        font-size: 32px;
+        margin-left: 15px!important;
+        padding-left: 28vw!important;
+       }
+    .user{
+            margin-top: -72px!important;
+            margin-left: 250px!important;
+            font-size: 50px;
+        }
+   }*/
+
+/*   @media all and (min-width: 768px) {
+
+    .title{
+        margin-top: -10px!important;
+        font-size: 32px;
+        margin-left: 142px!important;
+        padding-left: 0vw!important;
+       }
+    .user{
+        margin-top: -70px!important;
+        /* margin-left: 250px!important;
+    }
+      } */

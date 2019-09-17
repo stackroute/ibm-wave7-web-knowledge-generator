@@ -1,9 +1,9 @@
 .example-container {
     display: flex;
     flex-direction: column;
-    
+
   }
- 
+
   .submit-button{
     background-color:#D5D8DC;
 }
@@ -16,20 +16,17 @@ body{
    .example-container  {
     vertical-align: top;
     width: 92%;
-     } 
-  
+     }
+
 .layout{
   min-width: 70px;
   margin-top: 70px;
   max-width: 500px;
   margin-left: 25vw;
     margin-right: 25vw;
-  text-align: center; 
+  text-align: center;
   border-inline-width: 10px;
   align-items:center;
-  
-  
-
 }
 .center{
   height: 100%;
@@ -38,7 +35,7 @@ body{
   .example-container > * {
     width: 100%;
   }
- 
+
   .button{
       align-self: auto;
   }
@@ -55,16 +52,14 @@ body{
 
 
 @media only screen and (max-width: 320px) {
-  
+
 .layout{
   min-width: 200px;
   margin-top: 70px;
   max-width: 500px;
   margin-left: 15%;
     margin-right: 25%;
-  text-align: center; 
+  text-align: center;
   border-inline-width: 10px;
   align-items:center;
-  
-  
-}}
+}
