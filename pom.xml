@@ -29,13 +29,17 @@
 	<modules>
 		<module>config-server</module>
 		<module>eureka-server</module>
-        	<module>web-search-service</module>
+       	<module>web-search-service</module>
 		<module>fetch-webpage-service</module>
 		<module>domain-expert-authentication-service</module>
 		<module>zuul-api</module>
 		<module>keyword-phrase-service</module>
 		<module>moviedata-populator-service</module>
-        	<module>neo4j-database-service</module>
+        <module>movie-names-service</module>
+        <module>neo4j-fetchdatabase-service</module>
+        <module>neo4j-command-service</module>
+        <module>search-nlp-service</module>
+        <module>notification-service</module>
 
     </modules>
 
@@ -106,6 +110,13 @@
         <groupId>org.springframework.kafka</groupId>
         <artifactId>spring-kafka</artifactId>
       </dependency>
+
+      <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator -->
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-actuator</artifactId>
+      </dependency>
+
 
 	</dependencies>
 
@@ -287,4 +298,3 @@
 	</reporting>
 
 </project>
-

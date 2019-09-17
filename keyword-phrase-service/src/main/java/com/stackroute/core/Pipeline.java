@@ -10,14 +10,17 @@ import java.util.Properties;
 @Service
 public class Pipeline {
     private static Properties properties;
+    //Annotators of coreNLP used
     private static String propertiesName="tokenize, ssplit, pos, lemma, ner";
     private static StanfordCoreNLP stanfordCoreNLP;
+
 
     private Pipeline()
     {
 
     }
 
+    //executed only once, before any constructor
     static {
         properties = new Properties();
         properties.setProperty("annotators", propertiesName);
@@ -25,7 +28,7 @@ public class Pipeline {
 
 
     @Bean(name = "stanfordCoreNLP")
-    public  static StanfordCoreNLP getInstance()
+    public  static StanfordCoreNLP getPipeline()
     {
         if(stanfordCoreNLP == null)
         {

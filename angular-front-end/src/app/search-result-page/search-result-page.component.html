@@ -1,0 +1,38 @@
+<body>
+<div class="searchResultPage">
+  <div class="container">
+    <div class="center">
+
+    </div>
+
+    <div class="p">
+      <div id="rcorners2">
+        <div *ngFor="let result of maincontent">
+          {{result}}
+        </div>
+      </div>
+    </div>
+
+    <div class="peoplesearch">
+      <h4>PEOPLE ALSO SEARCH</h4>
+      <div *ngFor="let question of questions;let i=index">
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title [innerHTML]="question">
+                </mat-panel-title>
+                <mat-panel-description>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <ul>
+                <li>
+                  <p [innerHTML]="answers[i].replace()" ></p>
+                </li>
+              </ul>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </div>
+    </div>
+</div>
+</body>

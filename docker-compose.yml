@@ -23,6 +23,17 @@ services:
     healthcheck:
       test: "exit 0"
 
+  angular-front-end:
+    build: angular-front-end/
+    restart: always
+    network_mode: "host"
+    image: angular-front-end
+    hostname: localhost
+    ports:
+      - 4200:4200
+    healthcheck:
+      test: "exit 0"
+
   zuul-api:
     build: zuul-api/
     depends_on:
@@ -33,9 +44,27 @@ services:
     image: zuul-api
     hostname: localhost
     ports:
-     - 8086:8086
+      - 8086:8086
     healthcheck:
       test: "exit 0"
+
+
+  movie-names-service:
+    build: movie-names-service/
+    depends_on:
+      - zuul-api
+      - eureka-server
+      - config-service
+      - mongo
+    restart: always
+    network_mode: "host"
+    image: movie-names-service
+    hostname: localhost
+    ports:
+      - 8402:8402
+    healthcheck:
+      test: "exit 0"
+
 
   web-search-service:
     build: web-search-service/
@@ -50,6 +79,22 @@ services:
     hostname: localhost
     ports:
       - 8099:8099
+    healthcheck:
+      test: "exit 0"
+
+  notification-service:
+    build: notification-service/
+    depends_on:
+      - zuul-api
+      - eureka-server
+      - config-service
+      - neo4j-fetchdatabase-service
+    restart: always
+    network_mode: "host"
+    image: notification-service
+    hostname: localhost
+    ports:
+      - 8404:8404
     healthcheck:
       test: "exit 0"
 
@@ -91,7 +136,23 @@ services:
     image: domain-expert-authentication-servicedocker
     hostname: localhost
     ports:
-        - 9090:9090
+      - 9090:9090
+    healthcheck:
+      test: "exit 0"
+
+  search-nlp-service:
+    build: search-nlp-service/
+    depends_on:
+      - config-service
+      - eureka-server
+      - zuul-api
+      - mongo
+    restart: always
+    network_mode: "host"
+    image: search-nlp-servicedocker
+    hostname: localhost
+    ports:
+      - 8091:8091
     healthcheck:
       test: "exit 0"
 
@@ -111,6 +172,35 @@ services:
     healthcheck:
       test: "exit 0"
 
+
+  neo4j-command-service:
+    build: neo4j-command-service/
+    depends_on:
+      - keyword-phrase-service
+      - neo4j
+    restart: always
+    network_mode: "host"
+    image: neo4j-command-servicedocker
+    hostname: localhost
+    ports:
+      - 8995:8995
+    healthcheck:
+      test: "exit 0"
+
+  neo4j-fetchdatabase-service:
+    build: neo4j-fetchdatabase-service/
+    depends_on:
+      - search-nlp-service
+      - neo4j
+    restart: always
+    network_mode: "host"
+    image: neo4j-fetchdatabase-servicedocker
+    hostname: localhost
+    ports:
+      - 8991:8991
+    healthcheck:
+      test: "exit 0"
+
   mongo:
     image: mongo:3.4-jessie
     ports:
@@ -119,13 +209,15 @@ services:
     network_mode: host
     hostname: localhost
     restart: always
-#    volumes:
-#      - /DB/mongo:/data/db
+    #    volumes:
+    #      - /DB/mongo:/data/db
     healthcheck:
       test: "exit 0"
 
   neo4j:
     image: neo4j:latest
+    environment:
+      NEO4J_AUTH: neo4j/Root@123
     ports:
       - 7474:7474
       - 7687:7687

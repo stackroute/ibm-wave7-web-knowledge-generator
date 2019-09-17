@@ -20,6 +20,7 @@ public class WebPageController {
     public WebPageController(WebPageService webPageService) throws IOException {
         this.webPageService = webPageService;
     }
+
     @Autowired
     private KafkaTemplate<String,String> kafkaTemplate;
     private static final String TOPIC = "Fetch_Webpage";
@@ -30,21 +31,34 @@ public class WebPageController {
 //    obj.setUrl(url);
         this.consumedUrl=url;
         System.out.println("consumed url is:"+consumedUrl);
+        getAllContent();
     }
     //getMapping to fetch the reqiured contents from the url
     @GetMapping("getContent")
     //Controller method to return the data
     public ResponseEntity<String> getAllContent() throws IOException {
         System.out.println("inside mapping");
-//        System.out.println(url);
+        //System.out.println(url);
+
         String url=this.consumedUrl;
-        url = url.substring(12,url.length()-4);
+        System.out.println("URL"+url);
+        System.out.println(url.getClass().getName());
+        //url = url.substring(14,url.length()-3);
 
 //       result = webPageService.getTitle(url)+"\n\n\n";
         System.out.println("this is the url:"+url);
+        String[] urlarr  = url.replace("\"","").replace("[","").replace("]","").split(",");
         String result = "";
-        result = result + webPageService.getHeading(url)+"\n\n\n";
-        result = result + webPageService.getAllPTextsFromBody(url)+"\n\n\n" ;
+        int i;
+        for(i=0;i<urlarr.length;i++){
+            System.out.println(urlarr[i]);
+
+            result = result + webPageService.getTableData(urlarr[i])+"\n\n\n" ;
+
+        }
+        System.out.println(result);
+        System.out.println(result.getClass().getName());
+
 //        result = result + webPageService.printImages()+"\n\n\n";
 //        result = result + webPageService.getSourceCodeOfWebPage(url)+"\n\n\n";
         responseEntity = new ResponseEntity<String>(result,HttpStatus.OK);

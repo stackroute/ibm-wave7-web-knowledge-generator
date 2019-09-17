@@ -6,6 +6,7 @@
         <artifactId>ibm-wave7-web-knowledge-generator</artifactId>
         <groupId>com.stackroute</groupId>
         <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 

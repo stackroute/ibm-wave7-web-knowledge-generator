@@ -27,15 +27,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public boolean authenticateDomainExpert(String userName, String password) {
-        System.out.println(authenticationRepository.findAll());
         List<DomainExpert> domainExpert=authenticationRepository.findByUserName(userName,password);
-        System.out.println(domainExpert);
-        System.out.println(domainExpert.isEmpty());
-     if(domainExpert.isEmpty()){
-         return false;
-     }else {
-         return true;
-     }
+
+        if(domainExpert.isEmpty()){
+            System.out.println("false");
+            return false;
+
+        }else {
+            System.out.println("true");
+            return true;
+        }
 
     }
 }
