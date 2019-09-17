@@ -23,6 +23,17 @@ services:
     healthcheck:
       test: "exit 0"
 
+  angular-front-end:
+    build: angular-frontEnd/
+    restart: always
+    network_mode: "host"
+    image: angular-front-end
+    hostname: localhost
+    ports:
+      - 4200:4200
+    healthcheck:
+      test: "exit 0"
+
   zuul-api:
     build: zuul-api/
     depends_on:
