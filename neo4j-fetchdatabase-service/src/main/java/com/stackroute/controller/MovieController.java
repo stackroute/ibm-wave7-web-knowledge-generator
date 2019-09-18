@@ -20,7 +20,7 @@ import java.util.HashMap;
 @RequestMapping("/neo4j")
 public class MovieController {
     private MovieService movieService;
-   private  Collection<Node> responseEntity;
+    private  Collection<Node> responseEntity;
     public MovieController(MovieService movieService) {
 
         this.movieService = movieService;
@@ -35,7 +35,7 @@ public class MovieController {
     ObjectMapper objectMapper = new ObjectMapper();
     @KafkaListener(topics = "Search-nlp", groupId = "group_id")
     public void consumer(String mapper) throws IOException, ClassNotFoundException {
-    this.input=mapper;
+        this.input=mapper;
         Node1 node1 = objectMapper.readValue(mapper, Node1.class);
         this.node=node1;
         getdata();

@@ -45,7 +45,6 @@ public class MovieService {
                 key2 = "year";
             }
         }
-
         if ((node.getNode3() == null) || (node.getValue2()==null)||((node.getNode3().equals("MANY")) && (node.getValue2() == null))) {
             Collection<Node> nodesuggestions = movieRepository.suggestions1(node, key1);
             HashMap<String, String> queries1 = getsuggestions(nodesuggestions, node);
@@ -65,10 +64,11 @@ public class MovieService {
         } else {
             Collection<Node> nodesuggestions = movieRepository.suggestions1(node, key1);
             HashMap<String, String> queries1 = getsuggestions(nodesuggestions, node);
+
             Result result = new Result();
             result.setNode(movieRepository.findData3(node, key1, key2,key3));
             result.setSuggestions(queries1);
-             return result;
+            return result;
         }
     }
 
@@ -86,6 +86,7 @@ public class MovieService {
                 }
             }
             String part = name.substring(0, i);
+            //System.out.println(part);
             if (part.trim().equals("Starring") || part.trim().equals("Director") || part.trim().equals("Producer")) {
                 String questions =  " Who is " + part + " of " + movie + "?";
                 String[] values = name.split("'");
@@ -107,11 +108,10 @@ public class MovieService {
                 queries.put(question3, value3[1].trim());
                 index=index+" ";
             }
-        }
+            }
         return queries;
     }
 }
-
 
 
 

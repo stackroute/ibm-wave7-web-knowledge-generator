@@ -26,42 +26,30 @@ public class WebSearchServiceImpl implements WebSearchService {
 
     @Override
     public String getSearchResults(String searchString) throws URISyntaxException {
-//        List<Result>  output= new ArrayList<>();
         Result output = null;
         RestTemplate restTemplate = new RestTemplate();
         //api to get links from
-        String url = "https://app.zenserp.com/api/v2/search?q=wikipedia+film"+searchString+"&hl=en&gl=US&location=United%20States&search_engine=google.com&apikey=124e8840-d83c-11e9-9219-e5805df446bd";
-
-        System.out.println("In service"+url);
+        String url = "https://app.zenserp.com/api/v2/search?q=wikipedia+film"+searchString+"&hl=en&gl=US&location=United%20States&search_engine=google.com&apikey=bd1991f0-d945-11e9-8d57-3dab2b580055";
 
         URI uri = new URI(url);
         String string = restTemplate.getForObject(uri, String.class);
         ObjectMapper objectMapper = new ObjectMapper();
         CodeBeautify result = null;
-        try {
+        try
+        {
             result = objectMapper.readValue(string, CodeBeautify.class);
-            //list of links from the data
             List<Result> resultList = result.getOrganic();
-            //saving the results
             output = resultList.get(0);
-            System.out.println("SSSSSSSSSSSSSS "+output);
             searchRepository.save(output);
         }
-        catch (IOException e) {
+        catch (IOException e)
+        {
             e.printStackTrace();
         }
         String output1=output.toString();
-        System.out.println("FFFFFFFFFFFFFFFFFF "+output1);
         int len = output1.length();
         output1.substring(10,len-3);
-
-        System.out.println("out  "+output1);
         return output1;
     }
-//
-//    @Override
-//    public Result saveResults(Result resultList) throws URISyntaxException {
-//        return searchRepository.save(resultList);
-//    }
-}
 
+}

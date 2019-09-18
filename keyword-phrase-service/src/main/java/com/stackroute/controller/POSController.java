@@ -109,7 +109,7 @@ public class POSController {
             if(!nodes[i].equals(" "))
             {
 
-                if (nodes[i].trim().equals("Produced by")||nodes[i].trim().equals("Written by")||nodes[i].trim().equals("Music by")||nodes[i].trim().equals("Screenplay by"))
+                if (nodes[i].trim().equals("Based on")||nodes[i].trim().equals("Story by")||nodes[i].trim().equals("Produced by")||nodes[i].trim().equals("Written by")||nodes[i].trim().equals("Music by")||nodes[i].trim().equals("Screenplay by"))
                 {
                     break;
                 }

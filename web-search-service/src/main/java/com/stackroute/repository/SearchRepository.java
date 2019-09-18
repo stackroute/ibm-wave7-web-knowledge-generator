@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 //repository extending mongo repository to save links in mongo database
 @Repository
-public interface SearchRepository extends MongoRepository<Result, Integer> {
+public interface SearchRepository extends MongoRepository<Result, Integer>
+{
 }
