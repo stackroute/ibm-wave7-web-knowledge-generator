@@ -5,6 +5,7 @@
 	<parent>
 		<groupId>com.stackroute</groupId>
 		<artifactId>ibm-wave7-web-knowledge-generator</artifactId>
+		<relativePath>../pom.xml</relativePath>
 		<version>1.0.0</version>
 	</parent>
 	<artifactId>eureka-server</artifactId>
