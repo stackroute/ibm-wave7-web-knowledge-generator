@@ -1,4 +1,5 @@
 
+
 import{Router} from '@angular/router'
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SpeechService } from './../speech.service';
@@ -29,6 +30,7 @@ export class SearchComponent implements OnInit {
     this._listenVerbs();
     this._listenAdj();
     this._listenErrors();
+    localStorage.setItem('searchString',"");
   }
   search(){
     this.router.navigateByUrl('content');
@@ -37,7 +39,7 @@ export class SearchComponent implements OnInit {
     return this.speech.listening ? 'Listening...' : '';
   }
   listentext(){
-   
+
     this.searchtext='';
     console.log(this.searchtext);
     this.speech.startListening();

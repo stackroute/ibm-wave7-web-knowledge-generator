@@ -24,8 +24,7 @@ public class MovieServiceImpl implements MovieService{
     public String saveMovie(Movie movie) {
 
         // call repository method to save movie
-        movieRepository.saveMovie(movie.getTitle(),movie.getStarring(),movie.getYear(),movie.getDirector(),movie.getProducer()
-                ,movie.getLanguage());
+        movieRepository.saveMovie(movie.getTitle(),movie.getStarring(),movie.getYear(),movie.getDirector(),movie.getProducer(),movie.getLanguage());
         // return the title of saved movie
         return movieRepository.getMovieByTitle(movie.getTitle());
     }

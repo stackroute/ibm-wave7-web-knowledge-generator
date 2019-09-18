@@ -22,12 +22,8 @@ public class WebPageServiceImpl implements WebPageService {
     @Override
     //Method to fetch the whole html source code from the url.
     public String getSourceCodeOfWebPage(String url) throws IOException {
-//         url = search.getUrl();
-        //fetch the url
          Document doc = Jsoup.connect(url).get();
             String html = doc.html();
-
-            System.out.println(html);
             return html;
         }
 
@@ -35,27 +31,16 @@ public class WebPageServiceImpl implements WebPageService {
         @Override
      public String getTableData(String url) throws IOException{
          org.jsoup.nodes.Document doc = Jsoup.connect(url).get();
-         Element elements = doc.getElementsByTag("table").first();
+         //Element elements = doc.getElementsByTag("table[class=infobox vevent").first();
+         Element elements = doc.select("table[class=infobox vevent]").first();
          String s1=elements.toString();
-         //s1=s1.replace("<br>","$");
          s1=s1.replaceAll("<([^<]*)>","%");
          s1=s1.replaceAll("\n","%");
          s1=s1.replaceAll("([% ])\\1+","$1");
-         //s1=s1.replaceAll("[%%*]","%");
          s1=s1.replaceAll("&nbsp;","");
          s1=s1.replaceAll("\\[(.*?)\\]", "");
          s1=s1.replaceAll("\\((.*?)\\)","");
          s1=s1.replaceAll("Theatrical release poster","");
-//        String[] res=s1.split("%");
-//        System.out.println(Arrays.toString(res));
-         System.out.println(s1);
-//        //String[] clint=s1.split("$");
-//        //s1=s1.replace("$","\n");
-
-//        Pattern pattern=Pattern.compile("Directed by%");
-//        Matcher m =pattern.matcher(s1);
-//        System.out.println(res[17]);
-//        System.out.println(m.start());
          return s1;
      }
 
@@ -72,9 +57,6 @@ public class WebPageServiceImpl implements WebPageService {
         Elements link = doc.select("div p:lt(7)");
         String linkText = link.text();
         String result = " ";
-
-        System.out.println(linkText);
-//            String[] words=linkText.split("[^.!?\\s][^.!?]*(?:[.!?](?!['\"]?\\s|$)[^.!?]*)");
         String[] words=linkText.split("[\n]");
         String word = words[0];
         for(String str:words)
@@ -101,7 +83,7 @@ public class WebPageServiceImpl implements WebPageService {
         Document doc = Jsoup.connect(url).get();
 
         String body = doc.body().text();
-return body;
+        return body;
     }
 
     @Override
@@ -110,10 +92,6 @@ return body;
         Document doc = Jsoup.connect(url).get();
 
         Elements h1 = doc.select("h1");
-//        Elements h2 = doc.select("h2");
-//        Elements h3 = doc.select("h3");
-//        Elements h4 = doc.select("h4");
-//        String heading = "Hedings:"+"\n"+"h1: "+h1.text()+"\n"+"h2: "+h2.text()+"\n"+"h3: "+h3.text()+"\n"+"h4: "+h4.text();
         String heading =  h1.text();
         return heading;
     }
@@ -187,6 +165,3 @@ return body;
             return s;
     }
     }
-
-
-

@@ -24,62 +24,50 @@ public class MovieService {
         String key2 = "name";
         String key3 = "name";
         if (node.getValue2() == null) {
-            if ((node.getNode2()).equals("Starring") || (node.getNode2()).equals("Director") || (node.getNode2()).equals("Writer") || (node.getNode2()).equals("Producer") || (node.getNode2()).equals("Language") || (node.getNode1()).equals("Movie")) {
+            if ((node.getNode2()).equals("Starring") || (node.getNode2()).equals("Director") || (node.getNode2()).equals("Writer") || (node.getNode2()).equals("Producer") || (node.getNode2()).equals("Language") || ((node.getNode1()).equals("Movie")&&(!node.getNode2().equals("ReleasedYear")))) {
                 key1 = "name";
             }
-            if ((node.getNode2()).equals("Movie") || (node.getNode1()).equals("Starring")) {
+            else if ((node.getNode2()).equals("Movie") || (node.getNode1()).equals("Starring")||((node.getNode1().equals("Language"))&&(node.getNode2().equals("ReleasedYear")))||((node.getNode1().equals("ReleasedYear"))&&(node.getNode2().equals("ReleasedYear")))||((node.getNode1().equals("Language"))&&(node.getNode2().equals("MANY")))) {
                 key1 = "title";
             }
-            if ((node.getNode2()).equals("ReleasedYear")) {
+            else if ((node.getNode2()).equals("ReleasedYear")) {
                 key1 = "year";
             }
         }
-        if (node.getNode3() != null) {
+        else if (node.getNode3() != null) {
             if ((node.getNode3()).equals("Starring") || (node.getNode3()).equals("Director") || (node.getNode3()).equals("Writer") || (node.getNode3()).equals("Producer") || (node.getNode3()).equals("Language")) {
                 key2 = "name";
             }
-            if ((node.getNode3()).equals("Movie") || (node.getNode1()).equals("Starring")) {
+            else if ((node.getNode3()).equals("Movie") || (node.getNode1()).equals("Starring")) {
                 key2 = "title";
             }
-            if ((node.getNode3()).equals("ReleasedYear")) {
+            else if ((node.getNode3()).equals("ReleasedYear")) {
                 key2 = "year";
             }
         }
-        System.out.println(node);
-//        System.out.println(movieRepository.suggestions1(node,key1));
-        if ((node.getNode3() == null) || ((node.getNode3().equals("MANY")) && (node.getValue2() == null))) {
+        if ((node.getNode3() == null) || (node.getValue2()==null)||((node.getNode3().equals("MANY")) && (node.getValue2() == null))) {
             Collection<Node> nodesuggestions = movieRepository.suggestions1(node, key1);
             HashMap<String, String> queries1 = getsuggestions(nodesuggestions, node);
-            System.out.println(queries1);
             Result result = new Result();
             result.setNode(movieRepository.findData(node, key1));
             result.setSuggestions(queries1);
-            System.out.println(result);
             return result;
         } else if (node.getValue3() == null) {
-//            System.out.println(movieRepository.suggestions2(node,key1,key2));
             Collection<Node> nodesuggestions = movieRepository.suggestions1(node, key1);
             Collection<Node> nodesuggestions1 = movieRepository.suggestions1(node, key2);
             HashMap<String, String> queries1 = getsuggestions(nodesuggestions, node);
-            System.out.println(key1);
-            System.out.println(key2);
             HashMap<String, String> queries = new HashMap<>();
             Result result = new Result();
             result.setNode(movieRepository.findData2(node, key1, key2));
             result.setSuggestions(queries1);
-            System.out.println(result);
             return result;
         } else {
             Collection<Node> nodesuggestions = movieRepository.suggestions1(node, key1);
             HashMap<String, String> queries1 = getsuggestions(nodesuggestions, node);
 
-            System.out.println(queries1);
-            System.out.println(key1);
-            System.out.println(key2);
             Result result = new Result();
             result.setNode(movieRepository.findData3(node, key1, key2,key3));
             result.setSuggestions(queries1);
-            System.out.println(result);
             return result;
         }
     }
@@ -88,12 +76,9 @@ public class MovieService {
         HashMap<String, String> queries = new HashMap<>();
         String index="";
         for (Node node1 : nodesuggestions) {
-            //System.out.println(node1);
             String movie = node.getValue1();
             String question = "";
             String name = node1.getName().toString();
-            System.out.println(name);
-            //System.out.println(movie);
             int i;
             for (i = 0; i < name.length(); i++) {
                 if (name.charAt(i) == '{') {
@@ -123,12 +108,10 @@ public class MovieService {
                 queries.put(question3, value3[1].trim());
                 index=index+" ";
             }
-            System.out.println(queries);
-        }
+            }
         return queries;
     }
 }
-
 
 
 

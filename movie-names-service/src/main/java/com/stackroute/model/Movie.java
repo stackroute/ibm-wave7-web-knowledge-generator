@@ -1,12 +1,12 @@
 package com.stackroute.model;
 
 
-//package com.stackroute.movie.model;
 import org.springframework.data.annotation.Id;
 
 public class Movie
 {
 
+    //Movie names from csv file
     @Id
     private String name;
 
