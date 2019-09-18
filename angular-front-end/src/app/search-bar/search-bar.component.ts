@@ -1,16 +1,16 @@
-import{Router} from '@angular/router'
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { SpeechService } from './../speech.service';
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
-import { Observable } from 'rxjs/internal/Observable';
-import { WebSocketAPI } from '../WebSocketAPI';
+import { Router } from "@angular/router";
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { SpeechService } from "./../speech.service";
+import { Subscription } from "rxjs/Subscription";
+import "rxjs/add/operator/filter";
+import "rxjs/add/operator/map";
+import { Observable } from "rxjs/internal/Observable";
+import { WebSocketAPI } from "../WebSocketAPI";
 
 @Component({
-  selector: 'app-search-bar',
-  templateUrl: './search-bar.component.html',
-  styleUrls: ['./search-bar.component.css']
+  selector: "app-search-bar",
+  templateUrl: "./search-bar.component.html",
+  styleUrls: ["./search-bar.component.css"]
 })
 export class SearchBarComponent implements OnInit {
 
@@ -34,67 +34,58 @@ export class SearchBarComponent implements OnInit {
     this._listenVerbs();
     this._listenAdj();
     this._listenErrors();
-    this.name="";
+    this.name = "";
     this.webSocketAPI._connect();
 
     if(this.name == ""){
        this.name=localStorage.getItem('searchString')}
   }
-
   get btnLabel(): string {
-    return this.speech.listening ? 'Listening...' : '';
+    return this.speech.listening ? "Listening..." : "";
   }
-  listentext(){
-
-    this.name='';
+  listentext() {
+    this.name = "";
     console.log(this.name);
     this.speech.startListening();
   }
 
   private _listenNouns() {
     this.nounSub = this.speech.words$
-      .filter(obj => obj.type === 'noun')
+      .filter(obj => obj.type === "noun")
       .map(nounObj => nounObj.word)
-      .subscribe(
-        noun => {
-          this._setError();
-          console.log('noun:', noun);
-        }
-      );
+      .subscribe(noun => {
+        this._setError();
+        console.log("noun:", noun);
+      });
   }
 
   private _listenVerbs() {
     this.verbSub = this.speech.words$
-      .filter(obj => obj.type === 'verb')
+      .filter(obj => obj.type === "verb")
       .map(verbObj => verbObj.word)
-      .subscribe(
-        verb => {
-          this._setError();
-          console.log('verb:', verb);
-        }
-      );
+      .subscribe(verb => {
+        this._setError();
+        console.log("verb:", verb);
+      });
   }
 
   private _listenAdj() {
     this.adjSub = this.speech.words$
-      .filter(obj => obj.type === 'adj')
+      .filter(obj => obj.type === "adj")
       .map(adjObj => adjObj.word)
-      .subscribe(
-        adj => {
-          this._setError();
-          console.log('adjective:', adj);
-        }
-      );
+      .subscribe(adj => {
+        this._setError();
+        console.log("adjective:", adj);
+      });
   }
 
   private _listenErrors() {
-    this.errorsSub = this.speech.errors$
-      .subscribe(err => this._setError(err));
+    this.errorsSub = this.speech.errors$.subscribe(err => this._setError(err));
   }
 
   private _setError(err?: any) {
     if (err) {
-      console.log('Speech Recognition:', err);
+      console.log("Speech Recognition:", err);
       this.name = err.obj.results[0];
       this.errorMsg = err.message;
     } else {
@@ -109,11 +100,9 @@ export class SearchBarComponent implements OnInit {
     this.errorsSub.unsubscribe();
   }
 
- _connect(){
+  _connect() {}
 
-  }
-
-  disconnect(){
+  disconnect() {
     this.webSocketAPI._disconnect();
   }
 
@@ -125,4 +114,3 @@ export class SearchBarComponent implements OnInit {
       }
   }
 }
-

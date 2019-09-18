@@ -3,7 +3,23 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // for local use 
+  // loginURL: "http://172.23.238.220:9090",
+  // aws vm ip
+  loginURL: "http://13.233.25.37:9090",
+
+  // for local use 
+  // populationURL: "http://172.23.238.226:8402/api/v1/save",
+  // aws vm ip
+  populationURL:"http://13.233.25.37:8402",
+
+  // for local use
+  //notificationURL: "http://localhost:8404/ws"
+  // aws vm ip
+   notificationURL:"http://13.233.25.37:8404"
+
+
 };
 
 /*
