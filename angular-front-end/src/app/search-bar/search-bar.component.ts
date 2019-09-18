@@ -13,7 +13,8 @@ import { WebSocketAPI } from "../WebSocketAPI";
   styleUrls: ["./search-bar.component.css"]
 })
 export class SearchBarComponent implements OnInit {
-  // name: string;
+
+  name: string="";
   greeting: string;
   message: string;
 
@@ -25,12 +26,7 @@ export class SearchBarComponent implements OnInit {
   adjSub: Subscription;
   errorsSub: Subscription;
   errorMsg: string;
-  public name = "";
-  constructor(
-    private router: Router,
-    public speech: SpeechService,
-    public webSocketAPI: WebSocketAPI
-  ) {}
+  constructor( private router:Router,public speech: SpeechService, public webSocketAPI: WebSocketAPI) { }
 
   ngOnInit() {
     this.speech.init();
@@ -40,9 +36,9 @@ export class SearchBarComponent implements OnInit {
     this._listenErrors();
     this.name = "";
     this.webSocketAPI._connect();
-  }
-  search() {
-    this.router.navigateByUrl("content");
+
+    if(this.name == ""){
+       this.name=localStorage.getItem('searchString')}
   }
   get btnLabel(): string {
     return this.speech.listening ? "Listening..." : "";
@@ -111,6 +107,10 @@ export class SearchBarComponent implements OnInit {
   }
 
   sendMessage() {
-    this.webSocketAPI._send(this.name);
+   if(this.name){
+        localStorage.setItem('searchString', this.name);
+        this.webSocketAPI._send(this.name);
+        this.router.navigateByUrl('content');
+      }
   }
 }
