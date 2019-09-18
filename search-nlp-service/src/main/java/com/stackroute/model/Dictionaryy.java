@@ -377,7 +377,7 @@ public class Dictionaryy {
                                 valuelist.put("value" + (index3++), list.get(i));
                                 isMovie = false;
                             }
-                            if (isactor == true) {
+                            else if (isactor == true) {
                                 valuelist.put("value" + (index3++), list.get(i));
                                 isactor = false;
                             }else if (isdirector == true) {

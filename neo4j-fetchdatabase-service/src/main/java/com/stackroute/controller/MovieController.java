@@ -38,21 +38,15 @@ public class MovieController {
     this.input=mapper;
         Node1 node1 = objectMapper.readValue(mapper, Node1.class);
         this.node=node1;
-        System.out.println("consumed url is:"+mapper);
-        System.out.println(node1);
         getdata();
     }
 
 
     @PostMapping("/graph")
     public ResponseEntity<Result> getdata() throws ClassNotFoundException {
-
-        System.out.println(("inside mapping"));
         ResponseEntity<Result> response= new ResponseEntity<Result>(movieService.getData(node),HttpStatus.OK);
         Result result=movieService.getData(node);
-        System.out.println("data to be published    "+result);
         this.kafkaTemplate.send(TOPIC,result);
-        System.out.println("published");
         return new ResponseEntity<Result>(movieService.getData(node), HttpStatus.OK);
     }
 

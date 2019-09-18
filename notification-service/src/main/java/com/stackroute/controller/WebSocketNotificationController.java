@@ -24,7 +24,7 @@ public class WebSocketNotificationController {
 
 
     private static final String TOPIC = "SearchString";
-   
+
     private WebSocketNotificationSending webSocketNotificationSending;
     public String data [];
 
@@ -57,7 +57,7 @@ public class WebSocketNotificationController {
             System.out.println("resultMapper" + input);
             return new WebSocketNotificationSending(HtmlUtils.htmlEscape("") + input);
         }
-        return new WebSocketNotificationSending(("Result Not Found"));
+        return new WebSocketNotificationSending("Result Not Found");
     }
 
-    }//HtmlUtils.htmlEscape(webSocketNotificationReceiving.getName())
+    }
