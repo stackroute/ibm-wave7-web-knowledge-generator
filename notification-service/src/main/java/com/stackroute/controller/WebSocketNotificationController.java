@@ -20,27 +20,24 @@ import java.io.IOException;
 @Controller
 //STOMP messages routed to @Controller classes
 @RestController
-public class WebSocketNotificationController {
-
+public class WebSocketNotificationController
+{
 
     private static final String TOPIC = "SearchString";
-   
+
     private WebSocketNotificationSending webSocketNotificationSending;
     public String data [];
-
     String input="";
-
     Result node=new Result();
-
     String resultMapper;
-
     ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
     private KafkaTemplate kafkaTemplate;
 
     @KafkaListener(topics = "SearchResult", groupId = "group_id")
-    public void consumer(String mapper) throws IOException {
+    public void consumer(String mapper) throws IOException
+    {
         input = mapper;
         Result node1 = objectMapper.readValue(mapper, Result.class);
         this.node=node1;
@@ -49,15 +46,15 @@ public class WebSocketNotificationController {
     @MessageMapping("/search")
     @SendTo("/topic/result")
     @CrossOrigin
-    public WebSocketNotificationSending webSocketNotificationSending(WebSocketNotificationReceiving webSocketNotificationReceiving) throws Exception {
+    public WebSocketNotificationSending webSocketNotificationSending(WebSocketNotificationReceiving webSocketNotificationReceiving) throws Exception
+    {
         String searchString = HtmlUtils.htmlEscape(webSocketNotificationReceiving.getName());
         this.kafkaTemplate.send(TOPIC,searchString);
-        System.out.println(searchString);
-        if(!input.equals("")) {
-            System.out.println("resultMapper" + input);
+        if(!input.equals(""))
+        {
             return new WebSocketNotificationSending(HtmlUtils.htmlEscape("") + input);
         }
-        return new WebSocketNotificationSending(("Result Not Found"));
+        return new WebSocketNotificationSending("Result Not Found");
     }
 
-    }//HtmlUtils.htmlEscape(webSocketNotificationReceiving.getName())
+    }

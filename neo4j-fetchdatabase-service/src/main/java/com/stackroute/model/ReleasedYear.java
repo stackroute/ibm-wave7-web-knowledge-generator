@@ -17,8 +17,6 @@ public class ReleasedYear {
         this.year = year;
     }
 
-
-
     public ReleasedYear(String year) {
         this.year = year;
     }

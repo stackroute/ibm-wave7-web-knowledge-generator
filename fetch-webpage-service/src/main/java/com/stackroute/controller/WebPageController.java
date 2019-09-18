@@ -27,43 +27,23 @@ public class WebPageController {
     public String consumedUrl;
     @KafkaListener(topics = "Kafka_Example", groupId = "group_id")
     public void consumer(String url) throws IOException {
-//    Search obj = new ObjectMapper().readValue(url,Search.class);
-//    obj.setUrl(url);
         this.consumedUrl=url;
-        System.out.println("consumed url is:"+consumedUrl);
         getAllContent();
     }
+
     //getMapping to fetch the reqiured contents from the url
     @GetMapping("getContent")
     //Controller method to return the data
     public ResponseEntity<String> getAllContent() throws IOException {
-        System.out.println("inside mapping");
-        //System.out.println(url);
-
         String url=this.consumedUrl;
-        System.out.println("URL"+url);
-        System.out.println(url.getClass().getName());
-        //url = url.substring(14,url.length()-3);
-
-//       result = webPageService.getTitle(url)+"\n\n\n";
-        System.out.println("this is the url:"+url);
         String[] urlarr  = url.replace("\"","").replace("[","").replace("]","").split(",");
         String result = "";
         int i;
         for(i=0;i<urlarr.length;i++){
-            System.out.println(urlarr[i]);
-
             result = result + webPageService.getTableData(urlarr[i])+"\n\n\n" ;
-
-        }
-        System.out.println(result);
-        System.out.println(result.getClass().getName());
-
-//        result = result + webPageService.printImages()+"\n\n\n";
-//        result = result + webPageService.getSourceCodeOfWebPage(url)+"\n\n\n";
+        };
         responseEntity = new ResponseEntity<String>(result,HttpStatus.OK);
         this.kafkaTemplate.send(TOPIC,result);
-        System.out.println("Data is produced");
         return responseEntity;
     }
 }

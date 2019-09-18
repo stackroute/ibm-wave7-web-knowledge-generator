@@ -19,12 +19,15 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value="/api/v1")
-public class POSController {
+public class POSController
+{
     @Autowired
     private StanfordCoreNLP stanfordCoreNLP;
+
     @Autowired
     Dictionaryy dictionary;
     ResponseEntity responseEntity;
+
     @Autowired
     private KafkaTemplate<String,HashMap> kafkaTemplate;
     private static final String TOPIC = "Search-nlp";
@@ -34,27 +37,24 @@ public class POSController {
     public void consumer(String message) throws IOException {
 
         this.searchString=message;
-        //System.out.println(input);
         ner();
     }
+
 
     @PostMapping
     @RequestMapping(value="/pos")
     public HashMap<String,String> ner()
     {
         CoreDocument coreDocument = new CoreDocument(searchString+"?");
-        System.out.println("coreDocument : "+coreDocument);
         stanfordCoreNLP.annotate(coreDocument);
         List<CoreLabel> coreLabels=coreDocument.tokens();
-        System.out.println("coreLabels  :"+coreLabels.toString());
         LinkedList<String> listobj = new LinkedList<String>(collectionList(coreLabels));
-        System.out.println("listObj :"+listobj.toString());
         HashMap<String,String> response= new HashMap<String,String>(dictionary.mapvalue(listobj));
-        System.out.println("response : "+response);
         this.kafkaTemplate.send(TOPIC,response);
         return response;
 
     }
+
     private List<String> collectionList(List<CoreLabel> coreLabels)
     {
         List<String> res= Arrays.asList(new String[coreLabels.size()]);
@@ -64,7 +64,6 @@ public class POSController {
         for(CoreLabel corelabel : coreLabels)
         {
             String pos=corelabel.get(CoreAnnotations.PartOfSpeechAnnotation.class);
-            System.out.println(pos);
             if(pos.equals("NNP"))
             {
                 splstring+=corelabel.originalText()+" ";
@@ -79,15 +78,12 @@ public class POSController {
             }
             else
             {
-                System.out.println(splstring);
                 res.set(i,splstring.trim());
                 splstring="";
                 i++;
             }
         }
 
-
         return res;
-
     }
 }
