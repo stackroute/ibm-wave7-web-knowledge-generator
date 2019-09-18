@@ -6,8 +6,8 @@
     <parent>
         <groupId>com.stackroute</groupId>
         <artifactId>ibm-wave7-web-knowledge-generator</artifactId>
-        <relativePath>../pom.xml</relativePath>
         <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>com.stackroute</groupId>
     <artifactId>fetch-webpage-service</artifactId>
@@ -40,13 +40,13 @@
             <scope>test</scope>
 
         </dependency>
-<!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
-<dependency>
-    <groupId>org.mockito</groupId>
-    <artifactId>mockito-core</artifactId>
-    <version>3.0.0</version>
-    <scope>test</scope>
-</dependency>
+    <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+    <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>3.0.0</version>
+        <scope>test</scope>
+    </dependency>
 
         <dependency>
             <groupId>org.mockito</groupId>

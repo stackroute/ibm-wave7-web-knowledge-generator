@@ -24,8 +24,6 @@ public class WebPageServiceImpl implements WebPageService {
     public String getSourceCodeOfWebPage(String url) throws IOException {
          Document doc = Jsoup.connect(url).get();
             String html = doc.html();
-
-            System.out.println(html);
             return html;
         }
 

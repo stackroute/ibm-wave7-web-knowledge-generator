@@ -5,8 +5,8 @@
 	<parent>
 		<artifactId>ibm-wave7-web-knowledge-generator</artifactId>
 		<groupId>com.stackroute</groupId>
-		<relativePath>../pom.xml</relativePath>
 		<version>1.0.0</version>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<groupId>com.stackroute</groupId>
 	<artifactId>neo4j-fetchdatabase-service</artifactId>
