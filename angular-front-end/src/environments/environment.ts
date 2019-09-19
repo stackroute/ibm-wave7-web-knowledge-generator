@@ -12,12 +12,12 @@ export const environment = {
   // for local use 
   // populationURL: "http://172.23.238.226:8402/api/v1/save",
   // aws vm ip
-  populationURL:"http://13.233.25.37:8402",
+  populationURL:"http://13.233.25.37:8402/api/v1/save",
 
   // for local use
   //notificationURL: "http://localhost:8404/ws"
   // aws vm ip
-   notificationURL:"http://13.233.25.37:8404"
+  notificationURL:"http://13.233.25.37:8404/ws"
 
 
 };

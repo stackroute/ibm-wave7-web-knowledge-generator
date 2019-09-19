@@ -13,7 +13,7 @@ public class AuthenticationController {
     @Autowired
     AuthenticationService authenticationService;
 
-    @CrossOrigin
+    @CrossOrigin("*")
     @GetMapping("api/v1")
     //controller method to getValues of userName and password and validate
     public boolean authenticateDomainExpert(@RequestParam String userName,@RequestParam String userPassword)

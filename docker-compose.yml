@@ -185,7 +185,7 @@ services:
       test: "exit 0"
 
   mongo:
-    image: mongo:3.4-jessie
+    image: mongo:latest
     ports:
       - 27017:27017
     container_name: mongo

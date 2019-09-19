@@ -46,7 +46,7 @@ public class WebSocketNotificationController
 
     @MessageMapping("/search")
     @SendTo("/topic/result")
-    @CrossOrigin
+    @CrossOrigin("*")
     public WebSocketNotificationSending webSocketNotificationSending(WebSocketNotificationReceiving webSocketNotificationReceiving) throws Exception
     {
         String searchString = HtmlUtils.htmlEscape(webSocketNotificationReceiving.getName());
