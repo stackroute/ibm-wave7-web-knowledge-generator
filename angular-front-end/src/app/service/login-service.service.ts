@@ -16,7 +16,7 @@ export class LoginServiceService {
   authenticateDomainExpert(userName, userPassword) {
     return this.http.get(environment.loginURL + "/api/v1?userName=" + userName + "&&userPassword=" + userPassword,
       {
-         headers: this.headers 
+      headers: this.headers 
         });
   }
 
@@ -24,8 +24,8 @@ export class LoginServiceService {
   populateData(concepts): Observable<any> {
     return this.http.post(environment.populationURL+ "/" + concepts,
       {
-        headers: new HttpHeaders()
-          .set('Content-Type', 'application/x-www-form-urlencoded')
+        headers: this.headers
+         
       }
     );
   }
