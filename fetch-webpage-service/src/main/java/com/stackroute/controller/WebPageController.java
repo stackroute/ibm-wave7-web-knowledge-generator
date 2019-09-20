@@ -23,7 +23,7 @@ public class WebPageController {
     @Autowired
     private KafkaTemplate<String,String> kafkaTemplate;
     private static final String TOPIC = "Fetch_Webpage";
-    String consumedUrl;
+    public String consumedUrl;
     @KafkaListener(topics = "Kafka_Example", groupId = "group_id")
     public void consumer(String url) throws IOException {
         this.consumedUrl=url;
