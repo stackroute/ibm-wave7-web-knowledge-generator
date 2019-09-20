@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.List;
+
 
 //controller to get links from the api
 @RestController
@@ -43,9 +43,9 @@ public class WebSearchServiceController {
 
     //getMapping to get the links from the api
     @GetMapping("/search")
-    public ResponseEntity<String> getSearchResults(String searchString) throws URISyntaxException
+    public ResponseEntity<String> getSearchResults(String searchString1) throws URISyntaxException
     {
-        searchString=input;
+        String searchString=input;
         int i;
         String url;
         ArrayList<String> urlarr = new ArrayList<>();

@@ -1,7 +1,6 @@
 package com.stackroute.model;
 
 import org.springframework.data.neo4j.annotation.QueryResult;
-
 import java.util.Collection;
 import java.util.HashMap;
 

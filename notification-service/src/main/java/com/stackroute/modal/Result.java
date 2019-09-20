@@ -3,7 +3,6 @@ package com.stackroute.modal;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.neo4j.annotation.QueryResult;
-
 import java.util.Collection;
 import java.util.HashMap;
 
