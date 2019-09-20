@@ -4,12 +4,13 @@ import com.stackroute.modal.DomainExpert;
 import com.stackroute.repository.AuthenticationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.print.attribute.DocAttribute;
 import java.util.List;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
+
+
+    /* No Argument Constructor for the class */
 
     @Autowired
     public AuthenticationServiceImpl() {

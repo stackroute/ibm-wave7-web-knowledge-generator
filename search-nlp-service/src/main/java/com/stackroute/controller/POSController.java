@@ -5,8 +5,6 @@ import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.pipeline.CoreDocument;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 @RestController
@@ -60,7 +57,6 @@ public class POSController
         List<String> res= Arrays.asList(new String[coreLabels.size()]);
         int i=0;
         String splstring = "";
-        String finalstring = "";
         for(CoreLabel corelabel : coreLabels)
         {
             String pos=corelabel.get(CoreAnnotations.PartOfSpeechAnnotation.class);

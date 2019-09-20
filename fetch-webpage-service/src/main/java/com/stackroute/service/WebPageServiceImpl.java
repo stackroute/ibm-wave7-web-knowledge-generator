@@ -31,7 +31,6 @@ public class WebPageServiceImpl implements WebPageService {
         @Override
      public String getTableData(String url) throws IOException{
          org.jsoup.nodes.Document doc = Jsoup.connect(url).get();
-         //Element elements = doc.getElementsByTag("table[class=infobox vevent").first();
          Element elements = doc.select("table[class=infobox vevent]").first();
          String s1=elements.toString();
          s1=s1.replaceAll("<([^<]*)>","%");
@@ -52,13 +51,10 @@ public class WebPageServiceImpl implements WebPageService {
     public String getAllPTextsFromBody(String url) throws IOException {
 
         Document doc = Jsoup.connect(url).get();
-
-
         Elements link = doc.select("div p:lt(7)");
         String linkText = link.text();
         String result = " ";
         String[] words=linkText.split("[\n]");
-        String word = words[0];
         for(String str:words)
         {
             result =result +"\n" +str;
@@ -73,8 +69,9 @@ public class WebPageServiceImpl implements WebPageService {
     public String getTitle(String url) throws IOException {
         Document doc = Jsoup.connect(url).get();
 
-        String title = doc.title();
-        return title;
+        String st= doc.title();
+        return st;
+
     }
 
     @Override
@@ -82,8 +79,8 @@ public class WebPageServiceImpl implements WebPageService {
     public String getBody(String url) throws IOException {
         Document doc = Jsoup.connect(url).get();
 
-        String body = doc.body().text();
-        return body;
+        String st = doc.body().text();
+        return st;
     }
 
     @Override
@@ -92,8 +89,8 @@ public class WebPageServiceImpl implements WebPageService {
         Document doc = Jsoup.connect(url).get();
 
         Elements h1 = doc.select("h1");
-        String heading =  h1.text();
-        return heading;
+        String st = h1.text();
+        return st;
     }
 
     @Override

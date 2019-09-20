@@ -27,7 +27,7 @@ public class CodeBeautify {
     }
 
     public void setQueryObject(Query queryObject) {
-        queryObject = queryObject;
+        this.queryObject = queryObject;
     }
 
     public ArrayList<Result> getOrganic() {

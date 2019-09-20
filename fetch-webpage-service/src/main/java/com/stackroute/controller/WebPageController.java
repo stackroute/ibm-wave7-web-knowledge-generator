@@ -1,6 +1,6 @@
 package com.stackroute.controller;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.stackroute.model.Search;
+
+
 import com.stackroute.service.WebPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,23 +8,22 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
+
+
 //controller to fetch websiteData
 @RestController
 public class WebPageController {
-    private ResponseEntity responseEntity;
     private WebPageService webPageService;
-    private Search search;
-    public WebPageController(WebPageService webPageService) throws IOException {
+    public WebPageController(WebPageService webPageService) {
         this.webPageService = webPageService;
     }
 
     @Autowired
     private KafkaTemplate<String,String> kafkaTemplate;
     private static final String TOPIC = "Fetch_Webpage";
-    public String consumedUrl;
+    String consumedUrl;
     @KafkaListener(topics = "Kafka_Example", groupId = "group_id")
     public void consumer(String url) throws IOException {
         this.consumedUrl=url;
@@ -35,6 +34,7 @@ public class WebPageController {
     @GetMapping("getContent")
     //Controller method to return the data
     public ResponseEntity<String> getAllContent() throws IOException {
+        ResponseEntity responseEntity;
         String url=this.consumedUrl;
         String[] urlarr  = url.replace("\"","").replace("[","").replace("]","").split(",");
         String result = "";

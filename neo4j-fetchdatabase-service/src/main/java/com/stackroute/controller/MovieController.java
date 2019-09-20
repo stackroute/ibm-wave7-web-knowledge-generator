@@ -1,4 +1,5 @@
 package com.stackroute.controller;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stackroute.model.Node;
 import com.stackroute.model.Node1;
@@ -14,13 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.HashMap;
 
 @RestController
 @RequestMapping("/neo4j")
 public class MovieController {
     private MovieService movieService;
-   private  Collection<Node> responseEntity;
     public MovieController(MovieService movieService) {
 
         this.movieService = movieService;

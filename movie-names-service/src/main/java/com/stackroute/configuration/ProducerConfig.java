@@ -1,6 +1,5 @@
 package com.stackroute.configuration;
 
-import com.mongodb.util.JSON;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
