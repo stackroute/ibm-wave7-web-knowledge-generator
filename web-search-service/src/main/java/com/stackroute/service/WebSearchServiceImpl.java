@@ -27,8 +27,7 @@ public class WebSearchServiceImpl implements WebSearchService {
         Result output = null;
         RestTemplate restTemplate = new RestTemplate();
         //api to get links from
-        String url = "https://app.zenserp.com/api/v2/search?q=wikipedia+film"+searchString+"&hl=en&gl=US&location=United%20States&search_engine=google.com&apikey=bd1991f0-d945-11e9-8d57-3dab2b580055";
-
+        String url = "https://app.zenserp.com/api/v2/search?q=wikipedia+film"+searchString+"&hl=en&gl=US&location=United%20States&search_engine=google.com&apikey=f9e765e0-da0a-11e9-bdea-e186b5f14210";
         URI uri = new URI(url);
         String string = restTemplate.getForObject(uri, String.class);
         ObjectMapper objectMapper = new ObjectMapper();

@@ -34,16 +34,15 @@ public class MovieController {
     ObjectMapper objectMapper = new ObjectMapper();
     @KafkaListener(topics = "Search-nlp", groupId = "group_id")
     public void consumer(String mapper) throws IOException, ClassNotFoundException {
-    this.input=mapper;
-    Node1 node1 = objectMapper.readValue(mapper, Node1.class);
-    this.node=node1;
-    getdata();
+        this.input=mapper;
+        Node1 node1 = objectMapper.readValue(mapper, Node1.class);
+        this.node=node1;
+        getdata();
     }
 
 
     @PostMapping("/graph")
     public ResponseEntity<Result> getdata() throws ClassNotFoundException {
-
         ResponseEntity<Result> response= new ResponseEntity<Result>(movieService.getData(node),HttpStatus.OK);
         Result result=movieService.getData(node);
         this.kafkaTemplate.send(TOPIC,result);

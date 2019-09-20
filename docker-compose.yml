@@ -156,23 +156,6 @@ services:
     healthcheck:
       test: "exit 0"
 
-  moviedata-populator-service:
-    build: moviedata-populator-service/
-    depends_on:
-      - config-service
-      - eureka-server
-      - zuul-api
-      - neo4j
-    restart: always
-    network_mode: "host"
-    image: moviedata-populator-servicedocker
-    hostname: localhost
-    ports:
-      - 8888:8888
-    healthcheck:
-      test: "exit 0"
-
-
   neo4j-command-service:
     build: neo4j-command-service/
     depends_on:
@@ -202,7 +185,7 @@ services:
       test: "exit 0"
 
   mongo:
-    image: mongo:3.4-jessie
+    image: mongo:latest
     ports:
       - 27017:27017
     container_name: mongo

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stackroute.domain.WebSocketNotificationReceiving;
 import com.stackroute.domain.WebSocketNotificationSending;
 import com.stackroute.modal.Result;
+import com.sun.xml.bind.v2.runtime.output.SAXOutput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -24,6 +25,7 @@ public class WebSocketNotificationController
 {
 
     private static final String TOPIC = "SearchString";
+
     private WebSocketNotificationSending webSocketNotificationSending;
     String data [];
     String input="";
@@ -44,16 +46,20 @@ public class WebSocketNotificationController
 
     @MessageMapping("/search")
     @SendTo("/topic/result")
-    @CrossOrigin
+    @CrossOrigin("*")
     public WebSocketNotificationSending webSocketNotificationSending(WebSocketNotificationReceiving webSocketNotificationReceiving) throws Exception
     {
         String searchString = HtmlUtils.htmlEscape(webSocketNotificationReceiving.getName());
+        System.out.println("incoming message is "+searchString);
         this.kafkaTemplate.send(TOPIC,searchString);
+        System.out.println(input);
+        Thread.sleep(4000);
         if(!input.equals(""))
         {
             return new WebSocketNotificationSending(HtmlUtils.htmlEscape("") + input);
         }
-        return new WebSocketNotificationSending(("Result Not Found"));
+        input="";
+        return new WebSocketNotificationSending("Result Not Found");
     }
 
     }
