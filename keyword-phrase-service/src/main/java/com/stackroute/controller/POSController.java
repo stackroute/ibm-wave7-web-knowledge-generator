@@ -1,21 +1,14 @@
 package com.stackroute.controller;
 
 
-import com.stackroute.core.Pipeline;
-import edu.stanford.nlp.ling.CoreAnnotations;
-import edu.stanford.nlp.ling.CoreLabel;
-import edu.stanford.nlp.pipeline.CoreDocument;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
-
 
 @RestController
 
@@ -32,7 +25,7 @@ public class POSController {
 
         this.input=message;
         ner(input);
-        //System.out.println(input);
+
     }
 
     @Autowired
@@ -42,11 +35,11 @@ public class POSController {
 
     @GetMapping
     @RequestMapping(value="/pos")
-    public LinkedHashMap<Integer,LinkedHashMap<String,String>> ner(String data)
+    public LinkedHashMap<Integer,LinkedHashMap<String,String>> ner(String datanew)
     {
-        data=input;
-        int j,k=0,y=0;
-        System.out.println("data "+data);
+        String data=input;
+        int j;
+        int k=0;
         String[] contentarr  = data.split("\n");
         LinkedHashMap<String,String> collect;
         LinkedHashMap<Integer,LinkedHashMap<String,String>> all = new LinkedHashMap<>();
@@ -55,12 +48,10 @@ public class POSController {
             collect=new LinkedHashMap<>();
             //String is converted to string array
             String content=contentarr[j].toString();
-            // System.out.println("cont "+content+"j= "+j);
             String[] nodes=content.split("%");
             nodes[0]=" ";
             int flag=0;
             for(int i=0;i<nodes.length;i++){
-                System.out.println("nodes[i] = "+nodes[i].toString());
                 if(!nodes[i].equals(" ")&&flag==0)
                 {
                     //put is used to add key-value pairs in LinkedHashMap
@@ -83,18 +74,15 @@ public class POSController {
                     String lang=giveDate(nodes,i+1);
                     collect.put("Language",lang);
                 }
-                System.out.println("inside loop");
+
             }
-            System.out.println("vv "+collect);
-//            all.putIfAbsent(k++,collect);
-            if(collect.size() != 0) {
+             if(collect.size() != 0) {
                 all.put(k++, collect);
             }
-            System.out.println("hona chahie"+all);
+
         }
         //produce map object to kafka
         this.kafkaTemplate.send(TOPIC,all);
-        //System.out.println("published");
         return all;
     }
 

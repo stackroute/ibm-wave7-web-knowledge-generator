@@ -24,10 +24,6 @@
 			<artifactId>spring-boot-starter-data-neo4j</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.kafka</groupId>
-			<artifactId>spring-kafka</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
@@ -48,13 +44,6 @@
             <version>2.9.9.3</version>
             <scope>compile</scope>
         </dependency>
-        <!--		<dependency>-->
-<!--			<groupId>com.stackroute</groupId>-->
-<!--			<artifactId>neo4j-databaseservi-service</artifactId>-->
-<!--			<version>1.0.0</version>-->
-<!--			<scope>compile</scope>-->
-<!--		</dependency>-->
-
 	</dependencies>
 
 	<build>

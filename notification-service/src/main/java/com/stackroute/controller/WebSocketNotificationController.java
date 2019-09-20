@@ -27,7 +27,7 @@ public class WebSocketNotificationController
     private static final String TOPIC = "SearchString";
 
     private WebSocketNotificationSending webSocketNotificationSending;
-    public String data [];
+    String data [];
     String input="";
     Result node=new Result();
     String resultMapper;

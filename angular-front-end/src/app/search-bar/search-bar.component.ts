@@ -39,7 +39,10 @@ export class SearchBarComponent implements OnInit {
 
     if(this.name == ""){
        this.name=localStorage.getItem('searchString')}
+       localStorage.setItem('searchString',"");
   }
+        
+
   get btnLabel(): string {
     return this.speech.listening ? "Listening..." : "";
   }
@@ -105,8 +108,14 @@ export class SearchBarComponent implements OnInit {
   disconnect() {
     this.webSocketAPI._disconnect();
   }
-
+  keyDownFunction(event) {
+    if(event.keyCode == 13) {
+      console.log('aya');
+      this.sendMessage();
+    }
+  }
   sendMessage() {
+    console.log(this.name);
    if(this.name){
         localStorage.setItem('searchString', this.name);
         this.webSocketAPI._send(this.name);

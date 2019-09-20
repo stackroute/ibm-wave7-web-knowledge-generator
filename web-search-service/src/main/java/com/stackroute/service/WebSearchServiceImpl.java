@@ -5,13 +5,11 @@ import com.stackroute.modals.CodeBeautify;
 import com.stackroute.modals.Result;
 import com.stackroute.repository.SearchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -43,12 +41,12 @@ public class WebSearchServiceImpl implements WebSearchService {
         }
         catch (IOException e)
         {
-            e.printStackTrace();
+
         }
         String output1=output.toString();
         int len = output1.length();
-        output1.substring(10,len-3);
-        return output1;
+        return output1.substring(10,len-3);
+
     }
 
 }

@@ -6,8 +6,6 @@ import com.stackroute.Repository.MovieRepository;
 import com.stackroute.model.Node1;
 import com.stackroute.model.Result;
 import org.springframework.stereotype.Service;
-
-
 import java.util.Collection;
 import java.util.HashMap;
 

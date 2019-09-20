@@ -7,12 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HelpComponent implements OnInit {
   images = [
-    { img: "/assets/images/help.png"  },
-    { img: "/assets/images/help.png"  },
-    { img: "/assets/images/help.png"  },
-    { img: "/assets/images/help.png"  },
-    { img: "/assets/images/help.png"  },
-    { img: "/assets/images/help.png"  }
+    { img: "/assets/images/screen1.png"  },
+    { img: "/assets/images/screen2.png"  },
+    { img: "/assets/images/screen3.png"  },
+    { img: "/assets/images/screen7.png"  },
+    { img: "/assets/images/screen5.png"  },
+    { img: "/assets/images/screen4.png"  },
+    { img: "/assets/images/screen6.png"  },
+    
    ];
   constructor() { }
 

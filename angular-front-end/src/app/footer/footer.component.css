@@ -1,29 +1,27 @@
 footer {
-
-        background-color:black;
-        width: 100%;
-        height: 40px;
-        left: 0;
-        bottom: 0;
-        color: white;
-        text-align: center;
-        position: fixed;
-        padding-left: 10vw;
-
+    background-color: black;
+    width: 100%;
+    height: 40px;
+    left: 0;
+    bottom: 0;
+    color: white;
+    text-align: center;
+    position: fixed;
+    padding-left: 10vw;
 }
 
-mat-toolbar{
+mat-toolbar {
     display: inline;
-
 }
-mat-toolbar-row{
+
+mat-toolbar-row {
     float: left;
     font-size: 15px;
     padding-bottom: 10px;
-
 }
-span{
+
+span {
     float: right;
-color: aliceblue;
-padding: 3vw;
+    color: aliceblue;
+    padding: 3vw;
 }

@@ -5,8 +5,8 @@ import com.stackroute.model.Node1;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.data.repository.query.Param;
-
 import java.util.Collection;
+
 public interface MovieRepository extends Neo4jRepository<Movie,Long> {
     //Getting data for one hobbe
     @Query("With :#{#node} AS data\n"+

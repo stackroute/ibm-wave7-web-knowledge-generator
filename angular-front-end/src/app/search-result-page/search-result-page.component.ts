@@ -5,6 +5,7 @@ import "rxjs/add/operator/map";
 import { WebSocketAPI } from "../WebSocketAPI";
 import { Observable } from "rxjs";
 import { element } from "protractor";
+import { IfStmt } from '@angular/compiler';
 
 @Component({
   selector: "app-search-result-page",
@@ -18,6 +19,7 @@ export class SearchResultPageComponent implements OnInit {
   result: any = [];
   suggestions$: Observable<string>;
   suggestion: string;
+  loadershow:Boolean=true;
 
   suggestions: string[];
   title: string;
@@ -29,13 +31,30 @@ export class SearchResultPageComponent implements OnInit {
   constructor(private router: Router, private webSocketAPI: WebSocketAPI) {}
 
   ngOnInit() {
+    this.loadershow = true;
     this.result$ = this.webSocketAPI.resultData;
+    console.log(this.loadershow);
+    console.log("res"+this.result.length);
     this.result$.subscribe(data => {
       this.result = data;
-      console.log(this.result);
+       if(!this.result){
+        this.loadershow = true;
+       }else{
+        this.loadershow = false;
+       }
+
+    
+setTimeout(function() {
+  console.log('hide');
+  this.loadershow = false;
+}.bind(this), 4400);
+       
+    
+      console.log(this.loadershow);
       this.maincontent = [];
       for (var i = 0; i < this.result.length; i++) {
         if (this.result[i].name.title) {
+         
           this.maincontent.push(this.result[i].name.title);
           console.log("title");
         } else if (this.result[i].name.name) {
@@ -47,6 +66,10 @@ export class SearchResultPageComponent implements OnInit {
         }
       }
       console.log(this.maincontent);
+    
+     
+    },(err)=>{
+      this.loadershow = false;
     });
 
     this.suggestions = [];

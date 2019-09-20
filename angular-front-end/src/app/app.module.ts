@@ -31,7 +31,10 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginServiceService } from './service/login-service.service';
 import { DomainComponent } from './domainexpert/domainexpert.component';
-import { MatSelectModule } from '@angular/material';
+import { MatSelectModule } from '@angular/material/select';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +70,8 @@ import { MatSelectModule } from '@angular/material';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressSpinnerModule
     
   ],
   providers: [SpeechService,

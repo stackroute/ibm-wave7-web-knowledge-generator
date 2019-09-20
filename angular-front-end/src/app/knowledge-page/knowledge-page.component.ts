@@ -10,6 +10,7 @@ export class KnowledgePageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }
