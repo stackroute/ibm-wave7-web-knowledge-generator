@@ -23,4 +23,4 @@ COPY . /app
 EXPOSE 4200
 
 # start app
-CMD ng serve --host 0.0.0.0
+CMD ng serve --host 0.0.0.0 --publicHost minerva.stackroute.io
