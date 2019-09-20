@@ -38,7 +38,9 @@ export class SearchBarComponent implements OnInit {
     this.webSocketAPI._connect();
 
     if(this.name == ""){
-       this.name=localStorage.getItem('searchString')
+
+       this.name=localStorage.getItem('searchString');
+
        this.sendMessage();
     }
 //        localStorage.setItem('searchString',"");
