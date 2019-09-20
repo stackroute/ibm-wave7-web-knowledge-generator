@@ -9,17 +9,13 @@
       .login-button{
         background-color:#D5D8DC;
       }
-/*  for background color of login  */
-      body{
-          background-color: #D5D8DC;
-          padding:5%;
-       }
+     
+
 /*  for login card */
       .layout{
-        margin-top: 70px;
+        margin-top: 10%;
         max-width: 500px;
-        margin-left: 25vw;
-        margin-right: 25vw;
+        width: 50%;
         text-align: center;
         border-inline-width: 10px;
         align-items:center;

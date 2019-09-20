@@ -1,108 +1,42 @@
-nav{
-    max-height: 95px;
-}
-
-.header{
-    color: black;
-}
-.navbar{
-    /* background-color: rgb(143, 30, 30); */
-     background-color:#0A344E;
-
-}
-.logo{
-    /* padding-left: 11vw; */
-    font-size: 70px;
-    color: white;
-}
-.header img{
-
-    /* padding-top: 10px; */
-    width:70px;
-    height:60px;
-}
-
-.user{
-    /* margin-top: 1%; */
-    font-size: 70px;
-    color: white;
-    float: right;
-    text-align: right;
-    padding-right: 17vw;
-    padding-bottom: 10vh;
-    /* margin-left: 600px;
-    position:fixed;  */
-
-}
-
-.nav-item
-{
+.mat-toolbar h3 {
     text-align: center;
-    color: aliceblue;
-    font-size: 4vh;
-    padding: 0;
+    color: #ffffff;
+    font-size: 5vh;
+    font-family: 'Monoton', cursive;
+}
+header{
+    height: 7vh;
+    width: 100%;
+    z-index: 0;
+}
+.user{
+    color: white;
+    font-size: 6vh;
+    padding-right: 7vw;
+}
+.header {
+    flex: 1 1 auto;
+    text-align: center;
 }
 
-.title{
-    font-family: 'Lobster', cursive;
-    text-align:center;
-    color: #ffffff;
-    font-size: 50px;
-    padding-left: 20vw;
-    margin-left: 142px;
-   }
+.mat-option {
+    margin: 1px;
+    line-height: normal;
+}
 
-   .example-fill-remaining-space {
-    /* This fills the remaining space, by using flexbox.
-       Every toolbar row uses a flexbox row layout. */
-    flex: 1 1 auto;
-  }
-/*
-   @media only screen  and (min-width: 1024px) {
+#logo {
+    padding-top: -2vh;
+    height: 6vh;
+    align-content: center;
+}
 
-    .title{
-        margin-top: -60px!important;
-        font-size: 32px;
-        padding-left: 20vw!important;
-        margin-left: 142px!important;
-       }
-       .user{
+.headerbg {
+    position: fixed;
+    background-color:#0A344E;
+    top: 0;
+    z-index: 999;
+}
 
-        font-size: 70px !important;
-        color: white;
-        float: right;
-        text-align: right !important;
-        padding-right: 17vw !important;
-        padding-bottom: 10vh !important;
-        margin-left: 600px !important;
-    }
-    }
-
-   @media only screen and (min-width: 320px) {
-
-    .title{
-        margin-top: -60px!important;
-        font-size: 32px;
-        margin-left: 15px!important;
-        padding-left: 28vw!important;
-       }
-    .user{
-            margin-top: -72px!important;
-            margin-left: 250px!important;
-            font-size: 50px;
-        }
-   }*/
-
-/*   @media all and (min-width: 768px) {
-
-    .title{
-        margin-top: -10px!important;
-        font-size: 32px;
-        margin-left: 142px!important;
-        padding-left: 0vw!important;
-       }
-    .user{
-        margin-top: -70px!important;
-        /* margin-left: 250px!important;
-    }
-      } */
+.minerva {
+    text-decoration: none;
+}
