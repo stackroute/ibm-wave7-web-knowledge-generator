@@ -25,7 +25,7 @@ public class MovieService {
             if ((node.getNode2()).equals("Starring") || (node.getNode2()).equals("Director") || (node.getNode2()).equals("Writer") || (node.getNode2()).equals("Producer") || (node.getNode2()).equals("Language") || ((node.getNode1()).equals("Movie")&&(!node.getNode2().equals("ReleasedYear")))) {
                 key1 = "name";
             }
-            else if ((node.getNode2()).equals("Movie") || (node.getNode1()).equals("Starring")||((node.getNode1().equals("Language"))&&(node.getNode2().equals("ReleasedYear")))||((node.getNode1().equals("ReleasedYear"))&&(node.getNode2().equals("ReleasedYear")))||((node.getNode1().equals("Language"))&&(node.getNode2().equals("MANY")))) {
+            else if (((node.getNode1()).equals("Director"))||((node.getNode1()).equals("Producer"))||((node.getNode1()).equals("Writer"))||((node.getNode1()).equals("Starring"))||((node.getNode1()).equals("ReleasedYear"))||((node.getNode1()).equals("Language"))||(node.getNode2()).equals("Movie") || (node.getNode1()).equals("Starring")||((node.getNode1().equals("Language"))&&(node.getNode2().equals("ReleasedYear")))||((node.getNode1().equals("ReleasedYear"))&&(node.getNode2().equals("ReleasedYear")))||((node.getNode1().equals("Language"))&&(node.getNode2().equals("MANY")))) {
                 key1 = "title";
             }
             else if ((node.getNode2()).equals("ReleasedYear")) {
