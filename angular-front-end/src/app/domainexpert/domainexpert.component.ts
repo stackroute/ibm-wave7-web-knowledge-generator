@@ -39,6 +39,7 @@ if(this.dataArr.length> 0 ){
   for(var i=0;i<this.dataArr.length;i++){
     this.concepts.push(this.dataArr[i].title)
 }
+  alert("Data is populated");
 }
 
 this._loginService.populateData(this.concepts).subscribe();
