@@ -39,11 +39,17 @@ public class MovieService {
             else if ((node.getNode3()).equals("Movie") || (node.getNode1()).equals("Starring")) {
                 key2 = "title";
             }
-            else if ((node.getNode3()).equals("ReleasedYear")) {
+            else if (((node.getNode3()).equals("ReleasedYear"))&&(node.getValue3()==null)) {
                 key2 = "year";
             }
+            else if((node.getNode3().equals("ReleasedYear"))&&(node.getValue3()!==null))
+            {
+                key3="year";
+            }
+          
+            
         }
-        if ((node.getNode3() == null) || (node.getValue2()==null)||((node.getNode3().equals("MANY")) && (node.getValue2() == null))) {
+        if (((node.getNode3() == null)&&(node.getValue2() == null) )|| (node.getValue2()==null)||((node.getNode3().equals("MANY")) && (node.getValue2() == null))) {
             Collection<Node> nodesuggestions = movieRepository.suggestions1(node, key1);
             HashMap<String, String> queries1 = getsuggestions(nodesuggestions, node);
             Result result = new Result();
