@@ -42,7 +42,7 @@ public class MovieService {
             else if (((node.getNode3()).equals("ReleasedYear"))&&(node.getValue3()==null)) {
                 key2 = "year";
             }
-            else if((node.getNode3().equals("ReleasedYear"))&&(node.getValue3()!==null))
+            else if((node.getNode3().equals("ReleasedYear"))&&(node.getValue3()!=null))
             {
                 key3="year";
             }
