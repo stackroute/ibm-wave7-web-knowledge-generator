@@ -32,7 +32,7 @@ public class MovieService {
                 key1 = "year";
             }
         }
-        else if (node.getNode3() != null) {
+        if (node.getNode3() != null) {
             if ((node.getNode3()).equals("Starring") || (node.getNode3()).equals("Director") || (node.getNode3()).equals("Writer") || (node.getNode3()).equals("Producer") || (node.getNode3()).equals("Language")) {
                 key2 = "name";
             }
