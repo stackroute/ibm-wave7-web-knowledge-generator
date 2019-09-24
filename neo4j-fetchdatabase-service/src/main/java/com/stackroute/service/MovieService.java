@@ -58,9 +58,9 @@ public class MovieService {
             result.setSuggestions(queries1);
             return result;
         } else if ((node.getValue3())== null) {
-            System.Out.println("second hob");
+            System.out.println("second hob");
             Collection<Node> nodesuggestions = movieRepository.suggestions1(node, key1);
-            System.Out.println(nodesuggestions);
+            System.out.println(nodesuggestions);
             HashMap<String, String> queries1 = getsuggestions(nodesuggestions, node);
             Result result = new Result();
             System.out.println(key1);
@@ -69,7 +69,7 @@ public class MovieService {
             result.setSuggestions(queries1);
             return result;
         } else {
-            System.Out.println("three hobbe");
+            System.out.println("three hobbe");
             Collection<Node> nodesuggestions = movieRepository.suggestions1(node, key1);
             HashMap<String, String> queries1 = getsuggestions(nodesuggestions, node);
 
