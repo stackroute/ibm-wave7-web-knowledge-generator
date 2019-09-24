@@ -100,11 +100,6 @@ public class MovieService {
                 String[] value1 = name.split("'");
                 queries.put(question2, value1[1].trim());
 
-            } else if (part.trim().equals("Movie")) {
-                String question3 = " Other movies of " + node.getValue1() +index;
-                String[] value3 = name.split("'");
-                queries.put(question3, value3[1].trim());
-                index=index+" ";
             }
             }
         return queries;
