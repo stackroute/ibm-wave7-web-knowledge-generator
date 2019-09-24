@@ -46,10 +46,12 @@ public class MovieService {
             {
                 key3="year";
             }
-          
-            
+
+
         }
-        if (((node.getNode3() == null)&&(node.getValue2() == null) )|| (node.getValue2()==null)||((node.getNode3().equals("MANY")) && (node.getValue2() == null))) {
+        System.out.println(node.getValue2());
+        System.out.println(node.getNode3());
+         if ((node.getValue2()==null)||((node.getNode3()=="MANY") && (node.getValue2() == null))) {
             System.out.println("One hob");
             Collection<Node> nodesuggestions = movieRepository.suggestions1(node, key1);
             HashMap<String, String> queries1 = getsuggestions(nodesuggestions, node);
@@ -78,6 +80,7 @@ public class MovieService {
             result.setSuggestions(queries1);
             return result;
         }
+
     }
 
     private HashMap<String, String> getsuggestions(Collection<Node> nodesuggestions, Node1 node) {
@@ -111,11 +114,10 @@ public class MovieService {
                 queries.put(question2, value1[1].trim());
 
             }
-            }
+        }
         return queries;
     }
 }
-
 
 
 
