@@ -32,7 +32,7 @@ public class MovieService {
                 key1 = "year";
             }
         }
-        else if (node.getNode3() != null) {
+        if (node.getNode3() != null) {
             if ((node.getNode3()).equals("Starring") || (node.getNode3()).equals("Director") || (node.getNode3()).equals("Writer") || (node.getNode3()).equals("Producer") || (node.getNode3()).equals("Language")) {
                 key2 = "name";
             }
@@ -50,22 +50,26 @@ public class MovieService {
             
         }
         if (((node.getNode3() == null)&&(node.getValue2() == null) )|| (node.getValue2()==null)||((node.getNode3().equals("MANY")) && (node.getValue2() == null))) {
+            System.out.println("One hob");
             Collection<Node> nodesuggestions = movieRepository.suggestions1(node, key1);
             HashMap<String, String> queries1 = getsuggestions(nodesuggestions, node);
             Result result = new Result();
             result.setNode(movieRepository.findData(node, key1));
             result.setSuggestions(queries1);
             return result;
-        } else if (node.getValue3() == null) {
+        } else if ((node.getValue3())== null) {
+            System.out.println("second hob");
             Collection<Node> nodesuggestions = movieRepository.suggestions1(node, key1);
-            Collection<Node> nodesuggestions1 = movieRepository.suggestions1(node, key2);
+            System.out.println(nodesuggestions);
             HashMap<String, String> queries1 = getsuggestions(nodesuggestions, node);
-            HashMap<String, String> queries = new HashMap<>();
             Result result = new Result();
+            System.out.println(key1);
+            System.out.println(key2);
             result.setNode(movieRepository.findData2(node, key1, key2));
             result.setSuggestions(queries1);
             return result;
         } else {
+            System.out.println("three hobbe");
             Collection<Node> nodesuggestions = movieRepository.suggestions1(node, key1);
             HashMap<String, String> queries1 = getsuggestions(nodesuggestions, node);
 
