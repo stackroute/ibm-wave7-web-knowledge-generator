@@ -29,16 +29,16 @@
 	<modules>
 		<module>config-server</module>
 		<module>eureka-server</module>
-       	<module>web-search-service</module>
+       		<module>web-search-service</module>
 		<module>fetch-webpage-service</module>
 		<module>domain-expert-authentication-service</module>
 		<module>zuul-api</module>
 		<module>keyword-phrase-service</module>
-        <module>movie-names-service</module>
-        <module>neo4j-fetchdatabase-service</module>
-        <module>neo4j-command-service</module>
-        <module>search-nlp-service</module>
-        <module>notification-service</module>
+        	<module>movie-names-service</module>
+        	<module>neo4j-fetchdatabase-service</module>
+        	<module>neo4j-command-service</module>
+        	<module>search-nlp-service</module>
+        	<module>notification-service</module>
     </modules>
 
 	<dependencies>
